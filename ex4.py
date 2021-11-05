@@ -18,11 +18,11 @@ def cleanName(pessoa_name):
         grauPara = match.group(2)
 
     else:
-        expre_1 = r"([A-Z][a-z]+ ?){2,}(,([A-z ]+))?"
+        expre_1 = r"(([A-Z][a-z]+ ?){2,})(,([A-z ]+))?"
         expre = r"([A-z ]+)(,([A-z]+))?"
         match = re.search(expre_1, pessoa_name)
-        nome = match.group(0)
-        grauPara = match.group(3)
+        nome = match.group(1)
+        grauPara = match.group(4)
 
     return nome, str(grauPara)
 
