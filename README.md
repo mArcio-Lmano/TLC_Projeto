@@ -4,5 +4,4 @@
 ### Ex2
 ### Ex3
 ### Ex4 : Práticamente já funciona, cria um ficheiro Json com 20 elementos:
-   * Corrigir o problema de documentos danificados
-
+   * Verificar casos em que as datas são $!=$ mas as pessoas sejam iguais.
