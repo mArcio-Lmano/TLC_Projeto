@@ -22,19 +22,30 @@ def main():
     proc_numb = 20
     
     line_num = 0
-    j_inf = []
-
+    j_inf = {}
+    
+    r = r"([0-9]+)::([0-9]{4}-[0-9]{2}-[0-9]{2})::([A-z ,\.:0-9]+)"
     while len(j_inf) < 20:
         line  = readline(DIR, line_num)
         line_num += 1
+        match = re.search(r, line)
+        
+        processo = {}
 
-        #print(line)
+        if match:
+            idd = match.group(1)
+            data = match.group(2)
+            pessoas = match.group(3)
+            
+            processo["id"] = str(idd)
+            processo["data"] = str(data)
+            processo["pessoas"] = str(pessoas)
 
-        j_inf.append(line)
-
-    
-    print(j_inf)
-    creat_jSon (j_inf)
+        j_inf[str(idd)] = processo
+ 
+    str_json = str(j_inf)
+    str_json_inf = re.sub("\'", "\"",str_json)
+    creat_jSon (str_json_inf)
 
 if __name__ == "__main__":
     main()
