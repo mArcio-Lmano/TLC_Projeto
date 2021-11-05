@@ -12,15 +12,16 @@ def readline (file_dir, n_line):
 def cleanName(pessoa_name):
     
     if pessoa_name[0] == ".":
-        expre = r"[\. ]+([A-z ]+),([A-z]+)"
+        expre = r"[\. ]+([A-z ]+),([A-z ]+)"
         match = re.search(expre, pessoa_name)
         nome = match.group(1)
         grauPara = match.group(2)
 
     else:
+        expre_1 = r"([A-Z][a-z]+ ?){2,}(,([A-z ]+))?"
         expre = r"([A-z ]+)(,([A-z]+))?"
-        match = re.search(expre, pessoa_name)
-        nome = match.group(1)
+        match = re.search(expre_1, pessoa_name)
+        nome = match.group(0)
         grauPara = match.group(3)
 
     return nome, str(grauPara)
@@ -72,7 +73,7 @@ def main():
             while idd in j_inf:
                 print("Erro o id já existe")
 
-                if pessoas == j_inf[idd]["pessoas"]:
+                if pessoas == j_inf[idd]["pessoas"]: # Falta ver datas
                     print("Registo duplicado")
                     break
 
