@@ -74,11 +74,11 @@ def main():
                 print("Erro o id já existe")
 
                 if pessoas == j_inf[idd]["pessoas"]: # Falta ver datas
-                    print("Registo duplicado")
+                    print(f"Registo duplicado: {idd}\n")
                     break
 
                 else:
-                    print("Novo registo")
+                    print(f"Novo registo idd mudado de {idd} para {idd}.1\n")
                     idd = idd + ".1"
                     processo["id"] = str(idd)
                     processo["data"] = str(data)
