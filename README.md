@@ -7,3 +7,5 @@
    * Corrigir o problema de ids iguais
    * Corrigir o problema do grau parentesco
    * Corrigir o problema de documentos danificados
+   * Corrigir o erro associado a dois processos seguidos no mesmo registo
+
