@@ -7,6 +7,23 @@ def readline (file_dir, n_line):
         line = file_txt.readlines()
     return line[n_line]
 
+def cleanName(pessoa_name):
+    
+    if pessoa_name[0] == ".":
+        expre = r"[\. ]+([A-z ]+),([A-z]+)"
+        match = re.search(expre, pessoa_name)
+        nome = match.group(1)
+        print(match.group(1))
+        grauPara = match.group(2)
+
+    else:
+        expre = r"([A-z ]+)(,([A-z]+))?"
+        match = re.search(expre, pessoa_name)
+        nome = match.group(1)
+        grauPara = match.group(3)
+
+
+    return nome, str(grauPara)
 
 def cleanPerson (pessoas_str):
     pessoas = {}
@@ -17,7 +34,10 @@ def cleanPerson (pessoas_str):
     for s_match in match:
         pessoa = {}
         if s_match[0] != ".":
-            pessoa["nome"] = s_match[0]
+
+            nome, grau = cleanName(s_match[0])
+            pessoa["nome"] = nome
+            pessoa["grau parentesco"] = grau
             pessoa["processo"] = s_match[1]
             pessoas["pessoa" + str(index)] = pessoa 
             index += 1
