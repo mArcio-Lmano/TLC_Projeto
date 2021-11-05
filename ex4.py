@@ -7,7 +7,20 @@ def readline (file_dir, n_line):
         line = file_txt.readlines()
     return line[n_line]
 
-#print(readline(DIR, 2))
+
+def cleanPerson (pessoas_str):
+    pessoas = {}
+    pattern =  r"([A-z  \.,]+)([0-9]+)?"
+    match = re.findall(pattern, pessoas_str)
+    index = 1
+
+    for s_match in match:
+        print(f"{s_match} TamanhO: {len(s_match)}")        
+        #pessoa = {}
+        #pessoa["nome"] = str(s_match[0])
+        #pessoa[ 
+        #pessoas["pessoa" + str(index)] =  
+
 
 def creat_jSon (info):
     with open("teste.json", "w") as file_json:
@@ -36,7 +49,9 @@ def main():
             idd = match.group(1)
             data = match.group(2)
             pessoas = match.group(3)
-            
+            #print(line)
+            cleanPerson(pessoas)
+
             processo["id"] = str(idd)
             processo["data"] = str(data)
             processo["pessoas"] = str(pessoas)
