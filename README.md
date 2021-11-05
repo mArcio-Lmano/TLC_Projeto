@@ -4,6 +4,5 @@
 ### Ex2
 ### Ex3
 ### Ex4 : Práticamente já funciona, cria um ficheiro Json com 20 elementos:
-   * Corrigir o problema de ids iguais
    * Corrigir o problema de documentos danificados
 
