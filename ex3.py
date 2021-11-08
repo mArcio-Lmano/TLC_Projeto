@@ -54,8 +54,8 @@ def main():
     line_num = 0
     j_inf = {}
     r = r"([0-9]+)::([0-9]{4}-[0-9]{2}-[0-9]{2})::([A-z ,\.:0-9]+)"
-    while len(j_inf)<20:
-    #for a in open(DIR):
+    #while len(j_inf)<30:
+    for a in open(DIR):
         line = readline(DIR, line_num)
         line_num += 1
         match = re.search(r, line)
@@ -69,10 +69,12 @@ def main():
             while idd in j_inf:
                 print("Erro o id já existe")
 
-                if pessoas == j_inf[idd]["pessoas"]:
+                if (pessoas == j_inf[idd]["pessoas"] and data == j_inf[idd]["data"]):
                     print("Registo duplicado")
+                    processo["id"] = str(idd)
+                    processo["data"] = str(data)
+                    processo["pessoas"] = pessoas
                     break
-
                 else:
                     print("Novo registo")
                     idd = idd + ".1"
@@ -87,18 +89,31 @@ def main():
 
             j_inf[str(idd)] = processo
             print(processo)
-            index = 1
-            while "pessoa" + str(index) in processo["pessoas"]:
-                grau_parentesco = str(processo["pessoas"]["pessoa" + str(index)]["grau parentesco"])
-                if str(grau_parentesco) in grausParentesco:
-                    grausParentesco[grau_parentesco] = grausParentesco[grau_parentesco] + 1
-                    index += 1
-                else:
-                    grausParentesco[grau_parentesco] = 1
-                    index += 1
+
+    print(j_inf)
+
+    for reg in j_inf:
+        for pessoa in j_inf[reg]["pessoas"]:
+            #print(j_inf[reg]["pessoas"][pessoa]["grau parentesco"])
+            grau_parentesco = j_inf[reg]["pessoas"][pessoa]["grau parentesco"]
+            if str(grau_parentesco) in grausParentesco:
+                grausParentesco[grau_parentesco] = grausParentesco[grau_parentesco] + 1
+            else:
+                grausParentesco[grau_parentesco] = 1
     print(grausParentesco)
 
 
+"""       
+        grau_parentesco = str(j_inf[reg]["pessoas"]["pessoa" + str(index)]["grau parentesco"])
+        if str(grau_parentesco) in grausParentesco:
+            grausParentesco[grau_parentesco] = grausParentesco[grau_parentesco] + 1
+            index += 1
+        else:
+            grausParentesco[grau_parentesco] = 1
+            index += 1
+    print(grausParentesco)
 
+
+"""
 if __name__ == "__main__":
     main()
