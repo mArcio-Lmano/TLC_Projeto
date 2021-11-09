@@ -15,6 +15,14 @@ def readline (file_dir, n_line):
     return line[n_line]
 
 def cleanPersons (pessoas_str):
+    """Função que dada uma string, limpa a mesma, separando nomes, graus de
+    parentesco e número de processo, qualquer infromação que não corresponda
+    a nenhum dos parametros do de cima será apagada
+
+    pessoas_str :: string
+
+    outout :: dicionário de pessoas 
+    """
     pessoas = {}
     pattern =  r"(([A-Z][a-z]+ ?){2,})((,[A-z ]+). Proc.([0-9]+))?"
     match = re.findall(pattern, pessoas_str)
@@ -31,6 +39,14 @@ def cleanPersons (pessoas_str):
     return pessoas
 
 def match_line(n_linha):
+    """Função que dáda um linha vai ao documento txt, ler essa linha e cria 
+    um sub-dicinário referente a essa linha
+
+    n_linha :: linha que queremos ler
+
+    output :: dicionário da linha"""
+
+
     reg_exp = r"([0-9]+)::([0-9]{4}-[0-9]{2}-[0-9]{2})::(.+)"
     registo = {}
     
