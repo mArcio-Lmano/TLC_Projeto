@@ -2,6 +2,21 @@ import re
 
 DIR = r"processos.txt"
 
+def cleanNames(names_str):
+    nomes = {}
+    match = re.split(r' ', names_str)
+    pattern = r"([A-Z][a-z]+)+"
+    #match = re.findall(pattern, names_str)
+    print(match)
+    index = 0
+
+    for s_match in match:
+        nomes["nome" + str(index)] = s_match
+        index += 1
+
+    return nomes
+
+
 def readline (file_dir, n_line):
     """Função que dáda um ficheiro e um numero vai buscar a infromação
     referente a essa linha
@@ -29,6 +44,7 @@ def cleanPersons (pessoas_str):
    
     index = 1
     for s_match in match:
+        #print(s_match)
         pessoa = {}
         pessoa["nome"] = s_match[0]
         pessoa["grau parentesco"] = s_match[3]
@@ -51,7 +67,7 @@ def match_line(n_linha):
     registo = {}
     
     match = re.search(reg_exp, readline(DIR, n_linha))
-    
+
     if match:
         registo["idd"] =  match.group(1)
         registo["data"] = match.group(2)
@@ -66,5 +82,4 @@ def creat_jSon (info):
         file_json.write(str(json_str_Sq))
 
     return print("Ficheiro Criado")
-
 
