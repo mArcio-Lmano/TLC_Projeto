@@ -30,13 +30,6 @@ def cleanPersons (pessoas_str):
 
     return pessoas
 
-def creat_jSon (info):
-
-    with open("teste.json", "w") as file_json:
-        file_json.write(str(info))
-
-    return print("Ficheiro Criado")
-
 def match_line(n_linha):
     reg_exp = r"([0-9]+)::([0-9]{4}-[0-9]{2}-[0-9]{2})::(.+)"
     registo = {}
@@ -48,3 +41,14 @@ def match_line(n_linha):
         registo["data"] = match.group(2)
         registo["pessoas"] = cleanPersons(match.group(3))
         return registo
+
+def creat_jSon (info):
+
+    with open("teste.json", "w") as file_json:
+        json_str_Dq = str(info)
+        json_str_Sq = re.sub("\'", "\"", json_str_Dq)
+        file_json.write(str(json_str_Sq))
+
+    return print("Ficheiro Criado")
+
+
