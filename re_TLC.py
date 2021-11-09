@@ -16,7 +16,7 @@ def readline (file_dir, n_line):
 
 def cleanPersons (pessoas_str):
     pessoas = {}
-    pattern =  r"(([A-Z][a-z ]+){2,})((,[A-z ]+). Proc.([0-9]+))?"
+    pattern =  r"(([A-Z][a-z]+ ?){2,})((,[A-z ]+). Proc.([0-9]+))?"
     match = re.findall(pattern, pessoas_str)
    
     index = 1
