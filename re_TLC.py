@@ -5,13 +5,13 @@ DIR = r"processos.txt"
 def cleanNames(names_str):
     nomes = {}
     match = re.split(r' ', names_str)
-    pattern = r"([A-Z][a-z]+)+"
+    #pattern = r"([A-Z][a-z]+)+"
     #match = re.findall(pattern, names_str)
-    print(match)
+    #print(match)
     index = 0
 
     for s_match in match:
-        nomes["nome" + str(index)] = s_match
+        nomes[index] = s_match
         index += 1
 
     return nomes
