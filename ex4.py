@@ -9,7 +9,7 @@ def main():
     json_info = {}
     line = 0
     index = 1
-    while len(json_info) < 300:
+    while len(json_info) < 20:
         reg = match_line(line)
 
         if reg != None:
