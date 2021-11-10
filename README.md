@@ -4,4 +4,5 @@
 ### Ex2
 ### Ex3
 ### Ex4 : Práticamente já funciona, cria um ficheiro Json com 20 elementos:
-   * Verificar casos em que as datas são $!=$ mas as pessoas sejam iguais.
+   * Verificar casos em que as datas são $$!=$$ mas as pessoas sejam iguais.
+   * Verificar se o Json file representa direito as 20 primeiras ocurrencias.
