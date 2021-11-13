@@ -63,7 +63,7 @@ def match_line(n_linha):
     output :: dicionário da linha
     """
 
-    reg_exp = r"([0-9]+)::([0-9]{4}-[0-9]{2}-[0-9]{2})::(.+)"
+    reg_exp = r"([0-9]+)::([0-9]{4}-[0-9]{1,2}-[0-9]{1,2})::(.+)"
     registo = {}
     
     match = re.search(reg_exp, readline(DIR, n_linha))
@@ -75,13 +75,13 @@ def match_line(n_linha):
         return registo
 
 def creat_jSon (info):
-   """Função que recebe um dicionário python, transforma esse 
-   dicionário numa string e escreve a string num ficheiro do tipo 
-   Json, dá return a uma mensagem a avisar que o ficheiro Json 
-   foi criado
-   """ 
+    """Função que recebe um dicionário python, transforma esse 
+    dicionário numa string e escreve a string num ficheiro do tipo 
+    Json, dá return a uma mensagem a avisar que o ficheiro Json 
+    foi criado
+    """ 
 
-    with open("teste.json", "w") as file_json:
+    with open("data.json", "w") as file_json:
         json_str_Dq = str(info)
         json_str_Sq = re.sub("\'", "\"", json_str_Dq)
         file_json.write(str(json_str_Sq))
