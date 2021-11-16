@@ -10,6 +10,7 @@ def main():
     json_info = {}
     line = 0
     index = 1
+    #while (line <= 300):
     while (line <= 37889):
         reg = match_line(line)
 

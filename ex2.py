@@ -5,12 +5,13 @@ DIR = r"processos.txt"
 
 
 def main():
-    print("Exercício 3 do projeto\n")
+    print("Exercício 2 do projeto\n")
     nomesTotais = {}
     json_info = {}
     line = 0
     index = 1
-    while (line <= 30):
+    #while (line <= 1000):
+    while (line <= 37889):
         reg = match_line(line)
 
         if reg != None:
@@ -27,8 +28,6 @@ def main():
 
             else:
                 json_info[idd] = reg
-        #print (reg)
-        #print(line)
         line += 1
 
     for reg in json_info:
