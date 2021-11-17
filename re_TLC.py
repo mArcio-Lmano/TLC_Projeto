@@ -36,7 +36,7 @@ def cleanPersons (pessoas_str):
     outout :: dicionário de pessoas 
     """
     pessoas = {}
-    pattern =  r"(([A-Z][a-z]+ ?){2,})(,([A-Z][A-z ]+). Proc.([0-9]+))?"
+    pattern =  r"(([A-Z][a-z]+ *){2,})(,([A-Z][A-z ]+). Proc.([0-9]+))?"
     match = re.findall(pattern, pessoas_str)
    
     index = 1
