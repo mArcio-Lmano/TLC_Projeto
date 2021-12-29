@@ -2,6 +2,11 @@ import ply.lex as lex
 import sys
 
 reserved = {
+    #Tipos
+    "INT" : "INT",
+    "NINT" : "FLOAT",
+    "LIST" : "LISTA",
+    #Basic progaming shit
     "is" : "IGUAL",
     "IF" : "IF",
     "THEN" : "THEN",
@@ -23,19 +28,20 @@ reserved = {
     }
 
 
-tokens = ["INT","FLOAT", "ID"] + list(reserved.values())
+tokens = ["NINT","NFLOAT", "ID"] + list(reserved.values())
 
+literal = ["of", "(", ")"]
 
 # spaces and tabs seráo ignorados
 t_ignore  =  r" \n\t"
 
 # Criar floast e inteiros
-def t_FLOAT(t):
+def t_NFLOAT(t):
     r"\d+\.\d+"
     t.value = float(t.value)
     return t
 
-def t_INT(t):
+def t_NINT(t):
     r"\d+"
     t.value = int(t.value)
     return t
@@ -44,6 +50,11 @@ def t_ID(t):
     r"[A-z]+"
     t.type = reserved.get(t.value, "ID")
     return t
+
+def t_COMMENT(t):
+    r"(\"|').*(\"|')"
+    pass
+    # No return, ignorar os comentaários
 
 def t_error(t):
     print(f"keyword not found: {t.value[0]}")
