@@ -4,7 +4,6 @@ import sys
 reserved = {
     #Tipos
     "INT" : "INT",
-    "NINT" : "FLOAT",
     "LIST" : "LISTA",
     #Basic progaming shit
     "is" : "IGUAL",
@@ -24,25 +23,19 @@ reserved = {
     "SAMALL" : "SMALL",
     "SAMALLEQ" : "SMALLEQ",
     "AND" : "AND",
-    "OR" : "OR"
+    "OR" : "OR",
+    ";" : "NEWLINE"
     }
 
 
-tokens = ["NINT","NFLOAT", "ID"] + list(reserved.values())
+tokens = ["NINT", "ID"] + list(reserved.values())
 
-literal = ["of", "(", ")"]
+literal = ["(", ")"]
 
 # spaces and tabs seráo ignorados
-t_ignore  =  r" \n\t"
-
-# Criar floast e inteiros
-def t_NFLOAT(t):
-    r"\d+\.\d+"
-    t.value = float(t.value)
-    return t
 
 def t_NINT(t):
-    r"\d+"
+    r"-?\d+"
     t.value = int(t.value)
     return t
 
