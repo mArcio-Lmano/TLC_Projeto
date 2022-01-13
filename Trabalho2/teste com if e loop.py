@@ -2,7 +2,10 @@ import ply.lex as lex
 from ply import yacc
 import sys
 
-reserved = {    
+reserved = {
+    #Tipos
+    "INT" : "INT",
+    "LIST" : "LISTA",
     #Basic progaming shit
     "is" : "IGUAL",
     "IF" : "IF",
