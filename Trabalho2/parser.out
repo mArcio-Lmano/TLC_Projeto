@@ -1,5 +1,9 @@
 Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
+Unused terminals:
+
+    LISTA
+
 Grammar
 
 Rule 0     S' -> start
@@ -10,78 +14,72 @@ Rule 4     start -> if_then
 Rule 5     start -> if_ifnot
 Rule 6     start -> while
 Rule 7     start -> for
-Rule 8     start -> list
-Rule 9     start -> decl
-Rule 10    decl -> ID IGUAL decl_type
-Rule 11    decl_type -> LISTA
-Rule 12    decl_type -> NINT
-Rule 13    expr -> expr PLUS expr
-Rule 14    expr -> expr MINUS expr
-Rule 15    expr -> expr MUL expr
-Rule 16    expr -> expr DIV expr
-Rule 17    expr -> MINUS expr
-Rule 18    expr -> INT
-Rule 19    exprl -> expr BIG expr
-Rule 20    exprl -> expr SMALL expr
-Rule 21    exprl -> expr BIGEQ expr
-Rule 22    exprl -> expr SMALLEQ expr
-Rule 23    exprl -> expr EQ expr
-Rule 24    exprl -> expr AND expr
-Rule 25    exprl -> expr OR expr
-Rule 26    operation -> exprl
-Rule 27    operation -> expr
-Rule 28    operation -> INT
-Rule 29    operations -> operation NEWLINE operations
-Rule 30    operations -> operation
-Rule 31    if_ifnot -> IF exprl THEN operations ELSE operations
-Rule 32    if_then -> IF exprl THEN operations
-Rule 33    while -> WHILE exprl DO operations
-Rule 34    for -> FOR exprl DO operations
-Rule 35    list -> ID IGUAL LISTA list_nint
-Rule 36    list_nint -> INT
-Rule 37    list_nint -> INT VIRG list_nint
+Rule 8     start -> decl
+Rule 9     decl -> ID IGUAL INT NINT
+Rule 10    expr -> expr PLUS expr
+Rule 11    expr -> expr MINUS expr
+Rule 12    expr -> expr MUL expr
+Rule 13    expr -> expr DIV expr
+Rule 14    expr -> MINUS expr
+Rule 15    expr -> NINT
+Rule 16    exprl -> expr BIG expr
+Rule 17    exprl -> expr SMALL expr
+Rule 18    exprl -> expr BIGEQ expr
+Rule 19    exprl -> expr SMALLEQ expr
+Rule 20    exprl -> expr EQ expr
+Rule 21    exprl -> exprl AND exprl
+Rule 22    exprl -> exprl OR exprl
+Rule 23    operation -> exprl
+Rule 24    operation -> expr
+Rule 25    operation -> NINT
+Rule 26    operations -> operation NEWLINE operations
+Rule 27    operations -> operation
+Rule 28    if_ifnot -> IF exprl THEN operations ELSE operations
+Rule 29    if_then -> IF exprl THEN operations
+Rule 30    while -> WHILE exprl DO operations
+Rule 31    for -> FOR exprl DO operations
+Rule 32    list_nint -> NINT
+Rule 33    list_nint -> NINT VIRG list_nint
 
 Terminals, with rules where they appear
 
-AND                  : 24
-BIG                  : 19
-BIGEQ                : 21
-DIV                  : 16
-DO                   : 33 34
-ELSE                 : 31
-EQ                   : 23
-FOR                  : 34
-ID                   : 10 35
-IF                   : 31 32
-IGUAL                : 10 35
-INT                  : 18 28 36 37
-LISTA                : 11 35
-MINUS                : 14 17
-MUL                  : 15
-NEWLINE              : 29
-NINT                 : 12
-OR                   : 25
-PLUS                 : 13
-SMALL                : 20
-SMALLEQ              : 22
-THEN                 : 31 32
-VIRG                 : 37
-WHILE                : 33
+AND                  : 21
+BIG                  : 16
+BIGEQ                : 18
+DIV                  : 13
+DO                   : 30 31
+ELSE                 : 28
+EQ                   : 20
+FOR                  : 31
+ID                   : 9
+IF                   : 28 29
+IGUAL                : 9
+INT                  : 9
+LISTA                : 
+MINUS                : 11 14
+MUL                  : 12
+NEWLINE              : 26
+NINT                 : 9 15 25 32 33
+OR                   : 22
+PLUS                 : 10
+SMALL                : 17
+SMALLEQ              : 19
+THEN                 : 28 29
+VIRG                 : 33
+WHILE                : 30
 error                : 
 
 Nonterminals, with rules where they appear
 
-decl                 : 9
-decl_type            : 10
-expr                 : 1 13 13 14 14 15 15 16 16 17 19 19 20 20 21 21 22 22 23 23 24 24 25 25 27
-exprl                : 2 26 31 32 33 34
+decl                 : 8
+expr                 : 1 10 10 11 11 12 12 13 13 14 16 16 17 17 18 18 19 19 20 20 24
+exprl                : 2 21 21 22 22 23 28 29 30 31
 for                  : 7
 if_ifnot             : 5
 if_then              : 4
-list                 : 8
-list_nint            : 35 37
-operation            : 3 29 30
-operations           : 29 31 31 32 33 34
+list_nint            : 33
+operation            : 3 26 27
+operations           : 26 28 28 29 30 31
 start                : 0
 while                : 6
 
@@ -97,37 +95,35 @@ state 0
     (5) start -> . if_ifnot
     (6) start -> . while
     (7) start -> . for
-    (8) start -> . list
-    (9) start -> . decl
-    (13) expr -> . expr PLUS expr
-    (14) expr -> . expr MINUS expr
-    (15) expr -> . expr MUL expr
-    (16) expr -> . expr DIV expr
-    (17) expr -> . MINUS expr
-    (18) expr -> . INT
-    (19) exprl -> . expr BIG expr
-    (20) exprl -> . expr SMALL expr
-    (21) exprl -> . expr BIGEQ expr
-    (22) exprl -> . expr SMALLEQ expr
-    (23) exprl -> . expr EQ expr
-    (24) exprl -> . expr AND expr
-    (25) exprl -> . expr OR expr
-    (26) operation -> . exprl
-    (27) operation -> . expr
-    (28) operation -> . INT
-    (32) if_then -> . IF exprl THEN operations
-    (31) if_ifnot -> . IF exprl THEN operations ELSE operations
-    (33) while -> . WHILE exprl DO operations
-    (34) for -> . FOR exprl DO operations
-    (35) list -> . ID IGUAL LISTA list_nint
-    (10) decl -> . ID IGUAL decl_type
+    (8) start -> . decl
+    (10) expr -> . expr PLUS expr
+    (11) expr -> . expr MINUS expr
+    (12) expr -> . expr MUL expr
+    (13) expr -> . expr DIV expr
+    (14) expr -> . MINUS expr
+    (15) expr -> . NINT
+    (16) exprl -> . expr BIG expr
+    (17) exprl -> . expr SMALL expr
+    (18) exprl -> . expr BIGEQ expr
+    (19) exprl -> . expr SMALLEQ expr
+    (20) exprl -> . expr EQ expr
+    (21) exprl -> . exprl AND exprl
+    (22) exprl -> . exprl OR exprl
+    (23) operation -> . exprl
+    (24) operation -> . expr
+    (25) operation -> . NINT
+    (29) if_then -> . IF exprl THEN operations
+    (28) if_ifnot -> . IF exprl THEN operations ELSE operations
+    (30) while -> . WHILE exprl DO operations
+    (31) for -> . FOR exprl DO operations
+    (9) decl -> . ID IGUAL INT NINT
 
-    MINUS           shift and go to state 11
-    INT             shift and go to state 12
-    IF              shift and go to state 13
-    WHILE           shift and go to state 14
-    FOR             shift and go to state 15
-    ID              shift and go to state 16
+    MINUS           shift and go to state 10
+    NINT            shift and go to state 11
+    IF              shift and go to state 12
+    WHILE           shift and go to state 13
+    FOR             shift and go to state 14
+    ID              shift and go to state 15
 
     start                          shift and go to state 1
     expr                           shift and go to state 2
@@ -137,8 +133,7 @@ state 0
     if_ifnot                       shift and go to state 6
     while                          shift and go to state 7
     for                            shift and go to state 8
-    list                           shift and go to state 9
-    decl                           shift and go to state 10
+    decl                           shift and go to state 9
 
 state 1
 
@@ -149,45 +144,45 @@ state 1
 state 2
 
     (1) start -> expr .
-    (13) expr -> expr . PLUS expr
-    (14) expr -> expr . MINUS expr
-    (15) expr -> expr . MUL expr
-    (16) expr -> expr . DIV expr
-    (19) exprl -> expr . BIG expr
-    (20) exprl -> expr . SMALL expr
-    (21) exprl -> expr . BIGEQ expr
-    (22) exprl -> expr . SMALLEQ expr
-    (23) exprl -> expr . EQ expr
-    (24) exprl -> expr . AND expr
-    (25) exprl -> expr . OR expr
-    (27) operation -> expr .
+    (10) expr -> expr . PLUS expr
+    (11) expr -> expr . MINUS expr
+    (12) expr -> expr . MUL expr
+    (13) expr -> expr . DIV expr
+    (16) exprl -> expr . BIG expr
+    (17) exprl -> expr . SMALL expr
+    (18) exprl -> expr . BIGEQ expr
+    (19) exprl -> expr . SMALLEQ expr
+    (20) exprl -> expr . EQ expr
+    (24) operation -> expr .
 
   ! reduce/reduce conflict for $end resolved using rule 1 (start -> expr .)
     $end            reduce using rule 1 (start -> expr .)
-    PLUS            shift and go to state 17
-    MINUS           shift and go to state 18
-    MUL             shift and go to state 19
-    DIV             shift and go to state 20
-    BIG             shift and go to state 21
-    SMALL           shift and go to state 22
-    BIGEQ           shift and go to state 23
-    SMALLEQ         shift and go to state 24
-    EQ              shift and go to state 25
-    AND             shift and go to state 26
-    OR              shift and go to state 27
+    PLUS            shift and go to state 16
+    MINUS           shift and go to state 17
+    MUL             shift and go to state 18
+    DIV             shift and go to state 19
+    BIG             shift and go to state 20
+    SMALL           shift and go to state 21
+    BIGEQ           shift and go to state 22
+    SMALLEQ         shift and go to state 23
+    EQ              shift and go to state 24
 
-  ! $end            [ reduce using rule 27 (operation -> expr .) ]
+  ! $end            [ reduce using rule 24 (operation -> expr .) ]
 
 
 state 3
 
     (2) start -> exprl .
-    (26) operation -> exprl .
+    (21) exprl -> exprl . AND exprl
+    (22) exprl -> exprl . OR exprl
+    (23) operation -> exprl .
 
   ! reduce/reduce conflict for $end resolved using rule 2 (start -> exprl .)
     $end            reduce using rule 2 (start -> exprl .)
+    AND             shift and go to state 25
+    OR              shift and go to state 26
 
-  ! $end            [ reduce using rule 26 (operation -> exprl .) ]
+  ! $end            [ reduce using rule 23 (operation -> exprl .) ]
 
 
 state 4
@@ -227,1003 +222,981 @@ state 8
 
 state 9
 
-    (8) start -> list .
+    (8) start -> decl .
 
-    $end            reduce using rule 8 (start -> list .)
+    $end            reduce using rule 8 (start -> decl .)
 
 
 state 10
 
-    (9) start -> decl .
+    (14) expr -> MINUS . expr
+    (10) expr -> . expr PLUS expr
+    (11) expr -> . expr MINUS expr
+    (12) expr -> . expr MUL expr
+    (13) expr -> . expr DIV expr
+    (14) expr -> . MINUS expr
+    (15) expr -> . NINT
 
-    $end            reduce using rule 9 (start -> decl .)
+    MINUS           shift and go to state 10
+    NINT            shift and go to state 28
 
+    expr                           shift and go to state 27
 
 state 11
 
-    (17) expr -> MINUS . expr
-    (13) expr -> . expr PLUS expr
-    (14) expr -> . expr MINUS expr
-    (15) expr -> . expr MUL expr
-    (16) expr -> . expr DIV expr
-    (17) expr -> . MINUS expr
-    (18) expr -> . INT
+    (15) expr -> NINT .
+    (25) operation -> NINT .
 
-    MINUS           shift and go to state 11
-    INT             shift and go to state 29
+  ! reduce/reduce conflict for $end resolved using rule 15 (expr -> NINT .)
+    PLUS            reduce using rule 15 (expr -> NINT .)
+    MINUS           reduce using rule 15 (expr -> NINT .)
+    MUL             reduce using rule 15 (expr -> NINT .)
+    DIV             reduce using rule 15 (expr -> NINT .)
+    BIG             reduce using rule 15 (expr -> NINT .)
+    SMALL           reduce using rule 15 (expr -> NINT .)
+    BIGEQ           reduce using rule 15 (expr -> NINT .)
+    SMALLEQ         reduce using rule 15 (expr -> NINT .)
+    EQ              reduce using rule 15 (expr -> NINT .)
+    $end            reduce using rule 15 (expr -> NINT .)
 
-    expr                           shift and go to state 28
+  ! $end            [ reduce using rule 25 (operation -> NINT .) ]
+
 
 state 12
 
-    (18) expr -> INT .
-    (28) operation -> INT .
+    (29) if_then -> IF . exprl THEN operations
+    (28) if_ifnot -> IF . exprl THEN operations ELSE operations
+    (16) exprl -> . expr BIG expr
+    (17) exprl -> . expr SMALL expr
+    (18) exprl -> . expr BIGEQ expr
+    (19) exprl -> . expr SMALLEQ expr
+    (20) exprl -> . expr EQ expr
+    (21) exprl -> . exprl AND exprl
+    (22) exprl -> . exprl OR exprl
+    (10) expr -> . expr PLUS expr
+    (11) expr -> . expr MINUS expr
+    (12) expr -> . expr MUL expr
+    (13) expr -> . expr DIV expr
+    (14) expr -> . MINUS expr
+    (15) expr -> . NINT
 
-  ! reduce/reduce conflict for $end resolved using rule 18 (expr -> INT .)
-    PLUS            reduce using rule 18 (expr -> INT .)
-    MINUS           reduce using rule 18 (expr -> INT .)
-    MUL             reduce using rule 18 (expr -> INT .)
-    DIV             reduce using rule 18 (expr -> INT .)
-    BIG             reduce using rule 18 (expr -> INT .)
-    SMALL           reduce using rule 18 (expr -> INT .)
-    BIGEQ           reduce using rule 18 (expr -> INT .)
-    SMALLEQ         reduce using rule 18 (expr -> INT .)
-    EQ              reduce using rule 18 (expr -> INT .)
-    AND             reduce using rule 18 (expr -> INT .)
-    OR              reduce using rule 18 (expr -> INT .)
-    $end            reduce using rule 18 (expr -> INT .)
+    MINUS           shift and go to state 10
+    NINT            shift and go to state 28
 
-  ! $end            [ reduce using rule 28 (operation -> INT .) ]
-
+    exprl                          shift and go to state 29
+    expr                           shift and go to state 30
 
 state 13
 
-    (32) if_then -> IF . exprl THEN operations
-    (31) if_ifnot -> IF . exprl THEN operations ELSE operations
-    (19) exprl -> . expr BIG expr
-    (20) exprl -> . expr SMALL expr
-    (21) exprl -> . expr BIGEQ expr
-    (22) exprl -> . expr SMALLEQ expr
-    (23) exprl -> . expr EQ expr
-    (24) exprl -> . expr AND expr
-    (25) exprl -> . expr OR expr
-    (13) expr -> . expr PLUS expr
-    (14) expr -> . expr MINUS expr
-    (15) expr -> . expr MUL expr
-    (16) expr -> . expr DIV expr
-    (17) expr -> . MINUS expr
-    (18) expr -> . INT
+    (30) while -> WHILE . exprl DO operations
+    (16) exprl -> . expr BIG expr
+    (17) exprl -> . expr SMALL expr
+    (18) exprl -> . expr BIGEQ expr
+    (19) exprl -> . expr SMALLEQ expr
+    (20) exprl -> . expr EQ expr
+    (21) exprl -> . exprl AND exprl
+    (22) exprl -> . exprl OR exprl
+    (10) expr -> . expr PLUS expr
+    (11) expr -> . expr MINUS expr
+    (12) expr -> . expr MUL expr
+    (13) expr -> . expr DIV expr
+    (14) expr -> . MINUS expr
+    (15) expr -> . NINT
 
-    MINUS           shift and go to state 11
-    INT             shift and go to state 29
+    MINUS           shift and go to state 10
+    NINT            shift and go to state 28
 
-    exprl                          shift and go to state 30
-    expr                           shift and go to state 31
+    exprl                          shift and go to state 31
+    expr                           shift and go to state 30
 
 state 14
 
-    (33) while -> WHILE . exprl DO operations
-    (19) exprl -> . expr BIG expr
-    (20) exprl -> . expr SMALL expr
-    (21) exprl -> . expr BIGEQ expr
-    (22) exprl -> . expr SMALLEQ expr
-    (23) exprl -> . expr EQ expr
-    (24) exprl -> . expr AND expr
-    (25) exprl -> . expr OR expr
-    (13) expr -> . expr PLUS expr
-    (14) expr -> . expr MINUS expr
-    (15) expr -> . expr MUL expr
-    (16) expr -> . expr DIV expr
-    (17) expr -> . MINUS expr
-    (18) expr -> . INT
+    (31) for -> FOR . exprl DO operations
+    (16) exprl -> . expr BIG expr
+    (17) exprl -> . expr SMALL expr
+    (18) exprl -> . expr BIGEQ expr
+    (19) exprl -> . expr SMALLEQ expr
+    (20) exprl -> . expr EQ expr
+    (21) exprl -> . exprl AND exprl
+    (22) exprl -> . exprl OR exprl
+    (10) expr -> . expr PLUS expr
+    (11) expr -> . expr MINUS expr
+    (12) expr -> . expr MUL expr
+    (13) expr -> . expr DIV expr
+    (14) expr -> . MINUS expr
+    (15) expr -> . NINT
 
-    MINUS           shift and go to state 11
-    INT             shift and go to state 29
+    MINUS           shift and go to state 10
+    NINT            shift and go to state 28
 
     exprl                          shift and go to state 32
-    expr                           shift and go to state 31
+    expr                           shift and go to state 30
 
 state 15
 
-    (34) for -> FOR . exprl DO operations
-    (19) exprl -> . expr BIG expr
-    (20) exprl -> . expr SMALL expr
-    (21) exprl -> . expr BIGEQ expr
-    (22) exprl -> . expr SMALLEQ expr
-    (23) exprl -> . expr EQ expr
-    (24) exprl -> . expr AND expr
-    (25) exprl -> . expr OR expr
-    (13) expr -> . expr PLUS expr
-    (14) expr -> . expr MINUS expr
-    (15) expr -> . expr MUL expr
-    (16) expr -> . expr DIV expr
-    (17) expr -> . MINUS expr
-    (18) expr -> . INT
+    (9) decl -> ID . IGUAL INT NINT
 
-    MINUS           shift and go to state 11
-    INT             shift and go to state 29
+    IGUAL           shift and go to state 33
 
-    exprl                          shift and go to state 33
-    expr                           shift and go to state 31
 
 state 16
 
-    (35) list -> ID . IGUAL LISTA list_nint
-    (10) decl -> ID . IGUAL decl_type
+    (10) expr -> expr PLUS . expr
+    (10) expr -> . expr PLUS expr
+    (11) expr -> . expr MINUS expr
+    (12) expr -> . expr MUL expr
+    (13) expr -> . expr DIV expr
+    (14) expr -> . MINUS expr
+    (15) expr -> . NINT
 
-    IGUAL           shift and go to state 34
+    MINUS           shift and go to state 10
+    NINT            shift and go to state 28
 
+    expr                           shift and go to state 34
 
 state 17
 
-    (13) expr -> expr PLUS . expr
-    (13) expr -> . expr PLUS expr
-    (14) expr -> . expr MINUS expr
-    (15) expr -> . expr MUL expr
-    (16) expr -> . expr DIV expr
-    (17) expr -> . MINUS expr
-    (18) expr -> . INT
+    (11) expr -> expr MINUS . expr
+    (10) expr -> . expr PLUS expr
+    (11) expr -> . expr MINUS expr
+    (12) expr -> . expr MUL expr
+    (13) expr -> . expr DIV expr
+    (14) expr -> . MINUS expr
+    (15) expr -> . NINT
 
-    MINUS           shift and go to state 11
-    INT             shift and go to state 29
+    MINUS           shift and go to state 10
+    NINT            shift and go to state 28
 
     expr                           shift and go to state 35
 
 state 18
 
-    (14) expr -> expr MINUS . expr
-    (13) expr -> . expr PLUS expr
-    (14) expr -> . expr MINUS expr
-    (15) expr -> . expr MUL expr
-    (16) expr -> . expr DIV expr
-    (17) expr -> . MINUS expr
-    (18) expr -> . INT
+    (12) expr -> expr MUL . expr
+    (10) expr -> . expr PLUS expr
+    (11) expr -> . expr MINUS expr
+    (12) expr -> . expr MUL expr
+    (13) expr -> . expr DIV expr
+    (14) expr -> . MINUS expr
+    (15) expr -> . NINT
 
-    MINUS           shift and go to state 11
-    INT             shift and go to state 29
+    MINUS           shift and go to state 10
+    NINT            shift and go to state 28
 
     expr                           shift and go to state 36
 
 state 19
 
-    (15) expr -> expr MUL . expr
-    (13) expr -> . expr PLUS expr
-    (14) expr -> . expr MINUS expr
-    (15) expr -> . expr MUL expr
-    (16) expr -> . expr DIV expr
-    (17) expr -> . MINUS expr
-    (18) expr -> . INT
+    (13) expr -> expr DIV . expr
+    (10) expr -> . expr PLUS expr
+    (11) expr -> . expr MINUS expr
+    (12) expr -> . expr MUL expr
+    (13) expr -> . expr DIV expr
+    (14) expr -> . MINUS expr
+    (15) expr -> . NINT
 
-    MINUS           shift and go to state 11
-    INT             shift and go to state 29
+    MINUS           shift and go to state 10
+    NINT            shift and go to state 28
 
     expr                           shift and go to state 37
 
 state 20
 
-    (16) expr -> expr DIV . expr
-    (13) expr -> . expr PLUS expr
-    (14) expr -> . expr MINUS expr
-    (15) expr -> . expr MUL expr
-    (16) expr -> . expr DIV expr
-    (17) expr -> . MINUS expr
-    (18) expr -> . INT
+    (16) exprl -> expr BIG . expr
+    (10) expr -> . expr PLUS expr
+    (11) expr -> . expr MINUS expr
+    (12) expr -> . expr MUL expr
+    (13) expr -> . expr DIV expr
+    (14) expr -> . MINUS expr
+    (15) expr -> . NINT
 
-    MINUS           shift and go to state 11
-    INT             shift and go to state 29
+    MINUS           shift and go to state 10
+    NINT            shift and go to state 28
 
     expr                           shift and go to state 38
 
 state 21
 
-    (19) exprl -> expr BIG . expr
-    (13) expr -> . expr PLUS expr
-    (14) expr -> . expr MINUS expr
-    (15) expr -> . expr MUL expr
-    (16) expr -> . expr DIV expr
-    (17) expr -> . MINUS expr
-    (18) expr -> . INT
+    (17) exprl -> expr SMALL . expr
+    (10) expr -> . expr PLUS expr
+    (11) expr -> . expr MINUS expr
+    (12) expr -> . expr MUL expr
+    (13) expr -> . expr DIV expr
+    (14) expr -> . MINUS expr
+    (15) expr -> . NINT
 
-    MINUS           shift and go to state 11
-    INT             shift and go to state 29
+    MINUS           shift and go to state 10
+    NINT            shift and go to state 28
 
     expr                           shift and go to state 39
 
 state 22
 
-    (20) exprl -> expr SMALL . expr
-    (13) expr -> . expr PLUS expr
-    (14) expr -> . expr MINUS expr
-    (15) expr -> . expr MUL expr
-    (16) expr -> . expr DIV expr
-    (17) expr -> . MINUS expr
-    (18) expr -> . INT
+    (18) exprl -> expr BIGEQ . expr
+    (10) expr -> . expr PLUS expr
+    (11) expr -> . expr MINUS expr
+    (12) expr -> . expr MUL expr
+    (13) expr -> . expr DIV expr
+    (14) expr -> . MINUS expr
+    (15) expr -> . NINT
 
-    MINUS           shift and go to state 11
-    INT             shift and go to state 29
+    MINUS           shift and go to state 10
+    NINT            shift and go to state 28
 
     expr                           shift and go to state 40
 
 state 23
 
-    (21) exprl -> expr BIGEQ . expr
-    (13) expr -> . expr PLUS expr
-    (14) expr -> . expr MINUS expr
-    (15) expr -> . expr MUL expr
-    (16) expr -> . expr DIV expr
-    (17) expr -> . MINUS expr
-    (18) expr -> . INT
+    (19) exprl -> expr SMALLEQ . expr
+    (10) expr -> . expr PLUS expr
+    (11) expr -> . expr MINUS expr
+    (12) expr -> . expr MUL expr
+    (13) expr -> . expr DIV expr
+    (14) expr -> . MINUS expr
+    (15) expr -> . NINT
 
-    MINUS           shift and go to state 11
-    INT             shift and go to state 29
+    MINUS           shift and go to state 10
+    NINT            shift and go to state 28
 
     expr                           shift and go to state 41
 
 state 24
 
-    (22) exprl -> expr SMALLEQ . expr
-    (13) expr -> . expr PLUS expr
-    (14) expr -> . expr MINUS expr
-    (15) expr -> . expr MUL expr
-    (16) expr -> . expr DIV expr
-    (17) expr -> . MINUS expr
-    (18) expr -> . INT
+    (20) exprl -> expr EQ . expr
+    (10) expr -> . expr PLUS expr
+    (11) expr -> . expr MINUS expr
+    (12) expr -> . expr MUL expr
+    (13) expr -> . expr DIV expr
+    (14) expr -> . MINUS expr
+    (15) expr -> . NINT
 
-    MINUS           shift and go to state 11
-    INT             shift and go to state 29
+    MINUS           shift and go to state 10
+    NINT            shift and go to state 28
 
     expr                           shift and go to state 42
 
 state 25
 
-    (23) exprl -> expr EQ . expr
-    (13) expr -> . expr PLUS expr
-    (14) expr -> . expr MINUS expr
-    (15) expr -> . expr MUL expr
-    (16) expr -> . expr DIV expr
-    (17) expr -> . MINUS expr
-    (18) expr -> . INT
+    (21) exprl -> exprl AND . exprl
+    (16) exprl -> . expr BIG expr
+    (17) exprl -> . expr SMALL expr
+    (18) exprl -> . expr BIGEQ expr
+    (19) exprl -> . expr SMALLEQ expr
+    (20) exprl -> . expr EQ expr
+    (21) exprl -> . exprl AND exprl
+    (22) exprl -> . exprl OR exprl
+    (10) expr -> . expr PLUS expr
+    (11) expr -> . expr MINUS expr
+    (12) expr -> . expr MUL expr
+    (13) expr -> . expr DIV expr
+    (14) expr -> . MINUS expr
+    (15) expr -> . NINT
 
-    MINUS           shift and go to state 11
-    INT             shift and go to state 29
+    MINUS           shift and go to state 10
+    NINT            shift and go to state 28
 
-    expr                           shift and go to state 43
+    exprl                          shift and go to state 43
+    expr                           shift and go to state 30
 
 state 26
 
-    (24) exprl -> expr AND . expr
-    (13) expr -> . expr PLUS expr
-    (14) expr -> . expr MINUS expr
-    (15) expr -> . expr MUL expr
-    (16) expr -> . expr DIV expr
-    (17) expr -> . MINUS expr
-    (18) expr -> . INT
+    (22) exprl -> exprl OR . exprl
+    (16) exprl -> . expr BIG expr
+    (17) exprl -> . expr SMALL expr
+    (18) exprl -> . expr BIGEQ expr
+    (19) exprl -> . expr SMALLEQ expr
+    (20) exprl -> . expr EQ expr
+    (21) exprl -> . exprl AND exprl
+    (22) exprl -> . exprl OR exprl
+    (10) expr -> . expr PLUS expr
+    (11) expr -> . expr MINUS expr
+    (12) expr -> . expr MUL expr
+    (13) expr -> . expr DIV expr
+    (14) expr -> . MINUS expr
+    (15) expr -> . NINT
 
-    MINUS           shift and go to state 11
-    INT             shift and go to state 29
+    MINUS           shift and go to state 10
+    NINT            shift and go to state 28
 
-    expr                           shift and go to state 44
+    exprl                          shift and go to state 44
+    expr                           shift and go to state 30
 
 state 27
 
-    (25) exprl -> expr OR . expr
-    (13) expr -> . expr PLUS expr
-    (14) expr -> . expr MINUS expr
-    (15) expr -> . expr MUL expr
-    (16) expr -> . expr DIV expr
-    (17) expr -> . MINUS expr
-    (18) expr -> . INT
+    (14) expr -> MINUS expr .
+    (10) expr -> expr . PLUS expr
+    (11) expr -> expr . MINUS expr
+    (12) expr -> expr . MUL expr
+    (13) expr -> expr . DIV expr
 
-    MINUS           shift and go to state 11
-    INT             shift and go to state 29
+    PLUS            reduce using rule 14 (expr -> MINUS expr .)
+    MINUS           reduce using rule 14 (expr -> MINUS expr .)
+    MUL             reduce using rule 14 (expr -> MINUS expr .)
+    DIV             reduce using rule 14 (expr -> MINUS expr .)
+    BIG             reduce using rule 14 (expr -> MINUS expr .)
+    SMALL           reduce using rule 14 (expr -> MINUS expr .)
+    BIGEQ           reduce using rule 14 (expr -> MINUS expr .)
+    SMALLEQ         reduce using rule 14 (expr -> MINUS expr .)
+    EQ              reduce using rule 14 (expr -> MINUS expr .)
+    $end            reduce using rule 14 (expr -> MINUS expr .)
+    AND             reduce using rule 14 (expr -> MINUS expr .)
+    OR              reduce using rule 14 (expr -> MINUS expr .)
+    THEN            reduce using rule 14 (expr -> MINUS expr .)
+    DO              reduce using rule 14 (expr -> MINUS expr .)
+    NEWLINE         reduce using rule 14 (expr -> MINUS expr .)
+    ELSE            reduce using rule 14 (expr -> MINUS expr .)
 
-    expr                           shift and go to state 45
+  ! PLUS            [ shift and go to state 16 ]
+  ! MINUS           [ shift and go to state 17 ]
+  ! MUL             [ shift and go to state 18 ]
+  ! DIV             [ shift and go to state 19 ]
+
 
 state 28
 
-    (17) expr -> MINUS expr .
-    (13) expr -> expr . PLUS expr
-    (14) expr -> expr . MINUS expr
-    (15) expr -> expr . MUL expr
-    (16) expr -> expr . DIV expr
+    (15) expr -> NINT .
 
-    PLUS            reduce using rule 17 (expr -> MINUS expr .)
-    MINUS           reduce using rule 17 (expr -> MINUS expr .)
-    MUL             reduce using rule 17 (expr -> MINUS expr .)
-    DIV             reduce using rule 17 (expr -> MINUS expr .)
-    BIG             reduce using rule 17 (expr -> MINUS expr .)
-    SMALL           reduce using rule 17 (expr -> MINUS expr .)
-    BIGEQ           reduce using rule 17 (expr -> MINUS expr .)
-    SMALLEQ         reduce using rule 17 (expr -> MINUS expr .)
-    EQ              reduce using rule 17 (expr -> MINUS expr .)
-    AND             reduce using rule 17 (expr -> MINUS expr .)
-    OR              reduce using rule 17 (expr -> MINUS expr .)
-    $end            reduce using rule 17 (expr -> MINUS expr .)
-    THEN            reduce using rule 17 (expr -> MINUS expr .)
-    DO              reduce using rule 17 (expr -> MINUS expr .)
-    NEWLINE         reduce using rule 17 (expr -> MINUS expr .)
-    ELSE            reduce using rule 17 (expr -> MINUS expr .)
-
-  ! PLUS            [ shift and go to state 17 ]
-  ! MINUS           [ shift and go to state 18 ]
-  ! MUL             [ shift and go to state 19 ]
-  ! DIV             [ shift and go to state 20 ]
+    PLUS            reduce using rule 15 (expr -> NINT .)
+    MINUS           reduce using rule 15 (expr -> NINT .)
+    MUL             reduce using rule 15 (expr -> NINT .)
+    DIV             reduce using rule 15 (expr -> NINT .)
+    BIG             reduce using rule 15 (expr -> NINT .)
+    SMALL           reduce using rule 15 (expr -> NINT .)
+    BIGEQ           reduce using rule 15 (expr -> NINT .)
+    SMALLEQ         reduce using rule 15 (expr -> NINT .)
+    EQ              reduce using rule 15 (expr -> NINT .)
+    $end            reduce using rule 15 (expr -> NINT .)
+    AND             reduce using rule 15 (expr -> NINT .)
+    OR              reduce using rule 15 (expr -> NINT .)
+    THEN            reduce using rule 15 (expr -> NINT .)
+    DO              reduce using rule 15 (expr -> NINT .)
+    NEWLINE         reduce using rule 15 (expr -> NINT .)
+    ELSE            reduce using rule 15 (expr -> NINT .)
 
 
 state 29
 
-    (18) expr -> INT .
+    (29) if_then -> IF exprl . THEN operations
+    (28) if_ifnot -> IF exprl . THEN operations ELSE operations
+    (21) exprl -> exprl . AND exprl
+    (22) exprl -> exprl . OR exprl
 
-    PLUS            reduce using rule 18 (expr -> INT .)
-    MINUS           reduce using rule 18 (expr -> INT .)
-    MUL             reduce using rule 18 (expr -> INT .)
-    DIV             reduce using rule 18 (expr -> INT .)
-    BIG             reduce using rule 18 (expr -> INT .)
-    SMALL           reduce using rule 18 (expr -> INT .)
-    BIGEQ           reduce using rule 18 (expr -> INT .)
-    SMALLEQ         reduce using rule 18 (expr -> INT .)
-    EQ              reduce using rule 18 (expr -> INT .)
-    AND             reduce using rule 18 (expr -> INT .)
-    OR              reduce using rule 18 (expr -> INT .)
-    $end            reduce using rule 18 (expr -> INT .)
-    THEN            reduce using rule 18 (expr -> INT .)
-    DO              reduce using rule 18 (expr -> INT .)
-    NEWLINE         reduce using rule 18 (expr -> INT .)
-    ELSE            reduce using rule 18 (expr -> INT .)
+    THEN            shift and go to state 45
+    AND             shift and go to state 25
+    OR              shift and go to state 26
 
 
 state 30
 
-    (32) if_then -> IF exprl . THEN operations
-    (31) if_ifnot -> IF exprl . THEN operations ELSE operations
+    (16) exprl -> expr . BIG expr
+    (17) exprl -> expr . SMALL expr
+    (18) exprl -> expr . BIGEQ expr
+    (19) exprl -> expr . SMALLEQ expr
+    (20) exprl -> expr . EQ expr
+    (10) expr -> expr . PLUS expr
+    (11) expr -> expr . MINUS expr
+    (12) expr -> expr . MUL expr
+    (13) expr -> expr . DIV expr
 
-    THEN            shift and go to state 46
+    BIG             shift and go to state 20
+    SMALL           shift and go to state 21
+    BIGEQ           shift and go to state 22
+    SMALLEQ         shift and go to state 23
+    EQ              shift and go to state 24
+    PLUS            shift and go to state 16
+    MINUS           shift and go to state 17
+    MUL             shift and go to state 18
+    DIV             shift and go to state 19
 
 
 state 31
 
-    (19) exprl -> expr . BIG expr
-    (20) exprl -> expr . SMALL expr
-    (21) exprl -> expr . BIGEQ expr
-    (22) exprl -> expr . SMALLEQ expr
-    (23) exprl -> expr . EQ expr
-    (24) exprl -> expr . AND expr
-    (25) exprl -> expr . OR expr
-    (13) expr -> expr . PLUS expr
-    (14) expr -> expr . MINUS expr
-    (15) expr -> expr . MUL expr
-    (16) expr -> expr . DIV expr
+    (30) while -> WHILE exprl . DO operations
+    (21) exprl -> exprl . AND exprl
+    (22) exprl -> exprl . OR exprl
 
-    BIG             shift and go to state 21
-    SMALL           shift and go to state 22
-    BIGEQ           shift and go to state 23
-    SMALLEQ         shift and go to state 24
-    EQ              shift and go to state 25
-    AND             shift and go to state 26
-    OR              shift and go to state 27
-    PLUS            shift and go to state 17
-    MINUS           shift and go to state 18
-    MUL             shift and go to state 19
-    DIV             shift and go to state 20
+    DO              shift and go to state 46
+    AND             shift and go to state 25
+    OR              shift and go to state 26
 
 
 state 32
 
-    (33) while -> WHILE exprl . DO operations
+    (31) for -> FOR exprl . DO operations
+    (21) exprl -> exprl . AND exprl
+    (22) exprl -> exprl . OR exprl
 
     DO              shift and go to state 47
+    AND             shift and go to state 25
+    OR              shift and go to state 26
 
 
 state 33
 
-    (34) for -> FOR exprl . DO operations
+    (9) decl -> ID IGUAL . INT NINT
 
-    DO              shift and go to state 48
+    INT             shift and go to state 48
 
 
 state 34
 
-    (35) list -> ID IGUAL . LISTA list_nint
-    (10) decl -> ID IGUAL . decl_type
-    (11) decl_type -> . LISTA
-    (12) decl_type -> . NINT
+    (10) expr -> expr PLUS expr .
+    (10) expr -> expr . PLUS expr
+    (11) expr -> expr . MINUS expr
+    (12) expr -> expr . MUL expr
+    (13) expr -> expr . DIV expr
 
-    LISTA           shift and go to state 49
-    NINT            shift and go to state 51
+    PLUS            reduce using rule 10 (expr -> expr PLUS expr .)
+    MINUS           reduce using rule 10 (expr -> expr PLUS expr .)
+    BIG             reduce using rule 10 (expr -> expr PLUS expr .)
+    SMALL           reduce using rule 10 (expr -> expr PLUS expr .)
+    BIGEQ           reduce using rule 10 (expr -> expr PLUS expr .)
+    SMALLEQ         reduce using rule 10 (expr -> expr PLUS expr .)
+    EQ              reduce using rule 10 (expr -> expr PLUS expr .)
+    $end            reduce using rule 10 (expr -> expr PLUS expr .)
+    AND             reduce using rule 10 (expr -> expr PLUS expr .)
+    OR              reduce using rule 10 (expr -> expr PLUS expr .)
+    THEN            reduce using rule 10 (expr -> expr PLUS expr .)
+    DO              reduce using rule 10 (expr -> expr PLUS expr .)
+    NEWLINE         reduce using rule 10 (expr -> expr PLUS expr .)
+    ELSE            reduce using rule 10 (expr -> expr PLUS expr .)
+    MUL             shift and go to state 18
+    DIV             shift and go to state 19
 
-    decl_type                      shift and go to state 50
+  ! MUL             [ reduce using rule 10 (expr -> expr PLUS expr .) ]
+  ! DIV             [ reduce using rule 10 (expr -> expr PLUS expr .) ]
+  ! PLUS            [ shift and go to state 16 ]
+  ! MINUS           [ shift and go to state 17 ]
+
 
 state 35
 
-    (13) expr -> expr PLUS expr .
-    (13) expr -> expr . PLUS expr
-    (14) expr -> expr . MINUS expr
-    (15) expr -> expr . MUL expr
-    (16) expr -> expr . DIV expr
+    (11) expr -> expr MINUS expr .
+    (10) expr -> expr . PLUS expr
+    (11) expr -> expr . MINUS expr
+    (12) expr -> expr . MUL expr
+    (13) expr -> expr . DIV expr
 
-    PLUS            reduce using rule 13 (expr -> expr PLUS expr .)
-    MINUS           reduce using rule 13 (expr -> expr PLUS expr .)
-    BIG             reduce using rule 13 (expr -> expr PLUS expr .)
-    SMALL           reduce using rule 13 (expr -> expr PLUS expr .)
-    BIGEQ           reduce using rule 13 (expr -> expr PLUS expr .)
-    SMALLEQ         reduce using rule 13 (expr -> expr PLUS expr .)
-    EQ              reduce using rule 13 (expr -> expr PLUS expr .)
-    AND             reduce using rule 13 (expr -> expr PLUS expr .)
-    OR              reduce using rule 13 (expr -> expr PLUS expr .)
-    $end            reduce using rule 13 (expr -> expr PLUS expr .)
-    THEN            reduce using rule 13 (expr -> expr PLUS expr .)
-    DO              reduce using rule 13 (expr -> expr PLUS expr .)
-    NEWLINE         reduce using rule 13 (expr -> expr PLUS expr .)
-    ELSE            reduce using rule 13 (expr -> expr PLUS expr .)
-    MUL             shift and go to state 19
-    DIV             shift and go to state 20
+    PLUS            reduce using rule 11 (expr -> expr MINUS expr .)
+    MINUS           reduce using rule 11 (expr -> expr MINUS expr .)
+    BIG             reduce using rule 11 (expr -> expr MINUS expr .)
+    SMALL           reduce using rule 11 (expr -> expr MINUS expr .)
+    BIGEQ           reduce using rule 11 (expr -> expr MINUS expr .)
+    SMALLEQ         reduce using rule 11 (expr -> expr MINUS expr .)
+    EQ              reduce using rule 11 (expr -> expr MINUS expr .)
+    $end            reduce using rule 11 (expr -> expr MINUS expr .)
+    AND             reduce using rule 11 (expr -> expr MINUS expr .)
+    OR              reduce using rule 11 (expr -> expr MINUS expr .)
+    THEN            reduce using rule 11 (expr -> expr MINUS expr .)
+    DO              reduce using rule 11 (expr -> expr MINUS expr .)
+    NEWLINE         reduce using rule 11 (expr -> expr MINUS expr .)
+    ELSE            reduce using rule 11 (expr -> expr MINUS expr .)
+    MUL             shift and go to state 18
+    DIV             shift and go to state 19
 
-  ! MUL             [ reduce using rule 13 (expr -> expr PLUS expr .) ]
-  ! DIV             [ reduce using rule 13 (expr -> expr PLUS expr .) ]
-  ! PLUS            [ shift and go to state 17 ]
-  ! MINUS           [ shift and go to state 18 ]
+  ! MUL             [ reduce using rule 11 (expr -> expr MINUS expr .) ]
+  ! DIV             [ reduce using rule 11 (expr -> expr MINUS expr .) ]
+  ! PLUS            [ shift and go to state 16 ]
+  ! MINUS           [ shift and go to state 17 ]
 
 
 state 36
 
-    (14) expr -> expr MINUS expr .
-    (13) expr -> expr . PLUS expr
-    (14) expr -> expr . MINUS expr
-    (15) expr -> expr . MUL expr
-    (16) expr -> expr . DIV expr
+    (12) expr -> expr MUL expr .
+    (10) expr -> expr . PLUS expr
+    (11) expr -> expr . MINUS expr
+    (12) expr -> expr . MUL expr
+    (13) expr -> expr . DIV expr
 
-    PLUS            reduce using rule 14 (expr -> expr MINUS expr .)
-    MINUS           reduce using rule 14 (expr -> expr MINUS expr .)
-    BIG             reduce using rule 14 (expr -> expr MINUS expr .)
-    SMALL           reduce using rule 14 (expr -> expr MINUS expr .)
-    BIGEQ           reduce using rule 14 (expr -> expr MINUS expr .)
-    SMALLEQ         reduce using rule 14 (expr -> expr MINUS expr .)
-    EQ              reduce using rule 14 (expr -> expr MINUS expr .)
-    AND             reduce using rule 14 (expr -> expr MINUS expr .)
-    OR              reduce using rule 14 (expr -> expr MINUS expr .)
-    $end            reduce using rule 14 (expr -> expr MINUS expr .)
-    THEN            reduce using rule 14 (expr -> expr MINUS expr .)
-    DO              reduce using rule 14 (expr -> expr MINUS expr .)
-    NEWLINE         reduce using rule 14 (expr -> expr MINUS expr .)
-    ELSE            reduce using rule 14 (expr -> expr MINUS expr .)
-    MUL             shift and go to state 19
-    DIV             shift and go to state 20
+    PLUS            reduce using rule 12 (expr -> expr MUL expr .)
+    MINUS           reduce using rule 12 (expr -> expr MUL expr .)
+    MUL             reduce using rule 12 (expr -> expr MUL expr .)
+    DIV             reduce using rule 12 (expr -> expr MUL expr .)
+    BIG             reduce using rule 12 (expr -> expr MUL expr .)
+    SMALL           reduce using rule 12 (expr -> expr MUL expr .)
+    BIGEQ           reduce using rule 12 (expr -> expr MUL expr .)
+    SMALLEQ         reduce using rule 12 (expr -> expr MUL expr .)
+    EQ              reduce using rule 12 (expr -> expr MUL expr .)
+    $end            reduce using rule 12 (expr -> expr MUL expr .)
+    AND             reduce using rule 12 (expr -> expr MUL expr .)
+    OR              reduce using rule 12 (expr -> expr MUL expr .)
+    THEN            reduce using rule 12 (expr -> expr MUL expr .)
+    DO              reduce using rule 12 (expr -> expr MUL expr .)
+    NEWLINE         reduce using rule 12 (expr -> expr MUL expr .)
+    ELSE            reduce using rule 12 (expr -> expr MUL expr .)
 
-  ! MUL             [ reduce using rule 14 (expr -> expr MINUS expr .) ]
-  ! DIV             [ reduce using rule 14 (expr -> expr MINUS expr .) ]
-  ! PLUS            [ shift and go to state 17 ]
-  ! MINUS           [ shift and go to state 18 ]
+  ! PLUS            [ shift and go to state 16 ]
+  ! MINUS           [ shift and go to state 17 ]
+  ! MUL             [ shift and go to state 18 ]
+  ! DIV             [ shift and go to state 19 ]
 
 
 state 37
 
-    (15) expr -> expr MUL expr .
-    (13) expr -> expr . PLUS expr
-    (14) expr -> expr . MINUS expr
-    (15) expr -> expr . MUL expr
-    (16) expr -> expr . DIV expr
+    (13) expr -> expr DIV expr .
+    (10) expr -> expr . PLUS expr
+    (11) expr -> expr . MINUS expr
+    (12) expr -> expr . MUL expr
+    (13) expr -> expr . DIV expr
 
-    PLUS            reduce using rule 15 (expr -> expr MUL expr .)
-    MINUS           reduce using rule 15 (expr -> expr MUL expr .)
-    MUL             reduce using rule 15 (expr -> expr MUL expr .)
-    DIV             reduce using rule 15 (expr -> expr MUL expr .)
-    BIG             reduce using rule 15 (expr -> expr MUL expr .)
-    SMALL           reduce using rule 15 (expr -> expr MUL expr .)
-    BIGEQ           reduce using rule 15 (expr -> expr MUL expr .)
-    SMALLEQ         reduce using rule 15 (expr -> expr MUL expr .)
-    EQ              reduce using rule 15 (expr -> expr MUL expr .)
-    AND             reduce using rule 15 (expr -> expr MUL expr .)
-    OR              reduce using rule 15 (expr -> expr MUL expr .)
-    $end            reduce using rule 15 (expr -> expr MUL expr .)
-    THEN            reduce using rule 15 (expr -> expr MUL expr .)
-    DO              reduce using rule 15 (expr -> expr MUL expr .)
-    NEWLINE         reduce using rule 15 (expr -> expr MUL expr .)
-    ELSE            reduce using rule 15 (expr -> expr MUL expr .)
+    PLUS            reduce using rule 13 (expr -> expr DIV expr .)
+    MINUS           reduce using rule 13 (expr -> expr DIV expr .)
+    MUL             reduce using rule 13 (expr -> expr DIV expr .)
+    DIV             reduce using rule 13 (expr -> expr DIV expr .)
+    BIG             reduce using rule 13 (expr -> expr DIV expr .)
+    SMALL           reduce using rule 13 (expr -> expr DIV expr .)
+    BIGEQ           reduce using rule 13 (expr -> expr DIV expr .)
+    SMALLEQ         reduce using rule 13 (expr -> expr DIV expr .)
+    EQ              reduce using rule 13 (expr -> expr DIV expr .)
+    $end            reduce using rule 13 (expr -> expr DIV expr .)
+    AND             reduce using rule 13 (expr -> expr DIV expr .)
+    OR              reduce using rule 13 (expr -> expr DIV expr .)
+    THEN            reduce using rule 13 (expr -> expr DIV expr .)
+    DO              reduce using rule 13 (expr -> expr DIV expr .)
+    NEWLINE         reduce using rule 13 (expr -> expr DIV expr .)
+    ELSE            reduce using rule 13 (expr -> expr DIV expr .)
 
-  ! PLUS            [ shift and go to state 17 ]
-  ! MINUS           [ shift and go to state 18 ]
-  ! MUL             [ shift and go to state 19 ]
-  ! DIV             [ shift and go to state 20 ]
+  ! PLUS            [ shift and go to state 16 ]
+  ! MINUS           [ shift and go to state 17 ]
+  ! MUL             [ shift and go to state 18 ]
+  ! DIV             [ shift and go to state 19 ]
 
 
 state 38
 
-    (16) expr -> expr DIV expr .
-    (13) expr -> expr . PLUS expr
-    (14) expr -> expr . MINUS expr
-    (15) expr -> expr . MUL expr
-    (16) expr -> expr . DIV expr
+    (16) exprl -> expr BIG expr .
+    (10) expr -> expr . PLUS expr
+    (11) expr -> expr . MINUS expr
+    (12) expr -> expr . MUL expr
+    (13) expr -> expr . DIV expr
 
-    PLUS            reduce using rule 16 (expr -> expr DIV expr .)
-    MINUS           reduce using rule 16 (expr -> expr DIV expr .)
-    MUL             reduce using rule 16 (expr -> expr DIV expr .)
-    DIV             reduce using rule 16 (expr -> expr DIV expr .)
-    BIG             reduce using rule 16 (expr -> expr DIV expr .)
-    SMALL           reduce using rule 16 (expr -> expr DIV expr .)
-    BIGEQ           reduce using rule 16 (expr -> expr DIV expr .)
-    SMALLEQ         reduce using rule 16 (expr -> expr DIV expr .)
-    EQ              reduce using rule 16 (expr -> expr DIV expr .)
-    AND             reduce using rule 16 (expr -> expr DIV expr .)
-    OR              reduce using rule 16 (expr -> expr DIV expr .)
-    $end            reduce using rule 16 (expr -> expr DIV expr .)
-    THEN            reduce using rule 16 (expr -> expr DIV expr .)
-    DO              reduce using rule 16 (expr -> expr DIV expr .)
-    NEWLINE         reduce using rule 16 (expr -> expr DIV expr .)
-    ELSE            reduce using rule 16 (expr -> expr DIV expr .)
-
-  ! PLUS            [ shift and go to state 17 ]
-  ! MINUS           [ shift and go to state 18 ]
-  ! MUL             [ shift and go to state 19 ]
-  ! DIV             [ shift and go to state 20 ]
+    AND             reduce using rule 16 (exprl -> expr BIG expr .)
+    OR              reduce using rule 16 (exprl -> expr BIG expr .)
+    $end            reduce using rule 16 (exprl -> expr BIG expr .)
+    THEN            reduce using rule 16 (exprl -> expr BIG expr .)
+    DO              reduce using rule 16 (exprl -> expr BIG expr .)
+    NEWLINE         reduce using rule 16 (exprl -> expr BIG expr .)
+    ELSE            reduce using rule 16 (exprl -> expr BIG expr .)
+    PLUS            shift and go to state 16
+    MINUS           shift and go to state 17
+    MUL             shift and go to state 18
+    DIV             shift and go to state 19
 
 
 state 39
 
-    (19) exprl -> expr BIG expr .
-    (13) expr -> expr . PLUS expr
-    (14) expr -> expr . MINUS expr
-    (15) expr -> expr . MUL expr
-    (16) expr -> expr . DIV expr
+    (17) exprl -> expr SMALL expr .
+    (10) expr -> expr . PLUS expr
+    (11) expr -> expr . MINUS expr
+    (12) expr -> expr . MUL expr
+    (13) expr -> expr . DIV expr
 
-    $end            reduce using rule 19 (exprl -> expr BIG expr .)
-    THEN            reduce using rule 19 (exprl -> expr BIG expr .)
-    DO              reduce using rule 19 (exprl -> expr BIG expr .)
-    NEWLINE         reduce using rule 19 (exprl -> expr BIG expr .)
-    ELSE            reduce using rule 19 (exprl -> expr BIG expr .)
-    PLUS            shift and go to state 17
-    MINUS           shift and go to state 18
-    MUL             shift and go to state 19
-    DIV             shift and go to state 20
+    AND             reduce using rule 17 (exprl -> expr SMALL expr .)
+    OR              reduce using rule 17 (exprl -> expr SMALL expr .)
+    $end            reduce using rule 17 (exprl -> expr SMALL expr .)
+    THEN            reduce using rule 17 (exprl -> expr SMALL expr .)
+    DO              reduce using rule 17 (exprl -> expr SMALL expr .)
+    NEWLINE         reduce using rule 17 (exprl -> expr SMALL expr .)
+    ELSE            reduce using rule 17 (exprl -> expr SMALL expr .)
+    PLUS            shift and go to state 16
+    MINUS           shift and go to state 17
+    MUL             shift and go to state 18
+    DIV             shift and go to state 19
 
 
 state 40
 
-    (20) exprl -> expr SMALL expr .
-    (13) expr -> expr . PLUS expr
-    (14) expr -> expr . MINUS expr
-    (15) expr -> expr . MUL expr
-    (16) expr -> expr . DIV expr
+    (18) exprl -> expr BIGEQ expr .
+    (10) expr -> expr . PLUS expr
+    (11) expr -> expr . MINUS expr
+    (12) expr -> expr . MUL expr
+    (13) expr -> expr . DIV expr
 
-    $end            reduce using rule 20 (exprl -> expr SMALL expr .)
-    THEN            reduce using rule 20 (exprl -> expr SMALL expr .)
-    DO              reduce using rule 20 (exprl -> expr SMALL expr .)
-    NEWLINE         reduce using rule 20 (exprl -> expr SMALL expr .)
-    ELSE            reduce using rule 20 (exprl -> expr SMALL expr .)
-    PLUS            shift and go to state 17
-    MINUS           shift and go to state 18
-    MUL             shift and go to state 19
-    DIV             shift and go to state 20
+    AND             reduce using rule 18 (exprl -> expr BIGEQ expr .)
+    OR              reduce using rule 18 (exprl -> expr BIGEQ expr .)
+    $end            reduce using rule 18 (exprl -> expr BIGEQ expr .)
+    THEN            reduce using rule 18 (exprl -> expr BIGEQ expr .)
+    DO              reduce using rule 18 (exprl -> expr BIGEQ expr .)
+    NEWLINE         reduce using rule 18 (exprl -> expr BIGEQ expr .)
+    ELSE            reduce using rule 18 (exprl -> expr BIGEQ expr .)
+    PLUS            shift and go to state 16
+    MINUS           shift and go to state 17
+    MUL             shift and go to state 18
+    DIV             shift and go to state 19
 
 
 state 41
 
-    (21) exprl -> expr BIGEQ expr .
-    (13) expr -> expr . PLUS expr
-    (14) expr -> expr . MINUS expr
-    (15) expr -> expr . MUL expr
-    (16) expr -> expr . DIV expr
+    (19) exprl -> expr SMALLEQ expr .
+    (10) expr -> expr . PLUS expr
+    (11) expr -> expr . MINUS expr
+    (12) expr -> expr . MUL expr
+    (13) expr -> expr . DIV expr
 
-    $end            reduce using rule 21 (exprl -> expr BIGEQ expr .)
-    THEN            reduce using rule 21 (exprl -> expr BIGEQ expr .)
-    DO              reduce using rule 21 (exprl -> expr BIGEQ expr .)
-    NEWLINE         reduce using rule 21 (exprl -> expr BIGEQ expr .)
-    ELSE            reduce using rule 21 (exprl -> expr BIGEQ expr .)
-    PLUS            shift and go to state 17
-    MINUS           shift and go to state 18
-    MUL             shift and go to state 19
-    DIV             shift and go to state 20
+    AND             reduce using rule 19 (exprl -> expr SMALLEQ expr .)
+    OR              reduce using rule 19 (exprl -> expr SMALLEQ expr .)
+    $end            reduce using rule 19 (exprl -> expr SMALLEQ expr .)
+    THEN            reduce using rule 19 (exprl -> expr SMALLEQ expr .)
+    DO              reduce using rule 19 (exprl -> expr SMALLEQ expr .)
+    NEWLINE         reduce using rule 19 (exprl -> expr SMALLEQ expr .)
+    ELSE            reduce using rule 19 (exprl -> expr SMALLEQ expr .)
+    PLUS            shift and go to state 16
+    MINUS           shift and go to state 17
+    MUL             shift and go to state 18
+    DIV             shift and go to state 19
 
 
 state 42
 
-    (22) exprl -> expr SMALLEQ expr .
-    (13) expr -> expr . PLUS expr
-    (14) expr -> expr . MINUS expr
-    (15) expr -> expr . MUL expr
-    (16) expr -> expr . DIV expr
+    (20) exprl -> expr EQ expr .
+    (10) expr -> expr . PLUS expr
+    (11) expr -> expr . MINUS expr
+    (12) expr -> expr . MUL expr
+    (13) expr -> expr . DIV expr
 
-    $end            reduce using rule 22 (exprl -> expr SMALLEQ expr .)
-    THEN            reduce using rule 22 (exprl -> expr SMALLEQ expr .)
-    DO              reduce using rule 22 (exprl -> expr SMALLEQ expr .)
-    NEWLINE         reduce using rule 22 (exprl -> expr SMALLEQ expr .)
-    ELSE            reduce using rule 22 (exprl -> expr SMALLEQ expr .)
-    PLUS            shift and go to state 17
-    MINUS           shift and go to state 18
-    MUL             shift and go to state 19
-    DIV             shift and go to state 20
+    AND             reduce using rule 20 (exprl -> expr EQ expr .)
+    OR              reduce using rule 20 (exprl -> expr EQ expr .)
+    $end            reduce using rule 20 (exprl -> expr EQ expr .)
+    THEN            reduce using rule 20 (exprl -> expr EQ expr .)
+    DO              reduce using rule 20 (exprl -> expr EQ expr .)
+    NEWLINE         reduce using rule 20 (exprl -> expr EQ expr .)
+    ELSE            reduce using rule 20 (exprl -> expr EQ expr .)
+    PLUS            shift and go to state 16
+    MINUS           shift and go to state 17
+    MUL             shift and go to state 18
+    DIV             shift and go to state 19
 
 
 state 43
 
-    (23) exprl -> expr EQ expr .
-    (13) expr -> expr . PLUS expr
-    (14) expr -> expr . MINUS expr
-    (15) expr -> expr . MUL expr
-    (16) expr -> expr . DIV expr
+    (21) exprl -> exprl AND exprl .
+    (21) exprl -> exprl . AND exprl
+    (22) exprl -> exprl . OR exprl
 
-    $end            reduce using rule 23 (exprl -> expr EQ expr .)
-    THEN            reduce using rule 23 (exprl -> expr EQ expr .)
-    DO              reduce using rule 23 (exprl -> expr EQ expr .)
-    NEWLINE         reduce using rule 23 (exprl -> expr EQ expr .)
-    ELSE            reduce using rule 23 (exprl -> expr EQ expr .)
-    PLUS            shift and go to state 17
-    MINUS           shift and go to state 18
-    MUL             shift and go to state 19
-    DIV             shift and go to state 20
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+    $end            reduce using rule 21 (exprl -> exprl AND exprl .)
+    THEN            reduce using rule 21 (exprl -> exprl AND exprl .)
+    DO              reduce using rule 21 (exprl -> exprl AND exprl .)
+    NEWLINE         reduce using rule 21 (exprl -> exprl AND exprl .)
+    ELSE            reduce using rule 21 (exprl -> exprl AND exprl .)
+    AND             shift and go to state 25
+    OR              shift and go to state 26
+
+  ! AND             [ reduce using rule 21 (exprl -> exprl AND exprl .) ]
+  ! OR              [ reduce using rule 21 (exprl -> exprl AND exprl .) ]
 
 
 state 44
 
-    (24) exprl -> expr AND expr .
-    (13) expr -> expr . PLUS expr
-    (14) expr -> expr . MINUS expr
-    (15) expr -> expr . MUL expr
-    (16) expr -> expr . DIV expr
+    (22) exprl -> exprl OR exprl .
+    (21) exprl -> exprl . AND exprl
+    (22) exprl -> exprl . OR exprl
 
-    $end            reduce using rule 24 (exprl -> expr AND expr .)
-    THEN            reduce using rule 24 (exprl -> expr AND expr .)
-    DO              reduce using rule 24 (exprl -> expr AND expr .)
-    NEWLINE         reduce using rule 24 (exprl -> expr AND expr .)
-    ELSE            reduce using rule 24 (exprl -> expr AND expr .)
-    PLUS            shift and go to state 17
-    MINUS           shift and go to state 18
-    MUL             shift and go to state 19
-    DIV             shift and go to state 20
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+    $end            reduce using rule 22 (exprl -> exprl OR exprl .)
+    THEN            reduce using rule 22 (exprl -> exprl OR exprl .)
+    DO              reduce using rule 22 (exprl -> exprl OR exprl .)
+    NEWLINE         reduce using rule 22 (exprl -> exprl OR exprl .)
+    ELSE            reduce using rule 22 (exprl -> exprl OR exprl .)
+    AND             shift and go to state 25
+    OR              shift and go to state 26
+
+  ! AND             [ reduce using rule 22 (exprl -> exprl OR exprl .) ]
+  ! OR              [ reduce using rule 22 (exprl -> exprl OR exprl .) ]
 
 
 state 45
 
-    (25) exprl -> expr OR expr .
-    (13) expr -> expr . PLUS expr
-    (14) expr -> expr . MINUS expr
-    (15) expr -> expr . MUL expr
-    (16) expr -> expr . DIV expr
+    (29) if_then -> IF exprl THEN . operations
+    (28) if_ifnot -> IF exprl THEN . operations ELSE operations
+    (26) operations -> . operation NEWLINE operations
+    (27) operations -> . operation
+    (23) operation -> . exprl
+    (24) operation -> . expr
+    (25) operation -> . NINT
+    (16) exprl -> . expr BIG expr
+    (17) exprl -> . expr SMALL expr
+    (18) exprl -> . expr BIGEQ expr
+    (19) exprl -> . expr SMALLEQ expr
+    (20) exprl -> . expr EQ expr
+    (21) exprl -> . exprl AND exprl
+    (22) exprl -> . exprl OR exprl
+    (10) expr -> . expr PLUS expr
+    (11) expr -> . expr MINUS expr
+    (12) expr -> . expr MUL expr
+    (13) expr -> . expr DIV expr
+    (14) expr -> . MINUS expr
+    (15) expr -> . NINT
 
-    $end            reduce using rule 25 (exprl -> expr OR expr .)
-    THEN            reduce using rule 25 (exprl -> expr OR expr .)
-    DO              reduce using rule 25 (exprl -> expr OR expr .)
-    NEWLINE         reduce using rule 25 (exprl -> expr OR expr .)
-    ELSE            reduce using rule 25 (exprl -> expr OR expr .)
-    PLUS            shift and go to state 17
-    MINUS           shift and go to state 18
-    MUL             shift and go to state 19
-    DIV             shift and go to state 20
+    NINT            shift and go to state 53
+    MINUS           shift and go to state 10
 
+    exprl                          shift and go to state 49
+    operations                     shift and go to state 50
+    operation                      shift and go to state 51
+    expr                           shift and go to state 52
 
 state 46
 
-    (32) if_then -> IF exprl THEN . operations
-    (31) if_ifnot -> IF exprl THEN . operations ELSE operations
-    (29) operations -> . operation NEWLINE operations
-    (30) operations -> . operation
-    (26) operation -> . exprl
-    (27) operation -> . expr
-    (28) operation -> . INT
-    (19) exprl -> . expr BIG expr
-    (20) exprl -> . expr SMALL expr
-    (21) exprl -> . expr BIGEQ expr
-    (22) exprl -> . expr SMALLEQ expr
-    (23) exprl -> . expr EQ expr
-    (24) exprl -> . expr AND expr
-    (25) exprl -> . expr OR expr
-    (13) expr -> . expr PLUS expr
-    (14) expr -> . expr MINUS expr
-    (15) expr -> . expr MUL expr
-    (16) expr -> . expr DIV expr
-    (17) expr -> . MINUS expr
-    (18) expr -> . INT
+    (30) while -> WHILE exprl DO . operations
+    (26) operations -> . operation NEWLINE operations
+    (27) operations -> . operation
+    (23) operation -> . exprl
+    (24) operation -> . expr
+    (25) operation -> . NINT
+    (16) exprl -> . expr BIG expr
+    (17) exprl -> . expr SMALL expr
+    (18) exprl -> . expr BIGEQ expr
+    (19) exprl -> . expr SMALLEQ expr
+    (20) exprl -> . expr EQ expr
+    (21) exprl -> . exprl AND exprl
+    (22) exprl -> . exprl OR exprl
+    (10) expr -> . expr PLUS expr
+    (11) expr -> . expr MINUS expr
+    (12) expr -> . expr MUL expr
+    (13) expr -> . expr DIV expr
+    (14) expr -> . MINUS expr
+    (15) expr -> . NINT
 
-    INT             shift and go to state 56
-    MINUS           shift and go to state 11
+    NINT            shift and go to state 53
+    MINUS           shift and go to state 10
 
-    exprl                          shift and go to state 52
-    operations                     shift and go to state 53
-    operation                      shift and go to state 54
-    expr                           shift and go to state 55
+    exprl                          shift and go to state 49
+    operations                     shift and go to state 54
+    operation                      shift and go to state 51
+    expr                           shift and go to state 52
 
 state 47
 
-    (33) while -> WHILE exprl DO . operations
-    (29) operations -> . operation NEWLINE operations
-    (30) operations -> . operation
-    (26) operation -> . exprl
-    (27) operation -> . expr
-    (28) operation -> . INT
-    (19) exprl -> . expr BIG expr
-    (20) exprl -> . expr SMALL expr
-    (21) exprl -> . expr BIGEQ expr
-    (22) exprl -> . expr SMALLEQ expr
-    (23) exprl -> . expr EQ expr
-    (24) exprl -> . expr AND expr
-    (25) exprl -> . expr OR expr
-    (13) expr -> . expr PLUS expr
-    (14) expr -> . expr MINUS expr
-    (15) expr -> . expr MUL expr
-    (16) expr -> . expr DIV expr
-    (17) expr -> . MINUS expr
-    (18) expr -> . INT
+    (31) for -> FOR exprl DO . operations
+    (26) operations -> . operation NEWLINE operations
+    (27) operations -> . operation
+    (23) operation -> . exprl
+    (24) operation -> . expr
+    (25) operation -> . NINT
+    (16) exprl -> . expr BIG expr
+    (17) exprl -> . expr SMALL expr
+    (18) exprl -> . expr BIGEQ expr
+    (19) exprl -> . expr SMALLEQ expr
+    (20) exprl -> . expr EQ expr
+    (21) exprl -> . exprl AND exprl
+    (22) exprl -> . exprl OR exprl
+    (10) expr -> . expr PLUS expr
+    (11) expr -> . expr MINUS expr
+    (12) expr -> . expr MUL expr
+    (13) expr -> . expr DIV expr
+    (14) expr -> . MINUS expr
+    (15) expr -> . NINT
 
-    INT             shift and go to state 56
-    MINUS           shift and go to state 11
+    NINT            shift and go to state 53
+    MINUS           shift and go to state 10
 
-    exprl                          shift and go to state 52
-    operations                     shift and go to state 57
-    operation                      shift and go to state 54
-    expr                           shift and go to state 55
+    exprl                          shift and go to state 49
+    operations                     shift and go to state 55
+    operation                      shift and go to state 51
+    expr                           shift and go to state 52
 
 state 48
 
-    (34) for -> FOR exprl DO . operations
-    (29) operations -> . operation NEWLINE operations
-    (30) operations -> . operation
-    (26) operation -> . exprl
-    (27) operation -> . expr
-    (28) operation -> . INT
-    (19) exprl -> . expr BIG expr
-    (20) exprl -> . expr SMALL expr
-    (21) exprl -> . expr BIGEQ expr
-    (22) exprl -> . expr SMALLEQ expr
-    (23) exprl -> . expr EQ expr
-    (24) exprl -> . expr AND expr
-    (25) exprl -> . expr OR expr
-    (13) expr -> . expr PLUS expr
-    (14) expr -> . expr MINUS expr
-    (15) expr -> . expr MUL expr
-    (16) expr -> . expr DIV expr
-    (17) expr -> . MINUS expr
-    (18) expr -> . INT
+    (9) decl -> ID IGUAL INT . NINT
 
-    INT             shift and go to state 56
-    MINUS           shift and go to state 11
+    NINT            shift and go to state 56
 
-    exprl                          shift and go to state 52
-    operations                     shift and go to state 58
-    operation                      shift and go to state 54
-    expr                           shift and go to state 55
 
 state 49
 
-    (35) list -> ID IGUAL LISTA . list_nint
-    (11) decl_type -> LISTA .
-    (36) list_nint -> . INT
-    (37) list_nint -> . INT VIRG list_nint
+    (23) operation -> exprl .
+    (21) exprl -> exprl . AND exprl
+    (22) exprl -> exprl . OR exprl
 
-    $end            reduce using rule 11 (decl_type -> LISTA .)
-    INT             shift and go to state 60
+    NEWLINE         reduce using rule 23 (operation -> exprl .)
+    ELSE            reduce using rule 23 (operation -> exprl .)
+    $end            reduce using rule 23 (operation -> exprl .)
+    AND             shift and go to state 25
+    OR              shift and go to state 26
 
-    list_nint                      shift and go to state 59
 
 state 50
 
-    (10) decl -> ID IGUAL decl_type .
+    (29) if_then -> IF exprl THEN operations .
+    (28) if_ifnot -> IF exprl THEN operations . ELSE operations
 
-    $end            reduce using rule 10 (decl -> ID IGUAL decl_type .)
+    $end            reduce using rule 29 (if_then -> IF exprl THEN operations .)
+    ELSE            shift and go to state 57
 
 
 state 51
 
-    (12) decl_type -> NINT .
+    (26) operations -> operation . NEWLINE operations
+    (27) operations -> operation .
 
-    $end            reduce using rule 12 (decl_type -> NINT .)
+    NEWLINE         shift and go to state 58
+    ELSE            reduce using rule 27 (operations -> operation .)
+    $end            reduce using rule 27 (operations -> operation .)
 
 
 state 52
 
-    (26) operation -> exprl .
+    (24) operation -> expr .
+    (16) exprl -> expr . BIG expr
+    (17) exprl -> expr . SMALL expr
+    (18) exprl -> expr . BIGEQ expr
+    (19) exprl -> expr . SMALLEQ expr
+    (20) exprl -> expr . EQ expr
+    (10) expr -> expr . PLUS expr
+    (11) expr -> expr . MINUS expr
+    (12) expr -> expr . MUL expr
+    (13) expr -> expr . DIV expr
 
-    NEWLINE         reduce using rule 26 (operation -> exprl .)
-    ELSE            reduce using rule 26 (operation -> exprl .)
-    $end            reduce using rule 26 (operation -> exprl .)
+    NEWLINE         reduce using rule 24 (operation -> expr .)
+    ELSE            reduce using rule 24 (operation -> expr .)
+    $end            reduce using rule 24 (operation -> expr .)
+    BIG             shift and go to state 20
+    SMALL           shift and go to state 21
+    BIGEQ           shift and go to state 22
+    SMALLEQ         shift and go to state 23
+    EQ              shift and go to state 24
+    PLUS            shift and go to state 16
+    MINUS           shift and go to state 17
+    MUL             shift and go to state 18
+    DIV             shift and go to state 19
 
 
 state 53
 
-    (32) if_then -> IF exprl THEN operations .
-    (31) if_ifnot -> IF exprl THEN operations . ELSE operations
+    (25) operation -> NINT .
+    (15) expr -> NINT .
 
-    $end            reduce using rule 32 (if_then -> IF exprl THEN operations .)
-    ELSE            shift and go to state 61
+  ! reduce/reduce conflict for NEWLINE resolved using rule 15 (expr -> NINT .)
+  ! reduce/reduce conflict for ELSE resolved using rule 15 (expr -> NINT .)
+  ! reduce/reduce conflict for $end resolved using rule 15 (expr -> NINT .)
+    BIG             reduce using rule 15 (expr -> NINT .)
+    SMALL           reduce using rule 15 (expr -> NINT .)
+    BIGEQ           reduce using rule 15 (expr -> NINT .)
+    SMALLEQ         reduce using rule 15 (expr -> NINT .)
+    EQ              reduce using rule 15 (expr -> NINT .)
+    PLUS            reduce using rule 15 (expr -> NINT .)
+    MINUS           reduce using rule 15 (expr -> NINT .)
+    MUL             reduce using rule 15 (expr -> NINT .)
+    DIV             reduce using rule 15 (expr -> NINT .)
+    NEWLINE         reduce using rule 15 (expr -> NINT .)
+    ELSE            reduce using rule 15 (expr -> NINT .)
+    $end            reduce using rule 15 (expr -> NINT .)
+
+  ! NEWLINE         [ reduce using rule 25 (operation -> NINT .) ]
+  ! ELSE            [ reduce using rule 25 (operation -> NINT .) ]
+  ! $end            [ reduce using rule 25 (operation -> NINT .) ]
 
 
 state 54
 
-    (29) operations -> operation . NEWLINE operations
-    (30) operations -> operation .
+    (30) while -> WHILE exprl DO operations .
 
-    NEWLINE         shift and go to state 62
-    ELSE            reduce using rule 30 (operations -> operation .)
-    $end            reduce using rule 30 (operations -> operation .)
+    $end            reduce using rule 30 (while -> WHILE exprl DO operations .)
 
 
 state 55
 
-    (27) operation -> expr .
-    (19) exprl -> expr . BIG expr
-    (20) exprl -> expr . SMALL expr
-    (21) exprl -> expr . BIGEQ expr
-    (22) exprl -> expr . SMALLEQ expr
-    (23) exprl -> expr . EQ expr
-    (24) exprl -> expr . AND expr
-    (25) exprl -> expr . OR expr
-    (13) expr -> expr . PLUS expr
-    (14) expr -> expr . MINUS expr
-    (15) expr -> expr . MUL expr
-    (16) expr -> expr . DIV expr
+    (31) for -> FOR exprl DO operations .
 
-    NEWLINE         reduce using rule 27 (operation -> expr .)
-    ELSE            reduce using rule 27 (operation -> expr .)
-    $end            reduce using rule 27 (operation -> expr .)
-    BIG             shift and go to state 21
-    SMALL           shift and go to state 22
-    BIGEQ           shift and go to state 23
-    SMALLEQ         shift and go to state 24
-    EQ              shift and go to state 25
-    AND             shift and go to state 26
-    OR              shift and go to state 27
-    PLUS            shift and go to state 17
-    MINUS           shift and go to state 18
-    MUL             shift and go to state 19
-    DIV             shift and go to state 20
+    $end            reduce using rule 31 (for -> FOR exprl DO operations .)
 
 
 state 56
 
-    (28) operation -> INT .
-    (18) expr -> INT .
+    (9) decl -> ID IGUAL INT NINT .
 
-  ! reduce/reduce conflict for NEWLINE resolved using rule 18 (expr -> INT .)
-  ! reduce/reduce conflict for ELSE resolved using rule 18 (expr -> INT .)
-  ! reduce/reduce conflict for $end resolved using rule 18 (expr -> INT .)
-    BIG             reduce using rule 18 (expr -> INT .)
-    SMALL           reduce using rule 18 (expr -> INT .)
-    BIGEQ           reduce using rule 18 (expr -> INT .)
-    SMALLEQ         reduce using rule 18 (expr -> INT .)
-    EQ              reduce using rule 18 (expr -> INT .)
-    AND             reduce using rule 18 (expr -> INT .)
-    OR              reduce using rule 18 (expr -> INT .)
-    PLUS            reduce using rule 18 (expr -> INT .)
-    MINUS           reduce using rule 18 (expr -> INT .)
-    MUL             reduce using rule 18 (expr -> INT .)
-    DIV             reduce using rule 18 (expr -> INT .)
-    NEWLINE         reduce using rule 18 (expr -> INT .)
-    ELSE            reduce using rule 18 (expr -> INT .)
-    $end            reduce using rule 18 (expr -> INT .)
-
-  ! NEWLINE         [ reduce using rule 28 (operation -> INT .) ]
-  ! ELSE            [ reduce using rule 28 (operation -> INT .) ]
-  ! $end            [ reduce using rule 28 (operation -> INT .) ]
+    $end            reduce using rule 9 (decl -> ID IGUAL INT NINT .)
 
 
 state 57
 
-    (33) while -> WHILE exprl DO operations .
+    (28) if_ifnot -> IF exprl THEN operations ELSE . operations
+    (26) operations -> . operation NEWLINE operations
+    (27) operations -> . operation
+    (23) operation -> . exprl
+    (24) operation -> . expr
+    (25) operation -> . NINT
+    (16) exprl -> . expr BIG expr
+    (17) exprl -> . expr SMALL expr
+    (18) exprl -> . expr BIGEQ expr
+    (19) exprl -> . expr SMALLEQ expr
+    (20) exprl -> . expr EQ expr
+    (21) exprl -> . exprl AND exprl
+    (22) exprl -> . exprl OR exprl
+    (10) expr -> . expr PLUS expr
+    (11) expr -> . expr MINUS expr
+    (12) expr -> . expr MUL expr
+    (13) expr -> . expr DIV expr
+    (14) expr -> . MINUS expr
+    (15) expr -> . NINT
 
-    $end            reduce using rule 33 (while -> WHILE exprl DO operations .)
+    NINT            shift and go to state 53
+    MINUS           shift and go to state 10
 
+    exprl                          shift and go to state 49
+    operations                     shift and go to state 59
+    operation                      shift and go to state 51
+    expr                           shift and go to state 52
 
 state 58
 
-    (34) for -> FOR exprl DO operations .
+    (26) operations -> operation NEWLINE . operations
+    (26) operations -> . operation NEWLINE operations
+    (27) operations -> . operation
+    (23) operation -> . exprl
+    (24) operation -> . expr
+    (25) operation -> . NINT
+    (16) exprl -> . expr BIG expr
+    (17) exprl -> . expr SMALL expr
+    (18) exprl -> . expr BIGEQ expr
+    (19) exprl -> . expr SMALLEQ expr
+    (20) exprl -> . expr EQ expr
+    (21) exprl -> . exprl AND exprl
+    (22) exprl -> . exprl OR exprl
+    (10) expr -> . expr PLUS expr
+    (11) expr -> . expr MINUS expr
+    (12) expr -> . expr MUL expr
+    (13) expr -> . expr DIV expr
+    (14) expr -> . MINUS expr
+    (15) expr -> . NINT
 
-    $end            reduce using rule 34 (for -> FOR exprl DO operations .)
+    NINT            shift and go to state 53
+    MINUS           shift and go to state 10
 
+    operation                      shift and go to state 51
+    operations                     shift and go to state 60
+    exprl                          shift and go to state 49
+    expr                           shift and go to state 52
 
 state 59
 
-    (35) list -> ID IGUAL LISTA list_nint .
+    (28) if_ifnot -> IF exprl THEN operations ELSE operations .
 
-    $end            reduce using rule 35 (list -> ID IGUAL LISTA list_nint .)
+    $end            reduce using rule 28 (if_ifnot -> IF exprl THEN operations ELSE operations .)
 
 
 state 60
 
-    (36) list_nint -> INT .
-    (37) list_nint -> INT . VIRG list_nint
+    (26) operations -> operation NEWLINE operations .
 
-    $end            reduce using rule 36 (list_nint -> INT .)
-    VIRG            shift and go to state 63
-
-
-state 61
-
-    (31) if_ifnot -> IF exprl THEN operations ELSE . operations
-    (29) operations -> . operation NEWLINE operations
-    (30) operations -> . operation
-    (26) operation -> . exprl
-    (27) operation -> . expr
-    (28) operation -> . INT
-    (19) exprl -> . expr BIG expr
-    (20) exprl -> . expr SMALL expr
-    (21) exprl -> . expr BIGEQ expr
-    (22) exprl -> . expr SMALLEQ expr
-    (23) exprl -> . expr EQ expr
-    (24) exprl -> . expr AND expr
-    (25) exprl -> . expr OR expr
-    (13) expr -> . expr PLUS expr
-    (14) expr -> . expr MINUS expr
-    (15) expr -> . expr MUL expr
-    (16) expr -> . expr DIV expr
-    (17) expr -> . MINUS expr
-    (18) expr -> . INT
-
-    INT             shift and go to state 56
-    MINUS           shift and go to state 11
-
-    exprl                          shift and go to state 52
-    operations                     shift and go to state 64
-    operation                      shift and go to state 54
-    expr                           shift and go to state 55
-
-state 62
-
-    (29) operations -> operation NEWLINE . operations
-    (29) operations -> . operation NEWLINE operations
-    (30) operations -> . operation
-    (26) operation -> . exprl
-    (27) operation -> . expr
-    (28) operation -> . INT
-    (19) exprl -> . expr BIG expr
-    (20) exprl -> . expr SMALL expr
-    (21) exprl -> . expr BIGEQ expr
-    (22) exprl -> . expr SMALLEQ expr
-    (23) exprl -> . expr EQ expr
-    (24) exprl -> . expr AND expr
-    (25) exprl -> . expr OR expr
-    (13) expr -> . expr PLUS expr
-    (14) expr -> . expr MINUS expr
-    (15) expr -> . expr MUL expr
-    (16) expr -> . expr DIV expr
-    (17) expr -> . MINUS expr
-    (18) expr -> . INT
-
-    INT             shift and go to state 56
-    MINUS           shift and go to state 11
-
-    operation                      shift and go to state 54
-    operations                     shift and go to state 65
-    exprl                          shift and go to state 52
-    expr                           shift and go to state 55
-
-state 63
-
-    (37) list_nint -> INT VIRG . list_nint
-    (36) list_nint -> . INT
-    (37) list_nint -> . INT VIRG list_nint
-
-    INT             shift and go to state 60
-
-    list_nint                      shift and go to state 66
-
-state 64
-
-    (31) if_ifnot -> IF exprl THEN operations ELSE operations .
-
-    $end            reduce using rule 31 (if_ifnot -> IF exprl THEN operations ELSE operations .)
-
-
-state 65
-
-    (29) operations -> operation NEWLINE operations .
-
-    ELSE            reduce using rule 29 (operations -> operation NEWLINE operations .)
-    $end            reduce using rule 29 (operations -> operation NEWLINE operations .)
-
-
-state 66
-
-    (37) list_nint -> INT VIRG list_nint .
-
-    $end            reduce using rule 37 (list_nint -> INT VIRG list_nint .)
+    ELSE            reduce using rule 26 (operations -> operation NEWLINE operations .)
+    $end            reduce using rule 26 (operations -> operation NEWLINE operations .)
 
 WARNING: 
 WARNING: Conflicts:
 WARNING: 
+WARNING: shift/reduce conflict for AND in state 43 resolved as shift
+WARNING: shift/reduce conflict for OR in state 43 resolved as shift
+WARNING: shift/reduce conflict for AND in state 44 resolved as shift
+WARNING: shift/reduce conflict for OR in state 44 resolved as shift
 WARNING: reduce/reduce conflict in state 2 resolved using rule (start -> expr)
 WARNING: rejected rule (operation -> expr) in state 2
 WARNING: reduce/reduce conflict in state 3 resolved using rule (start -> exprl)
 WARNING: rejected rule (operation -> exprl) in state 3
-WARNING: reduce/reduce conflict in state 12 resolved using rule (expr -> INT)
-WARNING: rejected rule (operation -> INT) in state 12
-WARNING: reduce/reduce conflict in state 56 resolved using rule (expr -> INT)
-WARNING: rejected rule (operation -> INT) in state 56
-WARNING: Rule (operation -> INT) is never reduced
+WARNING: reduce/reduce conflict in state 11 resolved using rule (expr -> NINT)
+WARNING: rejected rule (operation -> NINT) in state 11
+WARNING: reduce/reduce conflict in state 53 resolved using rule (expr -> NINT)
+WARNING: rejected rule (operation -> NINT) in state 53
+WARNING: Rule (operation -> NINT) is never reduced
