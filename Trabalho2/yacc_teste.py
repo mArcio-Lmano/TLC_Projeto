@@ -22,7 +22,7 @@ def p_start(p): #permite chegar aos restantes simbolos
                 | decl
                 '''
     p[0] = p[1]
-    out_file.write(p[0])
+    out_file.write(str(p[0]))
 
 
 def p_decl(p):
