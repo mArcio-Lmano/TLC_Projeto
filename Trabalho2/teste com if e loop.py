@@ -84,20 +84,53 @@ def p_start(p): #permite chegar aos restantes simbolos
                 | if_ifnot
                 | while
                 | for
-                | list
                 | decl
                 '''
     p[0] = p[1]
 
-def p_decl(p):
-    '''decl : ID IGUAL decl_type '''
-    p[0] = p[3]
 
-def p_decl_type(p):
-    '''decl_type : LISTA
-                    | NINT
-                    '''
-    p[0] = p[1]
+
+def p_decl(p):
+    '''decl : ID IGUAL INT NINT '''
+    p.parser.registers[p[1]] = (p.parser.gp, 'int', 1)
+    p[0] = f'pushi {p[4]}\n'
+    p.parser.gp += 1
+
+##FALTA FAZER PARA O TYPE LISTA
+
+
+
+    '''  
+registos = {}
+
+registos_count = 0
+
+    global registos
+    global registos_count
+    if p[1] not in registos:
+        print(p[4])
+        p[0] = 'pushi ' + str(p[4]) + '\n'
+        registos[p[1]] = registos_count
+        registos_count += 1
+
+
+    
+def p_decl_int(p):
+    "decl : ID IGUAL INT NINT"
+    p[0] = p[4]
+
+def p_decl_list(p):
+    "decl : ID IGUAL LISTA list_nint"
+    p[0] = p[4]
+
+def p_declaracao(p):
+    'declaracao : NEW vars'
+    p[0] = ''
+    for var in p[2]:
+        p.parser.registers[var] = (p.parser.gp, 'int', 1)
+        p[0] += f'pushi 0\n'
+        p.parser.gp += 1
+'''
 
 def p_expression_ariop(p): #exprm?
     '''expr :  expr PLUS expr
@@ -108,6 +141,8 @@ def p_expression_ariop(p): #exprm?
     elif p[2] == 'SUB': p[0] = p[1] - p[3]
     elif p[2] == 'MULT': p[0] = p[1] * p[3]
     elif p[2] == 'DIV': p[0] = p[1] / p[3]
+
+#fazer expressoes grandes com parenteses
 
 def p_expr2uminus( p ) :
     'expr : MINUS expr %prec UMINUS'
@@ -124,16 +159,21 @@ def p_expression_logop(t): #exprl
                   | expr BIGEQ expr
                   | expr SMALLEQ expr
                   | expr EQ expr
-                  | expr AND expr
-                  | expr OR expr
+                  | exprl AND exprl
+                  | exprl OR exprl
                   '''
-    if t[2] == 'BIG'  : t[0] = t[1] > t[3]
-    elif t[2] == 'SMALL': t[0] = t[1] < t[3]
-    elif t[2] == 'BIGEQ': t[0] = t[1] >= t[3]
-    elif t[2] == 'SMALLEQ': t[0] = t[1] <= t[3]
-    elif t[2] == 'EQ': t[0] = t[1] = t[3]
-    elif t[2] == 'AND': t[0] = t[1] and t[3]
-    elif t[2] == 'OR': t[0] = t[1] or t[3]
+    if t[2] == 'BIG'  : t[0] = int(t[1] > t[3])
+    elif t[2] == 'SMALL': t[0] = int(t[1] < t[3])
+    elif t[2] == 'BIGEQ': t[0] = int(t[1] >= t[3])
+    elif t[2] == 'SMALLEQ': t[0] = int(t[1] <= t[3])
+    elif t[2] == 'EQ': t[0] = int(t[1] == t[3])
+    elif t[2] == 'AND': t[0] = int(t[1] and t[3])
+    elif t[2] == 'OR': t[0] = int(t[1] or t[3])
+
+#falta o NOT?
+#o EQ tambem serve para exprl?
+
+# o int() é para o if dar 1 ou 0 porque só assim funciona no assembly
 
 
 #####################################################################
@@ -147,18 +187,16 @@ def p_operation(p):
 
 def p_operation_def(p):
     '''operations : operation NEWLINE operations
-                    | operation
                     '''
-    p[0] = p[3]
+    p[0] = str(p[1]) + str(p[3])
 
 
-
-'''
 def p_operations_newline(p):
-    "operations : operations NEWLINE operation"
-    p[0] = p[1] + p[3]
-    
-'''
+    "operations : operation"
+    p[0] = p[1]
+
+
+
 
 def p_IF_IFNOT(t):
     "if_ifnot : IF exprl THEN operations ELSE operations"
@@ -178,10 +216,6 @@ def p_for(t):
     if t[2]==True: t[0] = t[4]
 
 
-def p_list(p):
-    "list : ID IGUAL LISTA list_nint "
-    p[0] = p[3]
-
 def p_list_nint(p):
     '''list_nint : NINT
                     | NINT VIRG list_nint
@@ -199,6 +233,9 @@ def p_error(p):
 
 ###inicio do parsing
 parser = yacc.yacc()
+parser.registers = {}
+parser.gp = 0
+
 
 for linha in sys.stdin:
     parser.success = True
