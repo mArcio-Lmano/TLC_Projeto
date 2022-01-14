@@ -8,6 +8,8 @@ precedence = (
     ( 'nonassoc', 'UMINUS' )
 )
 
+out_file = open("out.vm", "w+")
+out_file.write("START\n")
 
 def p_start(p): #permite chegar aos restantes simbolos
     '''start : expr
@@ -20,7 +22,7 @@ def p_start(p): #permite chegar aos restantes simbolos
                 | decl
                 '''
     p[0] = p[1]
-
+    out_file.write(p[0])
 
 
 def p_decl(p):
@@ -169,10 +171,11 @@ parser = yacc.yacc()
 parser.registers = {}
 parser.gp = 0
 
+user_input = input()
+while user_input != "":
+    result = parser.parse(user_input)
+    print("Frase válida")
+    user_input = input()
 
-for linha in sys.stdin:
-    parser.success = True
-    parser.parse(linha)
-    if parser.success:
-       print(parser.parse(linha))
-       
+out_file.write("STOP")
+out_file.close()
