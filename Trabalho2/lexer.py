@@ -11,6 +11,8 @@ reserved = {
     "THEN" : "THEN",
     "IFNOT" : "ELSE",
     "WHILE" : "WHILE",
+    "DO" : "DO",
+    "FOR", "FOR",
     #Operações mat
     "SUM" : "PLUS",
     "SUB" : "MINUS",
@@ -23,16 +25,20 @@ reserved = {
     "SAMALL" : "SMALL",
     "SAMALLEQ" : "SMALLEQ",
     "AND" : "AND",
-    "OR" : "OR",
-    ";" : "NEWLINE"
+    "OR" : "OR"
     }
 
 
-tokens = ["NINT", "ID"] + list(reserved.values())
+tokens = ["NINT", "ID", "NEWLINE", "VIRG"] + list(reserved.values())
 
 literal = ["(", ")"]
 
+t_NEWLINE = ";"
+
+t_NVIRG = ","
+
 # spaces and tabs seráo ignorados
+t_ignore = " \t\n"
 
 def t_NINT(t):
     r"-?\d+"
