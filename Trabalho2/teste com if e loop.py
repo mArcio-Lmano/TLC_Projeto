@@ -26,17 +26,19 @@ reserved = {
     "SAMALL" : "SMALL",
     "SAMALLEQ" : "SMALLEQ",
     "AND" : "AND",
-    "OR" : "OR",
+    "OR" : "OR"
     }
 
 
-tokens = ["NINT", "ID", "NEWLINE"] + list(reserved.values())
+tokens = ["NINT", "ID", "NEWLINE", "VIRG"] + list(reserved.values())
 
 literal = ["(", ")"]
 
-t_NEWLINE = ";"
+t_VIRG = r','
 
-# spaces and tabs seráo ignorados
+t_NEWLINE = r';'
+
+# spaces and tabs serão ignorados
 t_ignore  =  " \t \n"
 
 # Criar floast e inteiros
@@ -82,7 +84,19 @@ def p_start(p): #permite chegar aos restantes simbolos
                 | if_ifnot
                 | while
                 | for
+                | list
+                | decl
                 '''
+    p[0] = p[1]
+
+def p_decl(p):
+    '''decl : ID IGUAL decl_type '''
+    p[0] = p[3]
+
+def p_decl_type(p):
+    '''decl_type : LISTA
+                    | NINT
+                    '''
     p[0] = p[1]
 
 def p_expression_ariop(p): #exprm?
@@ -132,16 +146,19 @@ def p_operation(p):
     p[0] = p[1]
 
 def p_operation_def(p):
-    "operations : operation"
-    p[0] = p[1]
+    '''operations : operation NEWLINE operations
+                    | operation
+                    '''
+    p[0] = p[3]
 
-def p_operations(p):
-    "operations : operations operation"
-    p[0] = p[1] + p[2]
 
+
+'''
 def p_operations_newline(p):
     "operations : operations NEWLINE operation"
     p[0] = p[1] + p[3]
+    
+'''
 
 def p_IF_IFNOT(t):
     "if_ifnot : IF exprl THEN operations ELSE operations"
@@ -159,6 +176,17 @@ def p_while(t):
 def p_for(t):
     "for : FOR exprl DO operations"
     if t[2]==True: t[0] = t[4]
+
+
+def p_list(p):
+    "list : ID IGUAL LISTA list_nint "
+    p[0] = p[3]
+
+def p_list_nint(p):
+    '''list_nint : NINT
+                    | NINT VIRG list_nint
+                    '''
+    p[0] = p[1]
 
 ###########################################################################
 
