@@ -2,6 +2,8 @@ from lexer import tokens
 from ply import yacc
 import sys
 
+
+
 precedence = (
     ( 'left', 'PLUS', 'MINUS' ),
     ( 'left', 'MUL', 'DIV' ),
@@ -12,7 +14,6 @@ precedence = (
 def p_start(p): #permite chegar aos restantes simbolos
     '''start : expr
                 | exprl
-                | operation
                 | if_then
                 | if_ifnot
                 | while
@@ -23,6 +24,7 @@ def p_start(p): #permite chegar aos restantes simbolos
 
 
 
+
 def p_decl(p):
     '''decl : ID IGUAL INT NINT '''
     p.parser.registers[p[1]] = (p.parser.gp, 'int', 1)
@@ -30,6 +32,10 @@ def p_decl(p):
     p.parser.gp += 1
 
 ##FALTA FAZER PARA O TYPE LISTA
+
+def p_decl_list(p):
+    "decl : ID IGUAL LISTA list_nint"
+    p[0] = p[4]
 
 
 
@@ -52,9 +58,7 @@ def p_decl_int(p):
     "decl : ID IGUAL INT NINT"
     p[0] = p[4]
 
-def p_decl_list(p):
-    "decl : ID IGUAL LISTA list_nint"
-    p[0] = p[4]
+
 
 def p_declaracao(p):
     'declaracao : NEW vars'
@@ -168,6 +172,7 @@ def p_error(p):
 parser = yacc.yacc()
 parser.registers = {}
 parser.gp = 0
+
 
 
 for linha in sys.stdin:
