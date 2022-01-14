@@ -12,7 +12,7 @@ reserved = {
     "IFNOT" : "ELSE",
     "WHILE" : "WHILE",
     "DO" : "DO",
-    "FOR", "FOR",
+    "FOR" : "FOR",
     #Operações mat
     "SUM" : "PLUS",
     "SUB" : "MINUS",
