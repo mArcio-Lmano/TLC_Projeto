@@ -35,7 +35,7 @@ literal = ["(", ")"]
 
 t_NEWLINE = ";"
 
-t_NVIRG = ","
+t_VIRG = ","
 
 # spaces and tabs seráo ignorados
 t_ignore = " \t\n"
