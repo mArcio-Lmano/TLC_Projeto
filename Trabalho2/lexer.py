@@ -61,9 +61,9 @@ def t_error(t):
 
 lexer = lex.lex()
 
-for line in sys.stdin:
-    lexer.input(line)
-    tok = lexer.token()
-    while tok:
-        print(tok)
-        tok = lexer.token()   
+#for line in sys.stdin:
+#    lexer.input(line)
+#    tok = lexer.token()
+#    while tok:
+#        print(tok)
+#        tok = lexer.token()   
