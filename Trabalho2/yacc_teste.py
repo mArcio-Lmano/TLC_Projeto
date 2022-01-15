@@ -13,10 +13,10 @@ out_file.write("START\n")
 def p_start(p): #permite chegar aos restantes simbolos
     '''start : expr
                 | exprl
-                | operation NEWLINE
+                | operations
                 | if_then
                 | if_ifnot
-                | for NEW
+                | for
                 | decl NEWLINE
                 | atrib NEWLINE
                 '''
@@ -30,10 +30,13 @@ def p_atrib(p):
     else:
         print("ERRO")
 
-def p_op_User(p):
+def p_op(p):
     """
     operation : INPUT
                 | PRINT
+                | atrib
+                | exprl
+                | expr
     """
     p[0] = p[1]
 
@@ -138,7 +141,6 @@ def p_expr2NUM_var( p ) :
 
 
 def p_exp2goup(p):
-    #'exprg : LP exprm RP'
     'expr : LP expr RP'
     p[0] = p[2]
 
@@ -168,16 +170,12 @@ def p_expression_logop(t): #exprl
 #####################################################################
 
 def p_operation(p):
-    '''operation : exprl
-                    | expr
-                    | NINT
-                    '''
-    p[0] = p[1]
+    "operation : NINT"
+    p[0] = str(p[1])
 
 def p_operation_def(p):
-    '''operations : operations NEWLINE operation
-                    '''
-    p[0] = str(p[1]) + str(p[3])
+    "operations : operations NEWLINE operation"
+    p[0] = p[1] + p[3]
 
 
 def p_operations_newline(p):
@@ -190,20 +188,28 @@ def p_IF_IFNOT(t):
     #else: t[0] = t[6]
     t[0] = t[2] + "JZ IFNOT\n" + t[4] + "JUMP END\nIFNOT:\n" + t[6] + "END:\n"
 
+def p_op_IFNOT(p):
+    "operation : if_ifnot"
+    p[0] = p[1]
+
 def p_IF(t):
     "if_then : IF exprl THEN operations"
     #if t[2]==True: t[0] = t[4]
     t[0] = t[2] + "JZ END\n" + t[4] + "END:\n"
-    3
+
+def p_op_IF(p):
+    "operation : if_then"
+    p[0] = p[1]
+
 '''
 def p_while(t):
     "while : WHILE exprl DO operations"
     if t[2]==True: t[0] = t[4]
 '''
 
-def p_for(t):
+def p_for(p):
     "for : FOR exprl DO operations"
-    t[0] = "FOR:\n" + t[2] + "JZ END\n"  + t[4] + "JUMP FOR\n" "END:\n"
+    p[0] = "FOR:\n" + p[2] + "JZ END\n" + p[4] + "JUMP FOR\n" + "END:\n" 
 
 
 
@@ -227,11 +233,6 @@ user_input = input("Que Ficheiro quer ler? ")
 file = open(f"codes/code{user_input}.txt","r")
 for linha in file:
     result = parser.parse(linha)
-
-# user_input = input()
-# while user_input != "":
-#     result = parser.parse(user_input)
-#     user_input = input()
 
 out_file.write("STOP")
 out_file.close()
