@@ -16,11 +16,19 @@ def p_start(p): #permite chegar aos restantes simbolos
                 | operation NEWLINE
                 | if_then
                 | if_ifnot
-                | for
+                | for NEW
                 | decl NEWLINE
+                | atrib NEWLINE
                 '''
     p[0] = p[1]
     out_file.write(str(p[0]))
+
+def p_atrib(p):
+    "atrib : ID IGUAL expr"
+    if p[1] in p.parser.registers:
+        p[0] = p[3] + "STOREG " + str(p.parser.registers[p[1]][0]) + "\n"
+    else:
+        print("ERRO")
 
 def p_op_User(p):
     """
@@ -186,6 +194,7 @@ def p_IF(t):
     "if_then : IF exprl THEN operations"
     #if t[2]==True: t[0] = t[4]
     t[0] = t[2] + "JZ END\n" + t[4] + "END:\n"
+    3
 '''
 def p_while(t):
     "while : WHILE exprl DO operations"
@@ -194,7 +203,7 @@ def p_while(t):
 
 def p_for(t):
     "for : FOR exprl DO operations"
-    if t[2]==True: t[0] = t[4]
+    t[0] = "FOR:\n" + t[2] + "JZ END\n"  + t[4] + "JUMP FOR\n" "END:\n"
 
 
 
