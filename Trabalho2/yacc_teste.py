@@ -48,7 +48,7 @@ def p_PRINT(p):
 
 def p_PRINT_ID(p):
     "TEXTO : ID"
-    if p[3] in p.parser.registers:
+    if p[1] in p.parser.registers:
         p[0] = "PUSHG "+ str(p.parser.registers[p[1]][0]) + "\nWRITEI\n"
     else: 
         print("ERRO")
@@ -190,7 +190,7 @@ def p_IF(p):
 
 
 def p_for(p):
-    "for : FOR exprl DO operation"
+    "for : FOR exprl DO operations"
     p[0] = "FOR:\n" + p[2] + "JZ ENDFOR\n" + p[4] + "JUMP FOR\n" + "ENDFOR:\n" 
 
 

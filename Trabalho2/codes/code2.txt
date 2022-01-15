@@ -1,8 +1,12 @@
-a is INT;
-'b is INT;'
-'c is INT;'
-d is INT 0;
+a is INT
+b is INT
+c is INT 
+d is INT 0
 
-Input(a);
+Input(a)
+a is a SUB 1
 
-FOR d SMALL a DO d is d SUM 1
+Input(b)
+FOR d SMALL a DO Input(c); d is d SUM 1; IF c SMALL b THEN b is c 
+
+Write(b)
