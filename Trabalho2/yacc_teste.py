@@ -33,7 +33,7 @@ def p_atrib(p):
 
 
 def p_INPUT(p):
-    "INPUT : Input LP ID RP"
+    "IN : Input LP ID RP"
     #if p[3] in p.parser.registers:
     if p[3] in p.parser.registers:
         p[0] = "READ\n" + "STOREG " + str(p.parser.registers[p[3]][0]) + "\nPUSHG " \
@@ -156,9 +156,6 @@ def p_expression_logop(t): #exprl
 
 #####################################################################
 
-# def p_operation(p):
-#     "operation : NINT"
-#     p[0] = str(p[1])
 
 def p_operation_def(p):
     "operations : operations NEWLINE operation"
@@ -170,22 +167,21 @@ def p_operations_newline(p):
 
 def p_op(p):
     """
-    operation : INPUT NEWLINE
-                | PRINT NEWLINE
-                | atrib NEWLINE
-                | exprl NEWLINE
-                | expr NEWLINE
+    operation : IN
+                | PRINT 
+                | atrib 
+                | exprl 
+                | expr 
                 | if_ifnot 
-                | decl NEWLINE
+                | decl 
                 | if_then 
-                | for NEWLINE
+                | for 
     """
     p[0] = p[1]
 
 def p_IF_IFNOT(p):
     "if_ifnot : IF exprl THEN operations ELSE operations"
     p[0] = p[2] + "JZ IFNOT\n" + p[4] + "JUMP END\nIFNOT:\n" + p[6] + "END:\n"
-
 
 def p_IF(p):
     "if_then : IF exprl THEN operations"
@@ -194,7 +190,7 @@ def p_IF(p):
 
 
 def p_for(p):
-    "for : FOR exprl DO operations"
+    "for : FOR exprl DO operation"
     p[0] = "FOR:\n" + p[2] + "JZ END\n" + p[4] + "JUMP FOR\n" + "END:\n" 
 
 
