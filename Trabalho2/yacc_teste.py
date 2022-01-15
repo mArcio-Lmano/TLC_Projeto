@@ -50,9 +50,9 @@ def p_decl_int(p):
 
 
 def p_decl_list(p):
-    "decl : ID IGUAL LISTA LP strint RP list_nint"
-    #PUSHN p[5]
-    p[0] = p[4]
+    "decl : ID IGUAL LISTA list_nint"
+    #p.parser.arrp = -p.parser.gp
+    p[0] = "PUSHN " + str(p.parser.arrp) + "\n" + p[4] + "\n"
 
 ##FALTA FAZER PARA O TYPE LISTA
 
@@ -77,9 +77,6 @@ def p_decl_int(p):
     "decl : ID IGUAL INT strint"
     p[0] = p[4]
 
-def p_decl_list(p):
-    "decl : ID IGUAL LISTA list_nint"
-    p[0] = p[4]
 
 def p_declaracao(p):
     'declaracao : NEW vars'
@@ -158,7 +155,7 @@ def p_expression_logop(t): #exprl
 def p_operation(p):
     '''operation : exprl
                     | expr
-                    | strint
+                    | NINT
                     '''
     p[0] = p[1]
 
@@ -171,9 +168,6 @@ def p_operation_def(p):
 def p_operations_newline(p):
     "operations : operation"
     p[0] = p[1]
-
-
-
 
 def p_IF_IFNOT(t):
     "if_ifnot : IF exprl THEN operations ELSE operations"
@@ -196,11 +190,15 @@ def p_for(t):
 
 
 def p_list_nint(p):
-    '''list_nint : strint
-                    | strint VIRG list_nint
-                    '''
-    p[0] = p[1]
+    "list_nint : NINT"
+    p.parser.arrp = p.parser.gp
+    p[0] = "PUSHI " + str(p[1]) + "\n" + "STOREG " + str(p.parser.arrp) 
+    p.parser.arrp += 1    
 
+def p_list_tailList(p):
+    "list_nint : list_nint VIRG NINT"
+    p[0] =  p[1] + "\n" + "PUSHI " + str(p[3]) + "\n" + "STOREG " + str(p.parser.arrp)
+    p.parser.arrp += 1 
 ###########################################################################
 
 
@@ -214,6 +212,7 @@ def p_error(p):
 parser = yacc.yacc()
 parser.registers = {}
 parser.gp = 0
+parser.arrp = 0
 
 user_input = input()
 while user_input != "":
