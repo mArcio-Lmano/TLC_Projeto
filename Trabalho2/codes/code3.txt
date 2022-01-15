@@ -1,3 +1,5 @@
+"Fazer a multip[licacao (b) de N numeros (a) "
+
 a is INT
 b is INT 1
 c is INT 

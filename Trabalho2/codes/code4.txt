@@ -1,0 +1,5 @@
+y is INT 0
+x is LIST 1,2,3,4,5
+
+
+Arroz is cola

@@ -30,6 +30,7 @@ def p_atrib(p):
         p[0] = p[3] + "STOREG " + str(p.parser.registers[p[1]][0]) + "\n"
     else:
         print("ERRO")
+        p_error(p)
 
 
 def p_INPUT(p):
@@ -77,7 +78,7 @@ def p_decl_int(p):
 def p_decl_list(p):
     "decl : ID IGUAL LISTA list_nint"
     #p.parser.arrp = -p.parser.gp
-    p[0] = "PUSHN " + str(p.parser.arrp) + "\n" + p[4] + "\n"
+    p[0] = "PUSHN " + str(p.parser.arrp - p.parser.gp) + "\n" + p[4] + "\n"
 
 def p_list_nint(p):
     "list_nint : NINT"
@@ -193,15 +194,14 @@ def p_for(p):
     "for : FOR exprl DO operations"
     p[0] = "FOR:\n" + p[2] + "JZ ENDFOR\n" + p[4] + "JUMP FOR\n" + "ENDFOR:\n" 
 
-
-
 ###########################################################################
 
-
-
 def p_error(p):
-    parser.success = False
-    print(f'Syntax error!' + str(p))
+    if p == None:
+        pass
+    else:
+        print(f'Syntax error!')
+        parser.success = False
 
 
 ###inicio do parsing
@@ -209,12 +209,23 @@ parser = yacc.yacc()
 parser.registers = {}
 parser.gp = 0
 parser.arrp = 0
-
+parser.num_linhas = 0
 user_input = input("Que Ficheiro quer ler? ")
+
+parser.success = True
+
+
 
 file = open(f"codes/code{user_input}.txt","r")
 for linha in file:
+    parser.num_linhas += 1
     result = parser.parse(linha)
+    if not parser.success:
+        print(f"Errro na linha {parser.num_linhas} :: {linha}")
 
+if parser.success:
+    print("Codigo compilado com sucesso")
+
+file.close()
 out_file.write("STOP")
 out_file.close()
