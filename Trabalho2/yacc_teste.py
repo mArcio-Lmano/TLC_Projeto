@@ -22,10 +22,6 @@ def p_start(p): #permite chegar aos restantes simbolos
     p[0] = p[1]
     out_file.write(str(p[0]))
 
-def p_int_to_str(p):
-    "strint : NINT"
-    p[0] = str(p[1]) + "\n"
-
 def p_op_User(p):
     '''
     operation : INPUT
@@ -47,10 +43,11 @@ def p_PRINT(p):
 
 
 def p_decl_int(p):
-    '''decl : ID IGUAL INT strint '''
+    '''decl : ID IGUAL INT NINT '''
     p.parser.registers[p[1]] = (p.parser.gp, 'int', 1)
     p[0] = f'PUSHI {p[4]}\n'
     p.parser.gp += 1
+
 
 def p_decl_list(p):
     "decl : ID IGUAL LISTA LP strint RP list_nint"
@@ -114,8 +111,8 @@ def p_expression_op_mat(t):
 
 
 def p_expr2NUM_nint( p ) :
-    'expr : strint'
-    p[0] = "PUSHI " + p[1] # p[0] = p[1]
+    'expr : NINT'
+    p[0] = "PUSHI " + str(p[1]) + "\n" # p[0] = p[1]
 
 
 def p_expr2NUM_var( p ) :
@@ -221,7 +218,6 @@ parser.gp = 0
 user_input = input()
 while user_input != "":
     result = parser.parse(user_input)
-    print("Frase válida")
     user_input = input()
 
 out_file.write("STOP")
