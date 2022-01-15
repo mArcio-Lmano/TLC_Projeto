@@ -11,15 +11,16 @@ out_file = open("out.vm", "w+")
 out_file.write("START\n")
 
 def p_start(p): #permite chegar aos restantes simbolos
-    '''start : expr
-                | exprl
-                | operations
-                | if_then
-                | if_ifnot
-                | for
-                | decl NEWLINE
-                | atrib NEWLINE
-                '''
+    # '''start : expr
+    #             | exprl
+    #             | operation
+    #             | if_then
+    #             | if_ifnot
+    #             | for
+    #             | decl NEWLINE
+    #             | atrib NEWLINE
+    #             '''
+    "start : operations"
     p[0] = p[1]
     out_file.write(str(p[0]))
 
@@ -30,15 +31,6 @@ def p_atrib(p):
     else:
         print("ERRO")
 
-def p_op(p):
-    """
-    operation : INPUT
-                | PRINT
-                | atrib
-                | exprl
-                | expr
-    """
-    p[0] = p[1]
 
 def p_INPUT(p):
     "INPUT : Input LP ID RP"
@@ -48,7 +40,7 @@ def p_INPUT(p):
             +str(p.parser.registers[p[3]][0])+ "\nATOI" + "\nSTOREG " \
             + str(p.parser.registers[p[3]][0]) + "\n"
     else: 
-        print(ERRO)
+        print("ERRO")
 
 def p_PRINT(p):
     "PRINT : Write LP TEXTO RP"
@@ -59,16 +51,11 @@ def p_PRINT_ID(p):
     if p[3] in p.parser.registers:
         p[0] = "PUSHG "+ str(p.parser.registers[p[1]][0]) + "\nWRITEI\n"
     else: 
-        print(ERRO)
+        print("ERRO")
 
 def p_PRINT_TXT(p):
     "TEXTO : TEXT"
     p[0] = "PUSHS "+ str(p[1]) + "\nWRITES\n"
-
-
-# def p_PRINT_TEXT(p):
-#     "PRINT : Write LP TEXT RP"
-#     p[0] = "PUSHS "+ str(p[3]) + "\nWRITES\n"
 
 def p_decl_int_NINT(p):
     "decl : ID IGUAL INT NINTdec "
@@ -169,43 +156,42 @@ def p_expression_logop(t): #exprl
 
 #####################################################################
 
-def p_operation(p):
-    "operation : NINT"
-    p[0] = str(p[1])
+# def p_operation(p):
+#     "operation : NINT"
+#     p[0] = str(p[1])
 
 def p_operation_def(p):
     "operations : operations NEWLINE operation"
     p[0] = p[1] + p[3]
 
-
 def p_operations_newline(p):
-    "operations : operation NEWLINE"
+    "operations : operation"
     p[0] = p[1]
 
-def p_IF_IFNOT(t):
+def p_op(p):
+    """
+    operation : INPUT NEWLINE
+                | PRINT NEWLINE
+                | atrib NEWLINE
+                | exprl NEWLINE
+                | expr NEWLINE
+                | if_ifnot 
+                | decl NEWLINE
+                | if_then 
+                | for NEWLINE
+    """
+    p[0] = p[1]
+
+def p_IF_IFNOT(p):
     "if_ifnot : IF exprl THEN operations ELSE operations"
-    #if t[2]==True: t[0] = t[4]
-    #else: t[0] = t[6]
-    t[0] = t[2] + "JZ IFNOT\n" + t[4] + "JUMP END\nIFNOT:\n" + t[6] + "END:\n"
+    p[0] = p[2] + "JZ IFNOT\n" + p[4] + "JUMP END\nIFNOT:\n" + p[6] + "END:\n"
 
-def p_op_IFNOT(p):
-    "operation : if_ifnot"
-    p[0] = p[1]
 
-def p_IF(t):
+def p_IF(p):
     "if_then : IF exprl THEN operations"
     #if t[2]==True: t[0] = t[4]
-    t[0] = t[2] + "JZ END\n" + t[4] + "END:\n"
+    p[0] = p[2] + "JZ END\n" + p[4] + "END:\n"
 
-def p_op_IF(p):
-    "operation : if_then"
-    p[0] = p[1]
-
-'''
-def p_while(t):
-    "while : WHILE exprl DO operations"
-    if t[2]==True: t[0] = t[4]
-'''
 
 def p_for(p):
     "for : FOR exprl DO operations"
