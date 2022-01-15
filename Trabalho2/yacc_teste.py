@@ -3,9 +3,8 @@ from ply import yacc
 import sys
 
 precedence = (
-    ( 'left', 'PLUS', 'MINUS' ),
-    ( 'left', 'MUL', 'DIV' ),
-    ( 'nonassoc', 'UMINUS' )
+    ( 'left', 'PLUS' ),
+    ( 'left', 'MUL', 'DIV' )
 )
 
 out_file = open("out.vm", "w+")
@@ -28,7 +27,7 @@ def p_start(p): #permite chegar aos restantes simbolos
 def p_decl(p):
     '''decl : ID IGUAL INT NINT '''
     p.parser.registers[p[1]] = (p.parser.gp, 'int', 1)
-    p[0] = f'pushi {p[4]}\n'
+    p[0] = f'PUSHI {p[4]}\n'
     p.parser.gp += 1
 
 ##FALTA FAZER PARA O TYPE LISTA
@@ -67,26 +66,44 @@ def p_declaracao(p):
         p.parser.gp += 1
 '''
 
-def p_expression_ariop(p): #exprm?
-    '''expr :  expr PLUS expr
+
+def p_expression_op_mat(t):
+    '''expr : expr PLUS expr
                   | expr MINUS expr
                   | expr MUL expr
-                  | expr DIV expr'''
-    if p[2] == 'SUM'  : p[0] = p[1] + p[3]
-    elif p[2] == 'SUB': p[0] = p[1] - p[3]
-    elif p[2] == 'MULT': p[0] = p[1] * p[3]
-    elif p[2] == 'DIV': p[0] = p[1] / p[3]
+                  | expr DIV expr
+                  '''
+    if t[2] == 'SUM':
+        t[0] = t[1] + t[3]  # p[0] = p[1] + p[3] + 'add\n'
+    elif t[2] == 'SUB':
+        t[0] = t[1] - t[3]  # p[0] = p[1] + p[3] + 'sub\n'
+    elif t[2] == 'MULT':
+        t[0] = t[1] * t[3]  # p[0] = p[1] + p[3] + 'mul\n'
+    elif t[2] == 'DIV':
+        if t[3] == 0:
+            print("Can't divide by 0")
+            raise ZeroDivisionError(
+                'integer division by 0')  # maybe mudar isto para nao dar erro mas so passar mensagem?
+        t[0] = t[1] / t[3]  # p[0] = p[1] + p[3] + 'div\n'
 
-#fazer expressoes grandes com parenteses
 
-def p_expr2uminus( p ) :
-    'expr : MINUS expr %prec UMINUS'
-    p[0] = - p[2]
-    
-def p_expr2NUM( p ) :
+def p_expr2NUM_nint( p ) :
     'expr : NINT'
     p[0] = p[1]
+    #PUSHI
 
+'''
+def p_expr2NUM_var( p ) :
+    'expr : NINT'
+    p[0] = p[1]
+    #ver se esta no p.parser.registos
+    #PUSHG
+'''
+
+def p_exp2goup(p):
+    #'exprg : LP exprm RP'
+    'expr : LP expr RP'
+    p[0] = p[2]
 
 def p_expression_logop(t): #exprl
     '''exprl : expr BIG expr

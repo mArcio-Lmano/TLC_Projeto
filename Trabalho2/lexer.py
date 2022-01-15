@@ -29,12 +29,12 @@ reserved = {
     }
 
 
-tokens = ["NINT", "ID", "NEWLINE", "VIRG"] + list(reserved.values())
+tokens = ["NINT", "ID", "NEWLINE", "VIRG","LP","RP"] + list(reserved.values())
 
-literal = ["(", ")"]
 
 t_NEWLINE = ";"
-
+t_LP = r'\('
+t_RP = r'\)'
 t_VIRG = ","
 
 # spaces and tabs seráo ignorados
