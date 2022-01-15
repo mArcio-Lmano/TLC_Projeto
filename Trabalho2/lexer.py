@@ -30,13 +30,13 @@ reserved = {
     }
 
 
-tokens = ["NINT", "ID", "NEWLINE", "VIRG","LP","RP"] + list(reserved.values())
-
+tokens = ["NINT", "ID", "NEWLINE", "VIRG","LP","RP", "TEXT"] + list(reserved.values())
 
 t_NEWLINE = ";"
 t_LP = r'\('
 t_RP = r'\)'
 t_VIRG = ","
+t_TEXT = r"\"([^\"]+)\""
 
 # spaces and tabs seráo ignorados
 t_ignore = " \t\n"
@@ -52,7 +52,7 @@ def t_ID(t):
     return t
 
 def t_COMMENT(t):
-    r"(\"|').*(\"|')"
+    r"(').*(')"
     pass
     # No return, ignorar os comentaários
 

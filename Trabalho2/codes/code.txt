@@ -1,0 +1,15 @@
+j is INT;
+k is INT;
+l is INT;
+m is INT;
+
+'Comentario'
+
+Input(j);
+Input(k);
+Input(l);
+Input(m);
+
+
+IF j EQ k AND j EQ l AND j EQ m THEN Write("Quadrado"); IFNOT Write("Nao Quadrado");
+
