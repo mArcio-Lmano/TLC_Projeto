@@ -49,6 +49,7 @@ def p_PRINT_ID(p):
         p[0] = "PUSHG "+ str(p.parser.registers[p[1]][0]) + "\nWRITEI\n"
     else: 
         print(ERRO)
+
 def p_PRINT_TXT(p):
     "TEXTO : TEXT"
     p[0] = "PUSHS "+ str(p[1]) + "\nWRITES\n"
@@ -212,12 +213,11 @@ parser.registers = {}
 parser.gp = 0
 parser.arrp = 0
 
+user_input = input("Que Ficheiro quer ler? ")
 
-file = open("codes/code.txt","r")
+file = open(f"codes/code{user_input}.txt","r")
 for linha in file:
     result = parser.parse(linha)
-    print(result)
-    print("Frase válida")
 
 # user_input = input()
 # while user_input != "":
