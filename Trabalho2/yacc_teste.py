@@ -16,7 +16,6 @@ def p_start(p): #permite chegar aos restantes simbolos
                 | operation
                 | if_then
                 | if_ifnot
-                | while
                 | for
                 | decl
                 '''
@@ -24,11 +23,16 @@ def p_start(p): #permite chegar aos restantes simbolos
     out_file.write(str(p[0]))
 
 
-def p_decl(p):
+def p_decl_int(p):
     '''decl : ID IGUAL INT NINT '''
     p.parser.registers[p[1]] = (p.parser.gp, 'int', 1)
     p[0] = f'PUSHI {p[4]}\n'
     p.parser.gp += 1
+
+def p_decl_list(p):
+    "decl : ID IGUAL LISTA LP NINT RP list_nint"
+    #PUSHN p[5]
+    p[0] = p[4]
 
 ##FALTA FAZER PARA O TYPE LISTA
 
@@ -159,9 +163,11 @@ def p_IF(t):
     "if_then : IF exprl THEN operations"
     if t[2]==True: t[0] = t[4]
 
+'''
 def p_while(t):
     "while : WHILE exprl DO operations"
     if t[2]==True: t[0] = t[4]
+'''
 
 def p_for(t):
     "for : FOR exprl DO operations"

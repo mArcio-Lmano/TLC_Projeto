@@ -10,7 +10,6 @@ reserved = {
     "IF" : "IF",
     "THEN" : "THEN",
     "IFNOT" : "ELSE",
-    "WHILE" : "WHILE",
     "DO" : "DO",
     "FOR" : "FOR",
     #Operações mat
