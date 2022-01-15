@@ -12,6 +12,8 @@ reserved = {
     "IFNOT" : "ELSE",
     "DO" : "DO",
     "FOR" : "FOR",
+    "Input" : "Input",
+    "Write" : "Write",
     #Operações mat
     "SUM" : "PLUS",
     "SUB" : "MINUS",
