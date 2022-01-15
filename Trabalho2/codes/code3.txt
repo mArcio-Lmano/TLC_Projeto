@@ -1,0 +1,10 @@
+a is INT
+b is INT 1
+c is INT 
+d is INT 0
+
+Input(a)
+
+FOR d SMALL a DO Input(c); d is d SUM 1; b is b MULT c
+
+Write(b)
