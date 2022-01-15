@@ -181,17 +181,17 @@ def p_op(p):
 
 def p_IF_IFNOT(p):
     "if_ifnot : IF exprl THEN operations ELSE operations"
-    p[0] = p[2] + "JZ IFNOT\n" + p[4] + "JUMP END\nIFNOT:\n" + p[6] + "END:\n"
+    p[0] = p[2] + "JZ IFNOT\n" + p[4] + "JUMP ENDIF\nIFNOT:\n" + p[6] + "ENDIF:\n"
 
 def p_IF(p):
     "if_then : IF exprl THEN operations"
     #if t[2]==True: t[0] = t[4]
-    p[0] = p[2] + "JZ END\n" + p[4] + "END:\n"
+    p[0] = p[2] + "JZ ENDIF\n" + p[4] + "ENDIF:\n"
 
 
 def p_for(p):
     "for : FOR exprl DO operation"
-    p[0] = "FOR:\n" + p[2] + "JZ END\n" + p[4] + "JUMP FOR\n" + "END:\n" 
+    p[0] = "FOR:\n" + p[2] + "JZ ENDFOR\n" + p[4] + "JUMP FOR\n" + "ENDFOR:\n" 
 
 
 
