@@ -22,15 +22,38 @@ def p_start(p): #permite chegar aos restantes simbolos
     p[0] = p[1]
     out_file.write(str(p[0]))
 
+def p_int_to_str(p):
+    "strint : NINT"
+    p[0] = str(p[1]) + "\n"
+
+def p_op_User(p):
+    '''
+    operation : INPUT
+                | PRINT
+    '''
+    p[0] = p[1]
+
+def p_INPUT(p):
+    "INPUT : Input LP ID RP"
+    #if p[3] in p.parser.registers:
+    print(p.parser.registers[p[3]])
+    p[0] = "READ\n" + "STOREG " + str(p.parser.registers[p[3]][0]) + "\nPUSHG " \
+        +str(p.parser.registers[p[3]][0])+ "\nATOI" + "\nSTOREG " \
+        + str(p.parser.registers[p[3]][0]) + "\n"
+
+def p_PRINT(p):
+    "PRINT : Write LP ID RP"
+    p[0] = "PUSHG "+ str(p.parser.registers[p[3]][0]) + "\nWRITEI\n"
+
 
 def p_decl_int(p):
-    '''decl : ID IGUAL INT NINT '''
+    '''decl : ID IGUAL INT strint '''
     p.parser.registers[p[1]] = (p.parser.gp, 'int', 1)
     p[0] = f'PUSHI {p[4]}\n'
     p.parser.gp += 1
 
 def p_decl_list(p):
-    "decl : ID IGUAL LISTA LP NINT RP list_nint"
+    "decl : ID IGUAL LISTA LP strint RP list_nint"
     #PUSHN p[5]
     p[0] = p[4]
 
@@ -54,7 +77,7 @@ registos_count = 0
 
     
 def p_decl_int(p):
-    "decl : ID IGUAL INT NINT"
+    "decl : ID IGUAL INT strint"
     p[0] = p[4]
 
 def p_decl_list(p):
@@ -78,31 +101,32 @@ def p_expression_op_mat(t):
                   | expr DIV expr
                   '''
     if t[2] == 'SUM':
-        t[0] = t[1] + t[3]  # p[0] = p[1] + p[3] + 'add\n'
+        t[0] = t[1] + t[3] + "ADD\n" # t[0] = t[1] + t[3]
     elif t[2] == 'SUB':
-        t[0] = t[1] - t[3]  # p[0] = p[1] + p[3] + 'sub\n'
+        t[0] = t[1] + t[3] + "SUB\n" # t[0] = t[1] - t[3]
     elif t[2] == 'MULT':
-        t[0] = t[1] * t[3]  # p[0] = p[1] + p[3] + 'mul\n'
+        t[0] = t[1] + t[3] + "MUL\n" # t[0] = t[1] / t[3]
     elif t[2] == 'DIV':
         if t[3] == 0:
             print("Can't divide by 0")
-            raise ZeroDivisionError(
-                'integer division by 0')  # maybe mudar isto para nao dar erro mas so passar mensagem?
-        t[0] = t[1] / t[3]  # p[0] = p[1] + p[3] + 'div\n'
+            raise ZeroDivisionError('integer division by 0')  # maybe mudar isto para nao dar erro mas so passar mensagem?
+        t[0] = t[1] + t[3] + "DIV\n" # p[0] = p[1] + p[3] + 'div\n'
 
 
 def p_expr2NUM_nint( p ) :
-    'expr : NINT'
-    p[0] = p[1]
-    #PUSHI
+    'expr : strint'
+    p[0] = "PUSHI " + p[1] # p[0] = p[1]
 
-'''
+
 def p_expr2NUM_var( p ) :
-    'expr : NINT'
+    'expr : ID'
     p[0] = p[1]
+    if p[1] in p.parser.registers:
+        p[0] = "PUSHG " + p[1] # p[0] = p[1]
+
     #ver se esta no p.parser.registos
     #PUSHG
-'''
+
 
 def p_exp2goup(p):
     #'exprg : LP exprm RP'
@@ -118,13 +142,13 @@ def p_expression_logop(t): #exprl
                   | exprl AND exprl
                   | exprl OR exprl
                   '''
-    if t[2] == 'BIG'  : t[0] = int(t[1] > t[3])
-    elif t[2] == 'SMALL': t[0] = int(t[1] < t[3])
-    elif t[2] == 'BIGEQ': t[0] = int(t[1] >= t[3])
-    elif t[2] == 'SMALLEQ': t[0] = int(t[1] <= t[3])
-    elif t[2] == 'EQ': t[0] = int(t[1] == t[3])
-    elif t[2] == 'AND': t[0] = int(t[1] and t[3])
-    elif t[2] == 'OR': t[0] = int(t[1] or t[3])
+    if t[2] == 'BIG'  : t[0] = t[1] + t[3] + "SUP\n" #int(t[1] > t[3])
+    elif t[2] == 'SMALL': t[0] = t[1] + t[3] + "INF\n" #int(t[1] < t[3])
+    elif t[2] == 'BIGEQ': t[0] = t[1] + t[3] + "SUPEQ\n" #int(t[1] >= t[3])
+    elif t[2] == 'SMALLEQ': t[0] = t[1] + t[3] + "INFEQ\n" #int(t[1] <= t[3])
+    elif t[2] == 'EQ': t[0] = t[1] + t[3] + "EQUAL\n" #int(t[1] == t[3])
+    elif t[2] == 'AND': t[0] = t[1] + t[3] + "MUL\n" #int(t[1] and t[3])
+    elif t[2] == 'OR': t[0] = t[1] + "\nNOT\n" + t[3] + "\nNOT\nMUL\n NOT\n" # int(t[1] or t[3])
 
 #falta o NOT?
 #o EQ tambem serve para exprl?
@@ -137,7 +161,7 @@ def p_expression_logop(t): #exprl
 def p_operation(p):
     '''operation : exprl
                     | expr
-                    | NINT
+                    | strint
                     '''
     p[0] = p[1]
 
@@ -175,8 +199,8 @@ def p_for(t):
 
 
 def p_list_nint(p):
-    '''list_nint : NINT
-                    | NINT VIRG list_nint
+    '''list_nint : strint
+                    | strint VIRG list_nint
                     '''
     p[0] = p[1]
 

@@ -23,8 +23,8 @@ reserved = {
     "EQ" : "EQ",
     "BIG" : "BIG",
     "BIGEQ" : "BIGEQ",
-    "SAMALL" : "SMALL",
-    "SAMALLEQ" : "SMALLEQ",
+    "SMALL" : "SMALL",
+    "SMALLEQ" : "SMALLEQ",
     "AND" : "AND",
     "OR" : "OR"
     }
