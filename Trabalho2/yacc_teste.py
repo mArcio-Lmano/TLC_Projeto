@@ -134,14 +134,14 @@ def p_decl_list_elem(p):
         p[0] = "PUSHGP\n" + "PUSHI " + str(p.parser.registers[p[4]][0]) + "\n" + "PADD\n" \
         + p[2] + p[6] + "STOREN\n"
     else:
-        print("ERRO: A variável não se encontra na lista de variáveis")
+        print("ERRO: A variável não se encontra na lista de variáveis ou a variável não é do tipo LIST")
         p_error(p)
 
 def p_indecl_NINT(p):
     "indecl : NINT"
     p[0] = "PUSHI " + str(p[1]) + "\n"
 
-def p_indecl_NINT(p):
+def p_indecl_ID(p):
     "indecl : ID"
     if p[1] in p.parser.registers:
         p[0] = "PUSHG " + str(p.parser.registers[p[1]][0]) + "\n"

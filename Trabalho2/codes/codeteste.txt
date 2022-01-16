@@ -1,2 +1,2 @@
-a is LIST 1,2,3
-Write({x}a)
+a is INT 
+{2}a is 1
