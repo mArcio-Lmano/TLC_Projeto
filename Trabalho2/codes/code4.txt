@@ -1,5 +1,7 @@
-y is INT 0
-x is LIST 1,2,3,4,5
+a is INT
+b is INT 
+c is INT 0
 
+Input(a)
 
-Arroz is cola
+FOR c SMALL a DO Input(b); c is c SUM 1; IF b MOD 2 EQ 1 THEN Write(b)

@@ -1,3 +1,6 @@
+'Calcula o menor numero (b) de um conjunto de N numero (a)'
+
+
 a is INT
 b is INT
 c is INT 

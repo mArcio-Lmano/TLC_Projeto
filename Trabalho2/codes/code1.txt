@@ -1,9 +1,9 @@
+'Recebe 4 numeros e ve se podem ser os lados de um quadrado'
+
 j is INT
 k is INT
 l is INT
 m is INT
-
-'Comentario'
 
 Input(j)
 Input(k)

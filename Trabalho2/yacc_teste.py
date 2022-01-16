@@ -32,7 +32,6 @@ def p_atrib(p):
         print("ERRO")
         p_error(p)
 
-
 def p_INPUT(p):
     "IN : Input LP ID RP"
     #if p[3] in p.parser.registers:
@@ -54,6 +53,13 @@ def p_PRINT_ID(p):
     else: 
         print("ERRO")
 
+def p_PRINT_list_elem(p):
+    "TEXTO : PRE ind PRD ID"
+    if p[4] in p.parser.registers and p.parser.registers[p[4]][1] == "list":
+        p[0] = "PUSHG "+ str(p.parser.registers[p[4]][0] + p[2]) + "\nWRITEI\n"
+    else: 
+        print("ERRO")
+
 def p_PRINT_TXT(p):
     "TEXTO : TEXT"
     p[0] = "PUSHS "+ str(p[1]) + "\nWRITES\n"
@@ -63,7 +69,7 @@ def p_decl_int_NINT(p):
     if p[1] in p.parser.registers:
         p[0] = "PUSHI " + p[4] + "\n" + "STOREG " + str(p.parser.registers[p[1]][0]) + "\n"
     else:
-        p.parser.registers[p[1]] = (p.parser.gp, 'int', 1)
+        p.parser.registers[p[1]] = [p.parser.gp, 'int', 1, p[4]]
         p[0] = f'PUSHI {p[4]}\n'
         p.parser.gp += 1
 
@@ -77,8 +83,13 @@ def p_decl_int(p):
 
 def p_decl_list(p):
     "decl : ID IGUAL LISTA list_nint"
-    #p.parser.arrp = -p.parser.gp
-    p[0] = "PUSHN " + str(p.parser.arrp - p.parser.gp) + "\n" + p[4] + "\n"
+    if p[1] not in p.parser.registers:
+        p.parser.registers[p[1]] = (p.parser.gp, 'list', p.parser.arrp - p.parser.gp)
+        p[0] = "PUSHN " + str(p.parser.arrp - p.parser.gp) + "\n" + p[4] + "\n"
+    elif p.parser.registers[p[1]][1] == "list" and p.parser.arrp - p.parser.gp == p.parser.registers[p[1]][2]:
+        p[0] = p[4] + "\n"
+    else:
+        print("ERRO") #ou nao e lista ou os tamanhos das listas nao batem certo
 
 def p_list_nint(p):
     "list_nint : NINT"
@@ -91,6 +102,8 @@ def p_list_tailList(p):
     p[0] =  p[1] + "\n" + "PUSHI " + str(p[3]) + "\n" + "STOREG " + str(p.parser.arrp)
     p.parser.arrp += 1 
 
+
+
 ##FALTA FAZER PARA O TYPE LISTA
 
 
@@ -99,6 +112,7 @@ def p_expression_op_mat(t):
                   | expr MINUS expr
                   | expr MUL expr
                   | expr DIV expr
+                  | expr MOD expr
                   '''
     if t[2] == 'SUM':
         t[0] = t[1] + t[3] + "ADD\n" # t[0] = t[1] + t[3]
@@ -106,6 +120,8 @@ def p_expression_op_mat(t):
         t[0] = t[1] + t[3] + "SUB\n" # t[0] = t[1] - t[3]
     elif t[2] == 'MULT':
         t[0] = t[1] + t[3] + "MUL\n" # t[0] = t[1] / t[3]
+    elif t[2] == "MOD":
+        t[0] = t[1] + t[3] + "MOD\n"
     elif t[2] == 'DIV':
         if t[3] == 0:
             print("Can't divide by 0")
@@ -117,10 +133,26 @@ def p_expr2NUM_nint( p ) :
     'expr : NINT'
     p[0] = "PUSHI " + str(p[1]) + "\n" # p[0] = p[1]
 
+def p_expr_list(p):
+    "expr : PRE ind PRD ID "
+    if p[4] in p.parser.registers and p.parser.registers[p[4]][1] == "list":
+        p[0] = "PUSHG " + str(p.parser.registers[p[4]][0] + p[2]) + "\n"
+    else:
+        print("ERRO")
+
+def p_ind_list_NINT(p):
+    "ind : NINT"
+    p[0] = p[1]
+
+def p_ind_list_ID(p):
+    "ind : ID"
+    if p[1] in p.parser.registers:
+        p[0] = int(p.parser.registers[p[1]][3])
+    else:
+        print("ERRO")
 
 def p_expr2NUM_var( p ) :
-    'expr : ID'
-    p[0] = p[1]
+    "expr : ID"
     if p[1] in p.parser.registers:
         p[0] = "PUSHG " + str(p.parser.registers[p[1]][0]) + "\n" # p[0] = p[1]
 
@@ -176,7 +208,7 @@ def p_op(p):
                 | if_ifnot 
                 | decl 
                 | if_then 
-                | for 
+                | for
     """
     p[0] = p[1]
 
