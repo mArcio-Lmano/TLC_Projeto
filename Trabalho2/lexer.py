@@ -41,19 +41,22 @@ t_TEXT = r"\"([^\"]+)\""
 t_PRD = r"}"
 t_PRE = r"{"
 
-# spaces and tabs seráo ignorados
+# spaces and tabs serão ignorados
 t_ignore = " \t\n"
 
+#números inteiros
 def t_NINT(t):
     r"-?\d+"
     t.value = int(t.value)
     return t
 
+#variáveis
 def t_ID(t):
     r"[A-z]+"
     t.type = reserved.get(t.value, "ID")
     return t
 
+#comentários
 def t_COMMENT(t):
     r"(').*(')"
     pass
