@@ -1,0 +1,3 @@
+y is INT
+Write({1}y)
+Write({2}x)

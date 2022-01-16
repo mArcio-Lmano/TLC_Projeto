@@ -1,0 +1,3 @@
+y is INT 2
+x is %
+z is INT 4

@@ -1,0 +1,3 @@
+Input(x)
+Write(y)
+z is 1

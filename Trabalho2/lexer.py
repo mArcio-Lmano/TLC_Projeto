@@ -63,7 +63,7 @@ def t_COMMENT(t):
     # No return, ignorar os comentaários
 
 def t_error(t):
-    print(f"Token não encontrada: {t.value[0]}")
+    print(f"ERRO: Token não encontrada: {t.value[0]}")
     t.lexer.skip(1)
 
 lexer = lex.lex()

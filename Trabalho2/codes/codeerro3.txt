@@ -1,0 +1,5 @@
+x is LIST 1,2,3
+x is LIST 4,5,6
+y is INT
+y is LIST 4,5,6
+x is LIST 4,3,2,1
