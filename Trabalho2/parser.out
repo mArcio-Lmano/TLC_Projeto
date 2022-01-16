@@ -4,32 +4,32 @@ Grammar
 
 Rule 0     S' -> start
 Rule 1     start -> operations
-Rule 2     atrib -> ID IGUAL expr
-Rule 3     IN -> Input LP ID RP
-Rule 4     PRINT -> Write LP TEXTO RP
-Rule 5     TEXTO -> ID
-Rule 6     TEXTO -> PRE ind PRD ID
-Rule 7     TEXTO -> TEXT
-Rule 8     decl -> ID IGUAL INT NINTdec
-Rule 9     NINTdec -> NINT
-Rule 10    NINTdec -> <empty>
-Rule 11    decl -> ID IGUAL LISTA list_nint
-Rule 12    list_nint -> NINT
-Rule 13    list_nint -> list_nint VIRG NINT
+Rule 2     decl -> ID IGUAL INT NINTdec
+Rule 3     NINTdec -> NINT
+Rule 4     NINTdec -> <empty>
+Rule 5     decl -> ID IGUAL LISTA list_nint
+Rule 6     list_nint -> NINT
+Rule 7     list_nint -> list_nint VIRG NINT
+Rule 8     atrib -> ID IGUAL expr
+Rule 9     IN -> Input LP ID RP
+Rule 10    PRINT -> Write LP TEXTO RP
+Rule 11    TEXTO -> ID
+Rule 12    TEXTO -> PRE ind PRD ID
+Rule 13    TEXTO -> TEXT
 Rule 14    expr -> expr PLUS expr
 Rule 15    expr -> expr MINUS expr
 Rule 16    expr -> expr MUL expr
 Rule 17    expr -> expr DIV expr
 Rule 18    expr -> expr MOD expr
 Rule 19    expr -> NINT
-Rule 20    expr -> PRE indecl PRD ID
-Rule 21    atrib -> PRE indecl PRD ID IGUAL expr
-Rule 22    indecl -> NINT
-Rule 23    indecl -> ID
-Rule 24    ind -> NINT
-Rule 25    ind -> ID
-Rule 26    expr -> ID
-Rule 27    expr -> LP expr RP
+Rule 20    expr -> LP expr RP
+Rule 21    expr -> ID
+Rule 22    expr -> PRE indecl PRD ID
+Rule 23    atrib -> PRE indecl PRD ID IGUAL expr
+Rule 24    indecl -> NINT
+Rule 25    indecl -> ID
+Rule 26    ind -> NINT
+Rule 27    ind -> ID
 Rule 28    exprl -> expr BIG expr
 Rule 29    exprl -> expr SMALL expr
 Rule 30    exprl -> expr BIGEQ expr
@@ -62,47 +62,47 @@ DO                   : 48
 ELSE                 : 46
 EQ                   : 32
 FOR                  : 48
-ID                   : 2 3 5 6 8 11 20 21 23 25 26
+ID                   : 2 5 8 9 11 12 21 22 23 25 27
 IF                   : 46 47
-IGUAL                : 2 8 11 21
-INT                  : 8
-Input                : 3
-LISTA                : 11
-LP                   : 3 4 27
+IGUAL                : 2 5 8 23
+INT                  : 2
+Input                : 9
+LISTA                : 5
+LP                   : 9 10 20
 MINUS                : 15
 MOD                  : 18
 MUL                  : 16
 NEWLINE              : 35
-NINT                 : 9 12 13 19 22 24
+NINT                 : 3 6 7 19 24 26
 OR                   : 34
 PLUS                 : 14
-PRD                  : 6 20 21
-PRE                  : 6 20 21
-RP                   : 3 4 27
+PRD                  : 12 22 23
+PRE                  : 12 22 23
+RP                   : 9 10 20
 SMALL                : 29
 SMALLEQ              : 31
-TEXT                 : 7
+TEXT                 : 13
 THEN                 : 46 47
-VIRG                 : 13
-Write                : 4
+VIRG                 : 7
+Write                : 10
 error                : 
 
 Nonterminals, with rules where they appear
 
 IN                   : 37
-NINTdec              : 8
+NINTdec              : 2
 PRINT                : 38
-TEXTO                : 4
+TEXTO                : 10
 atrib                : 39
 decl                 : 43
-expr                 : 2 14 14 15 15 16 16 17 17 18 18 21 27 28 28 29 29 30 30 31 31 32 32 41
+expr                 : 8 14 14 15 15 16 16 17 17 18 18 20 23 28 28 29 29 30 30 31 31 32 32 41
 exprl                : 33 33 34 34 40 46 47 48
 for                  : 45
 if_ifnot             : 42
 if_then              : 44
-ind                  : 6
-indecl               : 20 21
-list_nint            : 11 13
+ind                  : 12
+indecl               : 22 23
+list_nint            : 5 7
 operation            : 35 36
 operations           : 1 35 46 46 47 48
 start                : 0
@@ -124,10 +124,10 @@ state 0
     (43) operation -> . decl
     (44) operation -> . if_then
     (45) operation -> . for
-    (3) IN -> . Input LP ID RP
-    (4) PRINT -> . Write LP TEXTO RP
-    (2) atrib -> . ID IGUAL expr
-    (21) atrib -> . PRE indecl PRD ID IGUAL expr
+    (9) IN -> . Input LP ID RP
+    (10) PRINT -> . Write LP TEXTO RP
+    (8) atrib -> . ID IGUAL expr
+    (23) atrib -> . PRE indecl PRD ID IGUAL expr
     (28) exprl -> . expr BIG expr
     (29) exprl -> . expr SMALL expr
     (30) exprl -> . expr BIGEQ expr
@@ -141,12 +141,12 @@ state 0
     (17) expr -> . expr DIV expr
     (18) expr -> . expr MOD expr
     (19) expr -> . NINT
-    (20) expr -> . PRE indecl PRD ID
-    (26) expr -> . ID
-    (27) expr -> . LP expr RP
+    (20) expr -> . LP expr RP
+    (21) expr -> . ID
+    (22) expr -> . PRE indecl PRD ID
     (46) if_ifnot -> . IF exprl THEN operations ELSE operations
-    (8) decl -> . ID IGUAL INT NINTdec
-    (11) decl -> . ID IGUAL LISTA list_nint
+    (2) decl -> . ID IGUAL INT NINTdec
+    (5) decl -> . ID IGUAL LISTA list_nint
     (47) if_then -> . IF exprl THEN operations
     (48) for -> . FOR exprl DO operations
 
@@ -303,67 +303,67 @@ state 12
 
 state 13
 
-    (3) IN -> Input . LP ID RP
+    (9) IN -> Input . LP ID RP
 
     LP              shift and go to state 34
 
 
 state 14
 
-    (27) expr -> LP . expr RP
+    (20) expr -> LP . expr RP
     (14) expr -> . expr PLUS expr
     (15) expr -> . expr MINUS expr
     (16) expr -> . expr MUL expr
     (17) expr -> . expr DIV expr
     (18) expr -> . expr MOD expr
     (19) expr -> . NINT
-    (20) expr -> . PRE indecl PRD ID
-    (26) expr -> . ID
-    (27) expr -> . LP expr RP
+    (20) expr -> . LP expr RP
+    (21) expr -> . ID
+    (22) expr -> . PRE indecl PRD ID
 
     NINT            shift and go to state 18
-    PRE             shift and go to state 36
-    ID              shift and go to state 37
     LP              shift and go to state 14
+    ID              shift and go to state 36
+    PRE             shift and go to state 37
 
     expr                           shift and go to state 35
 
 state 15
 
-    (2) atrib -> ID . IGUAL expr
-    (26) expr -> ID .
-    (8) decl -> ID . IGUAL INT NINTdec
-    (11) decl -> ID . IGUAL LISTA list_nint
+    (8) atrib -> ID . IGUAL expr
+    (21) expr -> ID .
+    (2) decl -> ID . IGUAL INT NINTdec
+    (5) decl -> ID . IGUAL LISTA list_nint
 
     IGUAL           shift and go to state 38
-    BIG             reduce using rule 26 (expr -> ID .)
-    SMALL           reduce using rule 26 (expr -> ID .)
-    BIGEQ           reduce using rule 26 (expr -> ID .)
-    SMALLEQ         reduce using rule 26 (expr -> ID .)
-    EQ              reduce using rule 26 (expr -> ID .)
-    PLUS            reduce using rule 26 (expr -> ID .)
-    MINUS           reduce using rule 26 (expr -> ID .)
-    MUL             reduce using rule 26 (expr -> ID .)
-    DIV             reduce using rule 26 (expr -> ID .)
-    MOD             reduce using rule 26 (expr -> ID .)
-    NEWLINE         reduce using rule 26 (expr -> ID .)
-    $end            reduce using rule 26 (expr -> ID .)
-    ELSE            reduce using rule 26 (expr -> ID .)
+    BIG             reduce using rule 21 (expr -> ID .)
+    SMALL           reduce using rule 21 (expr -> ID .)
+    BIGEQ           reduce using rule 21 (expr -> ID .)
+    SMALLEQ         reduce using rule 21 (expr -> ID .)
+    EQ              reduce using rule 21 (expr -> ID .)
+    PLUS            reduce using rule 21 (expr -> ID .)
+    MINUS           reduce using rule 21 (expr -> ID .)
+    MUL             reduce using rule 21 (expr -> ID .)
+    DIV             reduce using rule 21 (expr -> ID .)
+    MOD             reduce using rule 21 (expr -> ID .)
+    NEWLINE         reduce using rule 21 (expr -> ID .)
+    $end            reduce using rule 21 (expr -> ID .)
+    ELSE            reduce using rule 21 (expr -> ID .)
 
 
 state 16
 
-    (4) PRINT -> Write . LP TEXTO RP
+    (10) PRINT -> Write . LP TEXTO RP
 
     LP              shift and go to state 39
 
 
 state 17
 
-    (21) atrib -> PRE . indecl PRD ID IGUAL expr
-    (20) expr -> PRE . indecl PRD ID
-    (22) indecl -> . NINT
-    (23) indecl -> . ID
+    (23) atrib -> PRE . indecl PRD ID IGUAL expr
+    (22) expr -> PRE . indecl PRD ID
+    (24) indecl -> . NINT
+    (25) indecl -> . ID
 
     NINT            shift and go to state 42
     ID              shift and go to state 41
@@ -411,14 +411,14 @@ state 19
     (17) expr -> . expr DIV expr
     (18) expr -> . expr MOD expr
     (19) expr -> . NINT
-    (20) expr -> . PRE indecl PRD ID
-    (26) expr -> . ID
-    (27) expr -> . LP expr RP
+    (20) expr -> . LP expr RP
+    (21) expr -> . ID
+    (22) expr -> . PRE indecl PRD ID
 
     NINT            shift and go to state 18
-    PRE             shift and go to state 36
-    ID              shift and go to state 37
     LP              shift and go to state 14
+    ID              shift and go to state 36
+    PRE             shift and go to state 37
 
     exprl                          shift and go to state 43
     expr                           shift and go to state 44
@@ -439,14 +439,14 @@ state 20
     (17) expr -> . expr DIV expr
     (18) expr -> . expr MOD expr
     (19) expr -> . NINT
-    (20) expr -> . PRE indecl PRD ID
-    (26) expr -> . ID
-    (27) expr -> . LP expr RP
+    (20) expr -> . LP expr RP
+    (21) expr -> . ID
+    (22) expr -> . PRE indecl PRD ID
 
     NINT            shift and go to state 18
-    PRE             shift and go to state 36
-    ID              shift and go to state 37
     LP              shift and go to state 14
+    ID              shift and go to state 36
+    PRE             shift and go to state 37
 
     exprl                          shift and go to state 45
     expr                           shift and go to state 44
@@ -463,10 +463,10 @@ state 21
     (43) operation -> . decl
     (44) operation -> . if_then
     (45) operation -> . for
-    (3) IN -> . Input LP ID RP
-    (4) PRINT -> . Write LP TEXTO RP
-    (2) atrib -> . ID IGUAL expr
-    (21) atrib -> . PRE indecl PRD ID IGUAL expr
+    (9) IN -> . Input LP ID RP
+    (10) PRINT -> . Write LP TEXTO RP
+    (8) atrib -> . ID IGUAL expr
+    (23) atrib -> . PRE indecl PRD ID IGUAL expr
     (28) exprl -> . expr BIG expr
     (29) exprl -> . expr SMALL expr
     (30) exprl -> . expr BIGEQ expr
@@ -480,12 +480,12 @@ state 21
     (17) expr -> . expr DIV expr
     (18) expr -> . expr MOD expr
     (19) expr -> . NINT
-    (20) expr -> . PRE indecl PRD ID
-    (26) expr -> . ID
-    (27) expr -> . LP expr RP
+    (20) expr -> . LP expr RP
+    (21) expr -> . ID
+    (22) expr -> . PRE indecl PRD ID
     (46) if_ifnot -> . IF exprl THEN operations ELSE operations
-    (8) decl -> . ID IGUAL INT NINTdec
-    (11) decl -> . ID IGUAL LISTA list_nint
+    (2) decl -> . ID IGUAL INT NINTdec
+    (5) decl -> . ID IGUAL LISTA list_nint
     (47) if_then -> . IF exprl THEN operations
     (48) for -> . FOR exprl DO operations
 
@@ -525,14 +525,14 @@ state 22
     (17) expr -> . expr DIV expr
     (18) expr -> . expr MOD expr
     (19) expr -> . NINT
-    (20) expr -> . PRE indecl PRD ID
-    (26) expr -> . ID
-    (27) expr -> . LP expr RP
+    (20) expr -> . LP expr RP
+    (21) expr -> . ID
+    (22) expr -> . PRE indecl PRD ID
 
     NINT            shift and go to state 18
-    PRE             shift and go to state 36
-    ID              shift and go to state 37
     LP              shift and go to state 14
+    ID              shift and go to state 36
+    PRE             shift and go to state 37
 
     exprl                          shift and go to state 47
     expr                           shift and go to state 44
@@ -553,14 +553,14 @@ state 23
     (17) expr -> . expr DIV expr
     (18) expr -> . expr MOD expr
     (19) expr -> . NINT
-    (20) expr -> . PRE indecl PRD ID
-    (26) expr -> . ID
-    (27) expr -> . LP expr RP
+    (20) expr -> . LP expr RP
+    (21) expr -> . ID
+    (22) expr -> . PRE indecl PRD ID
 
     NINT            shift and go to state 18
-    PRE             shift and go to state 36
-    ID              shift and go to state 37
     LP              shift and go to state 14
+    ID              shift and go to state 36
+    PRE             shift and go to state 37
 
     exprl                          shift and go to state 48
     expr                           shift and go to state 44
@@ -574,14 +574,14 @@ state 24
     (17) expr -> . expr DIV expr
     (18) expr -> . expr MOD expr
     (19) expr -> . NINT
-    (20) expr -> . PRE indecl PRD ID
-    (26) expr -> . ID
-    (27) expr -> . LP expr RP
+    (20) expr -> . LP expr RP
+    (21) expr -> . ID
+    (22) expr -> . PRE indecl PRD ID
 
     NINT            shift and go to state 18
-    PRE             shift and go to state 36
-    ID              shift and go to state 37
     LP              shift and go to state 14
+    ID              shift and go to state 36
+    PRE             shift and go to state 37
 
     expr                           shift and go to state 49
 
@@ -594,14 +594,14 @@ state 25
     (17) expr -> . expr DIV expr
     (18) expr -> . expr MOD expr
     (19) expr -> . NINT
-    (20) expr -> . PRE indecl PRD ID
-    (26) expr -> . ID
-    (27) expr -> . LP expr RP
+    (20) expr -> . LP expr RP
+    (21) expr -> . ID
+    (22) expr -> . PRE indecl PRD ID
 
     NINT            shift and go to state 18
-    PRE             shift and go to state 36
-    ID              shift and go to state 37
     LP              shift and go to state 14
+    ID              shift and go to state 36
+    PRE             shift and go to state 37
 
     expr                           shift and go to state 50
 
@@ -614,14 +614,14 @@ state 26
     (17) expr -> . expr DIV expr
     (18) expr -> . expr MOD expr
     (19) expr -> . NINT
-    (20) expr -> . PRE indecl PRD ID
-    (26) expr -> . ID
-    (27) expr -> . LP expr RP
+    (20) expr -> . LP expr RP
+    (21) expr -> . ID
+    (22) expr -> . PRE indecl PRD ID
 
     NINT            shift and go to state 18
-    PRE             shift and go to state 36
-    ID              shift and go to state 37
     LP              shift and go to state 14
+    ID              shift and go to state 36
+    PRE             shift and go to state 37
 
     expr                           shift and go to state 51
 
@@ -634,14 +634,14 @@ state 27
     (17) expr -> . expr DIV expr
     (18) expr -> . expr MOD expr
     (19) expr -> . NINT
-    (20) expr -> . PRE indecl PRD ID
-    (26) expr -> . ID
-    (27) expr -> . LP expr RP
+    (20) expr -> . LP expr RP
+    (21) expr -> . ID
+    (22) expr -> . PRE indecl PRD ID
 
     NINT            shift and go to state 18
-    PRE             shift and go to state 36
-    ID              shift and go to state 37
     LP              shift and go to state 14
+    ID              shift and go to state 36
+    PRE             shift and go to state 37
 
     expr                           shift and go to state 52
 
@@ -654,14 +654,14 @@ state 28
     (17) expr -> . expr DIV expr
     (18) expr -> . expr MOD expr
     (19) expr -> . NINT
-    (20) expr -> . PRE indecl PRD ID
-    (26) expr -> . ID
-    (27) expr -> . LP expr RP
+    (20) expr -> . LP expr RP
+    (21) expr -> . ID
+    (22) expr -> . PRE indecl PRD ID
 
     NINT            shift and go to state 18
-    PRE             shift and go to state 36
-    ID              shift and go to state 37
     LP              shift and go to state 14
+    ID              shift and go to state 36
+    PRE             shift and go to state 37
 
     expr                           shift and go to state 53
 
@@ -674,14 +674,14 @@ state 29
     (17) expr -> . expr DIV expr
     (18) expr -> . expr MOD expr
     (19) expr -> . NINT
-    (20) expr -> . PRE indecl PRD ID
-    (26) expr -> . ID
-    (27) expr -> . LP expr RP
+    (20) expr -> . LP expr RP
+    (21) expr -> . ID
+    (22) expr -> . PRE indecl PRD ID
 
     NINT            shift and go to state 18
-    PRE             shift and go to state 36
-    ID              shift and go to state 37
     LP              shift and go to state 14
+    ID              shift and go to state 36
+    PRE             shift and go to state 37
 
     expr                           shift and go to state 54
 
@@ -694,14 +694,14 @@ state 30
     (17) expr -> . expr DIV expr
     (18) expr -> . expr MOD expr
     (19) expr -> . NINT
-    (20) expr -> . PRE indecl PRD ID
-    (26) expr -> . ID
-    (27) expr -> . LP expr RP
+    (20) expr -> . LP expr RP
+    (21) expr -> . ID
+    (22) expr -> . PRE indecl PRD ID
 
     NINT            shift and go to state 18
-    PRE             shift and go to state 36
-    ID              shift and go to state 37
     LP              shift and go to state 14
+    ID              shift and go to state 36
+    PRE             shift and go to state 37
 
     expr                           shift and go to state 55
 
@@ -714,14 +714,14 @@ state 31
     (17) expr -> . expr DIV expr
     (18) expr -> . expr MOD expr
     (19) expr -> . NINT
-    (20) expr -> . PRE indecl PRD ID
-    (26) expr -> . ID
-    (27) expr -> . LP expr RP
+    (20) expr -> . LP expr RP
+    (21) expr -> . ID
+    (22) expr -> . PRE indecl PRD ID
 
     NINT            shift and go to state 18
-    PRE             shift and go to state 36
-    ID              shift and go to state 37
     LP              shift and go to state 14
+    ID              shift and go to state 36
+    PRE             shift and go to state 37
 
     expr                           shift and go to state 56
 
@@ -734,14 +734,14 @@ state 32
     (17) expr -> . expr DIV expr
     (18) expr -> . expr MOD expr
     (19) expr -> . NINT
-    (20) expr -> . PRE indecl PRD ID
-    (26) expr -> . ID
-    (27) expr -> . LP expr RP
+    (20) expr -> . LP expr RP
+    (21) expr -> . ID
+    (22) expr -> . PRE indecl PRD ID
 
     NINT            shift and go to state 18
-    PRE             shift and go to state 36
-    ID              shift and go to state 37
     LP              shift and go to state 14
+    ID              shift and go to state 36
+    PRE             shift and go to state 37
 
     expr                           shift and go to state 57
 
@@ -754,27 +754,27 @@ state 33
     (17) expr -> . expr DIV expr
     (18) expr -> . expr MOD expr
     (19) expr -> . NINT
-    (20) expr -> . PRE indecl PRD ID
-    (26) expr -> . ID
-    (27) expr -> . LP expr RP
+    (20) expr -> . LP expr RP
+    (21) expr -> . ID
+    (22) expr -> . PRE indecl PRD ID
 
     NINT            shift and go to state 18
-    PRE             shift and go to state 36
-    ID              shift and go to state 37
     LP              shift and go to state 14
+    ID              shift and go to state 36
+    PRE             shift and go to state 37
 
     expr                           shift and go to state 58
 
 state 34
 
-    (3) IN -> Input LP . ID RP
+    (9) IN -> Input LP . ID RP
 
     ID              shift and go to state 59
 
 
 state 35
 
-    (27) expr -> LP expr . RP
+    (20) expr -> LP expr . RP
     (14) expr -> expr . PLUS expr
     (15) expr -> expr . MINUS expr
     (16) expr -> expr . MUL expr
@@ -791,69 +791,69 @@ state 35
 
 state 36
 
-    (20) expr -> PRE . indecl PRD ID
-    (22) indecl -> . NINT
-    (23) indecl -> . ID
+    (21) expr -> ID .
+
+    RP              reduce using rule 21 (expr -> ID .)
+    PLUS            reduce using rule 21 (expr -> ID .)
+    MINUS           reduce using rule 21 (expr -> ID .)
+    MUL             reduce using rule 21 (expr -> ID .)
+    DIV             reduce using rule 21 (expr -> ID .)
+    MOD             reduce using rule 21 (expr -> ID .)
+    BIG             reduce using rule 21 (expr -> ID .)
+    SMALL           reduce using rule 21 (expr -> ID .)
+    BIGEQ           reduce using rule 21 (expr -> ID .)
+    SMALLEQ         reduce using rule 21 (expr -> ID .)
+    EQ              reduce using rule 21 (expr -> ID .)
+    AND             reduce using rule 21 (expr -> ID .)
+    OR              reduce using rule 21 (expr -> ID .)
+    NEWLINE         reduce using rule 21 (expr -> ID .)
+    $end            reduce using rule 21 (expr -> ID .)
+    THEN            reduce using rule 21 (expr -> ID .)
+    DO              reduce using rule 21 (expr -> ID .)
+    ELSE            reduce using rule 21 (expr -> ID .)
+
+
+state 37
+
+    (22) expr -> PRE . indecl PRD ID
+    (24) indecl -> . NINT
+    (25) indecl -> . ID
 
     NINT            shift and go to state 42
     ID              shift and go to state 41
 
     indecl                         shift and go to state 61
 
-state 37
-
-    (26) expr -> ID .
-
-    RP              reduce using rule 26 (expr -> ID .)
-    PLUS            reduce using rule 26 (expr -> ID .)
-    MINUS           reduce using rule 26 (expr -> ID .)
-    MUL             reduce using rule 26 (expr -> ID .)
-    DIV             reduce using rule 26 (expr -> ID .)
-    MOD             reduce using rule 26 (expr -> ID .)
-    BIG             reduce using rule 26 (expr -> ID .)
-    SMALL           reduce using rule 26 (expr -> ID .)
-    BIGEQ           reduce using rule 26 (expr -> ID .)
-    SMALLEQ         reduce using rule 26 (expr -> ID .)
-    EQ              reduce using rule 26 (expr -> ID .)
-    AND             reduce using rule 26 (expr -> ID .)
-    OR              reduce using rule 26 (expr -> ID .)
-    NEWLINE         reduce using rule 26 (expr -> ID .)
-    $end            reduce using rule 26 (expr -> ID .)
-    THEN            reduce using rule 26 (expr -> ID .)
-    DO              reduce using rule 26 (expr -> ID .)
-    ELSE            reduce using rule 26 (expr -> ID .)
-
-
 state 38
 
-    (2) atrib -> ID IGUAL . expr
-    (8) decl -> ID IGUAL . INT NINTdec
-    (11) decl -> ID IGUAL . LISTA list_nint
+    (8) atrib -> ID IGUAL . expr
+    (2) decl -> ID IGUAL . INT NINTdec
+    (5) decl -> ID IGUAL . LISTA list_nint
     (14) expr -> . expr PLUS expr
     (15) expr -> . expr MINUS expr
     (16) expr -> . expr MUL expr
     (17) expr -> . expr DIV expr
     (18) expr -> . expr MOD expr
     (19) expr -> . NINT
-    (20) expr -> . PRE indecl PRD ID
-    (26) expr -> . ID
-    (27) expr -> . LP expr RP
+    (20) expr -> . LP expr RP
+    (21) expr -> . ID
+    (22) expr -> . PRE indecl PRD ID
 
     INT             shift and go to state 63
     LISTA           shift and go to state 64
     NINT            shift and go to state 18
-    PRE             shift and go to state 36
-    ID              shift and go to state 37
     LP              shift and go to state 14
+    ID              shift and go to state 36
+    PRE             shift and go to state 37
 
     expr                           shift and go to state 62
 
 state 39
 
-    (4) PRINT -> Write LP . TEXTO RP
-    (5) TEXTO -> . ID
-    (6) TEXTO -> . PRE ind PRD ID
-    (7) TEXTO -> . TEXT
+    (10) PRINT -> Write LP . TEXTO RP
+    (11) TEXTO -> . ID
+    (12) TEXTO -> . PRE ind PRD ID
+    (13) TEXTO -> . TEXT
 
     ID              shift and go to state 66
     PRE             shift and go to state 67
@@ -863,24 +863,24 @@ state 39
 
 state 40
 
-    (21) atrib -> PRE indecl . PRD ID IGUAL expr
-    (20) expr -> PRE indecl . PRD ID
+    (23) atrib -> PRE indecl . PRD ID IGUAL expr
+    (22) expr -> PRE indecl . PRD ID
 
     PRD             shift and go to state 69
 
 
 state 41
 
-    (23) indecl -> ID .
+    (25) indecl -> ID .
 
-    PRD             reduce using rule 23 (indecl -> ID .)
+    PRD             reduce using rule 25 (indecl -> ID .)
 
 
 state 42
 
-    (22) indecl -> NINT .
+    (24) indecl -> NINT .
 
-    PRD             reduce using rule 22 (indecl -> NINT .)
+    PRD             reduce using rule 24 (indecl -> NINT .)
 
 
 state 43
@@ -1282,54 +1282,54 @@ state 58
 
 state 59
 
-    (3) IN -> Input LP ID . RP
+    (9) IN -> Input LP ID . RP
 
     RP              shift and go to state 72
 
 
 state 60
 
-    (27) expr -> LP expr RP .
+    (20) expr -> LP expr RP .
 
-    BIG             reduce using rule 27 (expr -> LP expr RP .)
-    SMALL           reduce using rule 27 (expr -> LP expr RP .)
-    BIGEQ           reduce using rule 27 (expr -> LP expr RP .)
-    SMALLEQ         reduce using rule 27 (expr -> LP expr RP .)
-    EQ              reduce using rule 27 (expr -> LP expr RP .)
-    PLUS            reduce using rule 27 (expr -> LP expr RP .)
-    MINUS           reduce using rule 27 (expr -> LP expr RP .)
-    MUL             reduce using rule 27 (expr -> LP expr RP .)
-    DIV             reduce using rule 27 (expr -> LP expr RP .)
-    MOD             reduce using rule 27 (expr -> LP expr RP .)
-    NEWLINE         reduce using rule 27 (expr -> LP expr RP .)
-    $end            reduce using rule 27 (expr -> LP expr RP .)
-    RP              reduce using rule 27 (expr -> LP expr RP .)
-    ELSE            reduce using rule 27 (expr -> LP expr RP .)
-    AND             reduce using rule 27 (expr -> LP expr RP .)
-    OR              reduce using rule 27 (expr -> LP expr RP .)
-    THEN            reduce using rule 27 (expr -> LP expr RP .)
-    DO              reduce using rule 27 (expr -> LP expr RP .)
+    BIG             reduce using rule 20 (expr -> LP expr RP .)
+    SMALL           reduce using rule 20 (expr -> LP expr RP .)
+    BIGEQ           reduce using rule 20 (expr -> LP expr RP .)
+    SMALLEQ         reduce using rule 20 (expr -> LP expr RP .)
+    EQ              reduce using rule 20 (expr -> LP expr RP .)
+    PLUS            reduce using rule 20 (expr -> LP expr RP .)
+    MINUS           reduce using rule 20 (expr -> LP expr RP .)
+    MUL             reduce using rule 20 (expr -> LP expr RP .)
+    DIV             reduce using rule 20 (expr -> LP expr RP .)
+    MOD             reduce using rule 20 (expr -> LP expr RP .)
+    NEWLINE         reduce using rule 20 (expr -> LP expr RP .)
+    $end            reduce using rule 20 (expr -> LP expr RP .)
+    RP              reduce using rule 20 (expr -> LP expr RP .)
+    ELSE            reduce using rule 20 (expr -> LP expr RP .)
+    AND             reduce using rule 20 (expr -> LP expr RP .)
+    OR              reduce using rule 20 (expr -> LP expr RP .)
+    THEN            reduce using rule 20 (expr -> LP expr RP .)
+    DO              reduce using rule 20 (expr -> LP expr RP .)
 
 
 state 61
 
-    (20) expr -> PRE indecl . PRD ID
+    (22) expr -> PRE indecl . PRD ID
 
     PRD             shift and go to state 73
 
 
 state 62
 
-    (2) atrib -> ID IGUAL expr .
+    (8) atrib -> ID IGUAL expr .
     (14) expr -> expr . PLUS expr
     (15) expr -> expr . MINUS expr
     (16) expr -> expr . MUL expr
     (17) expr -> expr . DIV expr
     (18) expr -> expr . MOD expr
 
-    NEWLINE         reduce using rule 2 (atrib -> ID IGUAL expr .)
-    $end            reduce using rule 2 (atrib -> ID IGUAL expr .)
-    ELSE            reduce using rule 2 (atrib -> ID IGUAL expr .)
+    NEWLINE         reduce using rule 8 (atrib -> ID IGUAL expr .)
+    $end            reduce using rule 8 (atrib -> ID IGUAL expr .)
+    ELSE            reduce using rule 8 (atrib -> ID IGUAL expr .)
     PLUS            shift and go to state 29
     MINUS           shift and go to state 30
     MUL             shift and go to state 31
@@ -1339,22 +1339,22 @@ state 62
 
 state 63
 
-    (8) decl -> ID IGUAL INT . NINTdec
-    (9) NINTdec -> . NINT
-    (10) NINTdec -> .
+    (2) decl -> ID IGUAL INT . NINTdec
+    (3) NINTdec -> . NINT
+    (4) NINTdec -> .
 
     NINT            shift and go to state 75
-    NEWLINE         reduce using rule 10 (NINTdec -> .)
-    $end            reduce using rule 10 (NINTdec -> .)
-    ELSE            reduce using rule 10 (NINTdec -> .)
+    NEWLINE         reduce using rule 4 (NINTdec -> .)
+    $end            reduce using rule 4 (NINTdec -> .)
+    ELSE            reduce using rule 4 (NINTdec -> .)
 
     NINTdec                        shift and go to state 74
 
 state 64
 
-    (11) decl -> ID IGUAL LISTA . list_nint
-    (12) list_nint -> . NINT
-    (13) list_nint -> . list_nint VIRG NINT
+    (5) decl -> ID IGUAL LISTA . list_nint
+    (6) list_nint -> . NINT
+    (7) list_nint -> . list_nint VIRG NINT
 
     NINT            shift and go to state 77
 
@@ -1362,23 +1362,23 @@ state 64
 
 state 65
 
-    (4) PRINT -> Write LP TEXTO . RP
+    (10) PRINT -> Write LP TEXTO . RP
 
     RP              shift and go to state 78
 
 
 state 66
 
-    (5) TEXTO -> ID .
+    (11) TEXTO -> ID .
 
-    RP              reduce using rule 5 (TEXTO -> ID .)
+    RP              reduce using rule 11 (TEXTO -> ID .)
 
 
 state 67
 
-    (6) TEXTO -> PRE . ind PRD ID
-    (24) ind -> . NINT
-    (25) ind -> . ID
+    (12) TEXTO -> PRE . ind PRD ID
+    (26) ind -> . NINT
+    (27) ind -> . ID
 
     NINT            shift and go to state 81
     ID              shift and go to state 80
@@ -1387,15 +1387,15 @@ state 67
 
 state 68
 
-    (7) TEXTO -> TEXT .
+    (13) TEXTO -> TEXT .
 
-    RP              reduce using rule 7 (TEXTO -> TEXT .)
+    RP              reduce using rule 13 (TEXTO -> TEXT .)
 
 
 state 69
 
-    (21) atrib -> PRE indecl PRD . ID IGUAL expr
-    (20) expr -> PRE indecl PRD . ID
+    (23) atrib -> PRE indecl PRD . ID IGUAL expr
+    (22) expr -> PRE indecl PRD . ID
 
     ID              shift and go to state 82
 
@@ -1415,10 +1415,10 @@ state 70
     (43) operation -> . decl
     (44) operation -> . if_then
     (45) operation -> . for
-    (3) IN -> . Input LP ID RP
-    (4) PRINT -> . Write LP TEXTO RP
-    (2) atrib -> . ID IGUAL expr
-    (21) atrib -> . PRE indecl PRD ID IGUAL expr
+    (9) IN -> . Input LP ID RP
+    (10) PRINT -> . Write LP TEXTO RP
+    (8) atrib -> . ID IGUAL expr
+    (23) atrib -> . PRE indecl PRD ID IGUAL expr
     (28) exprl -> . expr BIG expr
     (29) exprl -> . expr SMALL expr
     (30) exprl -> . expr BIGEQ expr
@@ -1432,12 +1432,12 @@ state 70
     (17) expr -> . expr DIV expr
     (18) expr -> . expr MOD expr
     (19) expr -> . NINT
-    (20) expr -> . PRE indecl PRD ID
-    (26) expr -> . ID
-    (27) expr -> . LP expr RP
+    (20) expr -> . LP expr RP
+    (21) expr -> . ID
+    (22) expr -> . PRE indecl PRD ID
     (46) if_ifnot -> . IF exprl THEN operations ELSE operations
-    (8) decl -> . ID IGUAL INT NINTdec
-    (11) decl -> . ID IGUAL LISTA list_nint
+    (2) decl -> . ID IGUAL INT NINTdec
+    (5) decl -> . ID IGUAL LISTA list_nint
     (47) if_then -> . IF exprl THEN operations
     (48) for -> . FOR exprl DO operations
 
@@ -1476,10 +1476,10 @@ state 71
     (43) operation -> . decl
     (44) operation -> . if_then
     (45) operation -> . for
-    (3) IN -> . Input LP ID RP
-    (4) PRINT -> . Write LP TEXTO RP
-    (2) atrib -> . ID IGUAL expr
-    (21) atrib -> . PRE indecl PRD ID IGUAL expr
+    (9) IN -> . Input LP ID RP
+    (10) PRINT -> . Write LP TEXTO RP
+    (8) atrib -> . ID IGUAL expr
+    (23) atrib -> . PRE indecl PRD ID IGUAL expr
     (28) exprl -> . expr BIG expr
     (29) exprl -> . expr SMALL expr
     (30) exprl -> . expr BIGEQ expr
@@ -1493,12 +1493,12 @@ state 71
     (17) expr -> . expr DIV expr
     (18) expr -> . expr MOD expr
     (19) expr -> . NINT
-    (20) expr -> . PRE indecl PRD ID
-    (26) expr -> . ID
-    (27) expr -> . LP expr RP
+    (20) expr -> . LP expr RP
+    (21) expr -> . ID
+    (22) expr -> . PRE indecl PRD ID
     (46) if_ifnot -> . IF exprl THEN operations ELSE operations
-    (8) decl -> . ID IGUAL INT NINTdec
-    (11) decl -> . ID IGUAL LISTA list_nint
+    (2) decl -> . ID IGUAL INT NINTdec
+    (5) decl -> . ID IGUAL LISTA list_nint
     (47) if_then -> . IF exprl THEN operations
     (48) for -> . FOR exprl DO operations
 
@@ -1525,108 +1525,108 @@ state 71
 
 state 72
 
-    (3) IN -> Input LP ID RP .
+    (9) IN -> Input LP ID RP .
 
-    NEWLINE         reduce using rule 3 (IN -> Input LP ID RP .)
-    $end            reduce using rule 3 (IN -> Input LP ID RP .)
-    ELSE            reduce using rule 3 (IN -> Input LP ID RP .)
+    NEWLINE         reduce using rule 9 (IN -> Input LP ID RP .)
+    $end            reduce using rule 9 (IN -> Input LP ID RP .)
+    ELSE            reduce using rule 9 (IN -> Input LP ID RP .)
 
 
 state 73
 
-    (20) expr -> PRE indecl PRD . ID
+    (22) expr -> PRE indecl PRD . ID
 
     ID              shift and go to state 85
 
 
 state 74
 
-    (8) decl -> ID IGUAL INT NINTdec .
+    (2) decl -> ID IGUAL INT NINTdec .
 
-    NEWLINE         reduce using rule 8 (decl -> ID IGUAL INT NINTdec .)
-    $end            reduce using rule 8 (decl -> ID IGUAL INT NINTdec .)
-    ELSE            reduce using rule 8 (decl -> ID IGUAL INT NINTdec .)
+    NEWLINE         reduce using rule 2 (decl -> ID IGUAL INT NINTdec .)
+    $end            reduce using rule 2 (decl -> ID IGUAL INT NINTdec .)
+    ELSE            reduce using rule 2 (decl -> ID IGUAL INT NINTdec .)
 
 
 state 75
 
-    (9) NINTdec -> NINT .
+    (3) NINTdec -> NINT .
 
-    NEWLINE         reduce using rule 9 (NINTdec -> NINT .)
-    $end            reduce using rule 9 (NINTdec -> NINT .)
-    ELSE            reduce using rule 9 (NINTdec -> NINT .)
+    NEWLINE         reduce using rule 3 (NINTdec -> NINT .)
+    $end            reduce using rule 3 (NINTdec -> NINT .)
+    ELSE            reduce using rule 3 (NINTdec -> NINT .)
 
 
 state 76
 
-    (11) decl -> ID IGUAL LISTA list_nint .
-    (13) list_nint -> list_nint . VIRG NINT
+    (5) decl -> ID IGUAL LISTA list_nint .
+    (7) list_nint -> list_nint . VIRG NINT
 
-    NEWLINE         reduce using rule 11 (decl -> ID IGUAL LISTA list_nint .)
-    $end            reduce using rule 11 (decl -> ID IGUAL LISTA list_nint .)
-    ELSE            reduce using rule 11 (decl -> ID IGUAL LISTA list_nint .)
+    NEWLINE         reduce using rule 5 (decl -> ID IGUAL LISTA list_nint .)
+    $end            reduce using rule 5 (decl -> ID IGUAL LISTA list_nint .)
+    ELSE            reduce using rule 5 (decl -> ID IGUAL LISTA list_nint .)
     VIRG            shift and go to state 86
 
 
 state 77
 
-    (12) list_nint -> NINT .
+    (6) list_nint -> NINT .
 
-    VIRG            reduce using rule 12 (list_nint -> NINT .)
-    NEWLINE         reduce using rule 12 (list_nint -> NINT .)
-    $end            reduce using rule 12 (list_nint -> NINT .)
-    ELSE            reduce using rule 12 (list_nint -> NINT .)
+    VIRG            reduce using rule 6 (list_nint -> NINT .)
+    NEWLINE         reduce using rule 6 (list_nint -> NINT .)
+    $end            reduce using rule 6 (list_nint -> NINT .)
+    ELSE            reduce using rule 6 (list_nint -> NINT .)
 
 
 state 78
 
-    (4) PRINT -> Write LP TEXTO RP .
+    (10) PRINT -> Write LP TEXTO RP .
 
-    NEWLINE         reduce using rule 4 (PRINT -> Write LP TEXTO RP .)
-    $end            reduce using rule 4 (PRINT -> Write LP TEXTO RP .)
-    ELSE            reduce using rule 4 (PRINT -> Write LP TEXTO RP .)
+    NEWLINE         reduce using rule 10 (PRINT -> Write LP TEXTO RP .)
+    $end            reduce using rule 10 (PRINT -> Write LP TEXTO RP .)
+    ELSE            reduce using rule 10 (PRINT -> Write LP TEXTO RP .)
 
 
 state 79
 
-    (6) TEXTO -> PRE ind . PRD ID
+    (12) TEXTO -> PRE ind . PRD ID
 
     PRD             shift and go to state 87
 
 
 state 80
 
-    (25) ind -> ID .
+    (27) ind -> ID .
 
-    PRD             reduce using rule 25 (ind -> ID .)
+    PRD             reduce using rule 27 (ind -> ID .)
 
 
 state 81
 
-    (24) ind -> NINT .
+    (26) ind -> NINT .
 
-    PRD             reduce using rule 24 (ind -> NINT .)
+    PRD             reduce using rule 26 (ind -> NINT .)
 
 
 state 82
 
-    (21) atrib -> PRE indecl PRD ID . IGUAL expr
-    (20) expr -> PRE indecl PRD ID .
+    (23) atrib -> PRE indecl PRD ID . IGUAL expr
+    (22) expr -> PRE indecl PRD ID .
 
     IGUAL           shift and go to state 88
-    BIG             reduce using rule 20 (expr -> PRE indecl PRD ID .)
-    SMALL           reduce using rule 20 (expr -> PRE indecl PRD ID .)
-    BIGEQ           reduce using rule 20 (expr -> PRE indecl PRD ID .)
-    SMALLEQ         reduce using rule 20 (expr -> PRE indecl PRD ID .)
-    EQ              reduce using rule 20 (expr -> PRE indecl PRD ID .)
-    PLUS            reduce using rule 20 (expr -> PRE indecl PRD ID .)
-    MINUS           reduce using rule 20 (expr -> PRE indecl PRD ID .)
-    MUL             reduce using rule 20 (expr -> PRE indecl PRD ID .)
-    DIV             reduce using rule 20 (expr -> PRE indecl PRD ID .)
-    MOD             reduce using rule 20 (expr -> PRE indecl PRD ID .)
-    NEWLINE         reduce using rule 20 (expr -> PRE indecl PRD ID .)
-    $end            reduce using rule 20 (expr -> PRE indecl PRD ID .)
-    ELSE            reduce using rule 20 (expr -> PRE indecl PRD ID .)
+    BIG             reduce using rule 22 (expr -> PRE indecl PRD ID .)
+    SMALL           reduce using rule 22 (expr -> PRE indecl PRD ID .)
+    BIGEQ           reduce using rule 22 (expr -> PRE indecl PRD ID .)
+    SMALLEQ         reduce using rule 22 (expr -> PRE indecl PRD ID .)
+    EQ              reduce using rule 22 (expr -> PRE indecl PRD ID .)
+    PLUS            reduce using rule 22 (expr -> PRE indecl PRD ID .)
+    MINUS           reduce using rule 22 (expr -> PRE indecl PRD ID .)
+    MUL             reduce using rule 22 (expr -> PRE indecl PRD ID .)
+    DIV             reduce using rule 22 (expr -> PRE indecl PRD ID .)
+    MOD             reduce using rule 22 (expr -> PRE indecl PRD ID .)
+    NEWLINE         reduce using rule 22 (expr -> PRE indecl PRD ID .)
+    $end            reduce using rule 22 (expr -> PRE indecl PRD ID .)
+    ELSE            reduce using rule 22 (expr -> PRE indecl PRD ID .)
 
 
 state 83
@@ -1660,59 +1660,59 @@ state 84
 
 state 85
 
-    (20) expr -> PRE indecl PRD ID .
+    (22) expr -> PRE indecl PRD ID .
 
-    RP              reduce using rule 20 (expr -> PRE indecl PRD ID .)
-    PLUS            reduce using rule 20 (expr -> PRE indecl PRD ID .)
-    MINUS           reduce using rule 20 (expr -> PRE indecl PRD ID .)
-    MUL             reduce using rule 20 (expr -> PRE indecl PRD ID .)
-    DIV             reduce using rule 20 (expr -> PRE indecl PRD ID .)
-    MOD             reduce using rule 20 (expr -> PRE indecl PRD ID .)
-    BIG             reduce using rule 20 (expr -> PRE indecl PRD ID .)
-    SMALL           reduce using rule 20 (expr -> PRE indecl PRD ID .)
-    BIGEQ           reduce using rule 20 (expr -> PRE indecl PRD ID .)
-    SMALLEQ         reduce using rule 20 (expr -> PRE indecl PRD ID .)
-    EQ              reduce using rule 20 (expr -> PRE indecl PRD ID .)
-    AND             reduce using rule 20 (expr -> PRE indecl PRD ID .)
-    OR              reduce using rule 20 (expr -> PRE indecl PRD ID .)
-    NEWLINE         reduce using rule 20 (expr -> PRE indecl PRD ID .)
-    $end            reduce using rule 20 (expr -> PRE indecl PRD ID .)
-    THEN            reduce using rule 20 (expr -> PRE indecl PRD ID .)
-    DO              reduce using rule 20 (expr -> PRE indecl PRD ID .)
-    ELSE            reduce using rule 20 (expr -> PRE indecl PRD ID .)
+    RP              reduce using rule 22 (expr -> PRE indecl PRD ID .)
+    PLUS            reduce using rule 22 (expr -> PRE indecl PRD ID .)
+    MINUS           reduce using rule 22 (expr -> PRE indecl PRD ID .)
+    MUL             reduce using rule 22 (expr -> PRE indecl PRD ID .)
+    DIV             reduce using rule 22 (expr -> PRE indecl PRD ID .)
+    MOD             reduce using rule 22 (expr -> PRE indecl PRD ID .)
+    BIG             reduce using rule 22 (expr -> PRE indecl PRD ID .)
+    SMALL           reduce using rule 22 (expr -> PRE indecl PRD ID .)
+    BIGEQ           reduce using rule 22 (expr -> PRE indecl PRD ID .)
+    SMALLEQ         reduce using rule 22 (expr -> PRE indecl PRD ID .)
+    EQ              reduce using rule 22 (expr -> PRE indecl PRD ID .)
+    AND             reduce using rule 22 (expr -> PRE indecl PRD ID .)
+    OR              reduce using rule 22 (expr -> PRE indecl PRD ID .)
+    NEWLINE         reduce using rule 22 (expr -> PRE indecl PRD ID .)
+    $end            reduce using rule 22 (expr -> PRE indecl PRD ID .)
+    THEN            reduce using rule 22 (expr -> PRE indecl PRD ID .)
+    DO              reduce using rule 22 (expr -> PRE indecl PRD ID .)
+    ELSE            reduce using rule 22 (expr -> PRE indecl PRD ID .)
 
 
 state 86
 
-    (13) list_nint -> list_nint VIRG . NINT
+    (7) list_nint -> list_nint VIRG . NINT
 
     NINT            shift and go to state 90
 
 
 state 87
 
-    (6) TEXTO -> PRE ind PRD . ID
+    (12) TEXTO -> PRE ind PRD . ID
 
     ID              shift and go to state 91
 
 
 state 88
 
-    (21) atrib -> PRE indecl PRD ID IGUAL . expr
+    (23) atrib -> PRE indecl PRD ID IGUAL . expr
     (14) expr -> . expr PLUS expr
     (15) expr -> . expr MINUS expr
     (16) expr -> . expr MUL expr
     (17) expr -> . expr DIV expr
     (18) expr -> . expr MOD expr
     (19) expr -> . NINT
-    (20) expr -> . PRE indecl PRD ID
-    (26) expr -> . ID
-    (27) expr -> . LP expr RP
+    (20) expr -> . LP expr RP
+    (21) expr -> . ID
+    (22) expr -> . PRE indecl PRD ID
 
     NINT            shift and go to state 18
-    PRE             shift and go to state 36
-    ID              shift and go to state 37
     LP              shift and go to state 14
+    ID              shift and go to state 36
+    PRE             shift and go to state 37
 
     expr                           shift and go to state 92
 
@@ -1730,10 +1730,10 @@ state 89
     (43) operation -> . decl
     (44) operation -> . if_then
     (45) operation -> . for
-    (3) IN -> . Input LP ID RP
-    (4) PRINT -> . Write LP TEXTO RP
-    (2) atrib -> . ID IGUAL expr
-    (21) atrib -> . PRE indecl PRD ID IGUAL expr
+    (9) IN -> . Input LP ID RP
+    (10) PRINT -> . Write LP TEXTO RP
+    (8) atrib -> . ID IGUAL expr
+    (23) atrib -> . PRE indecl PRD ID IGUAL expr
     (28) exprl -> . expr BIG expr
     (29) exprl -> . expr SMALL expr
     (30) exprl -> . expr BIGEQ expr
@@ -1747,12 +1747,12 @@ state 89
     (17) expr -> . expr DIV expr
     (18) expr -> . expr MOD expr
     (19) expr -> . NINT
-    (20) expr -> . PRE indecl PRD ID
-    (26) expr -> . ID
-    (27) expr -> . LP expr RP
+    (20) expr -> . LP expr RP
+    (21) expr -> . ID
+    (22) expr -> . PRE indecl PRD ID
     (46) if_ifnot -> . IF exprl THEN operations ELSE operations
-    (8) decl -> . ID IGUAL INT NINTdec
-    (11) decl -> . ID IGUAL LISTA list_nint
+    (2) decl -> . ID IGUAL INT NINTdec
+    (5) decl -> . ID IGUAL LISTA list_nint
     (47) if_then -> . IF exprl THEN operations
     (48) for -> . FOR exprl DO operations
 
@@ -1779,33 +1779,33 @@ state 89
 
 state 90
 
-    (13) list_nint -> list_nint VIRG NINT .
+    (7) list_nint -> list_nint VIRG NINT .
 
-    VIRG            reduce using rule 13 (list_nint -> list_nint VIRG NINT .)
-    NEWLINE         reduce using rule 13 (list_nint -> list_nint VIRG NINT .)
-    $end            reduce using rule 13 (list_nint -> list_nint VIRG NINT .)
-    ELSE            reduce using rule 13 (list_nint -> list_nint VIRG NINT .)
+    VIRG            reduce using rule 7 (list_nint -> list_nint VIRG NINT .)
+    NEWLINE         reduce using rule 7 (list_nint -> list_nint VIRG NINT .)
+    $end            reduce using rule 7 (list_nint -> list_nint VIRG NINT .)
+    ELSE            reduce using rule 7 (list_nint -> list_nint VIRG NINT .)
 
 
 state 91
 
-    (6) TEXTO -> PRE ind PRD ID .
+    (12) TEXTO -> PRE ind PRD ID .
 
-    RP              reduce using rule 6 (TEXTO -> PRE ind PRD ID .)
+    RP              reduce using rule 12 (TEXTO -> PRE ind PRD ID .)
 
 
 state 92
 
-    (21) atrib -> PRE indecl PRD ID IGUAL expr .
+    (23) atrib -> PRE indecl PRD ID IGUAL expr .
     (14) expr -> expr . PLUS expr
     (15) expr -> expr . MINUS expr
     (16) expr -> expr . MUL expr
     (17) expr -> expr . DIV expr
     (18) expr -> expr . MOD expr
 
-    NEWLINE         reduce using rule 21 (atrib -> PRE indecl PRD ID IGUAL expr .)
-    $end            reduce using rule 21 (atrib -> PRE indecl PRD ID IGUAL expr .)
-    ELSE            reduce using rule 21 (atrib -> PRE indecl PRD ID IGUAL expr .)
+    NEWLINE         reduce using rule 23 (atrib -> PRE indecl PRD ID IGUAL expr .)
+    $end            reduce using rule 23 (atrib -> PRE indecl PRD ID IGUAL expr .)
+    ELSE            reduce using rule 23 (atrib -> PRE indecl PRD ID IGUAL expr .)
     PLUS            shift and go to state 29
     MINUS           shift and go to state 30
     MUL             shift and go to state 31

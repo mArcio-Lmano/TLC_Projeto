@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'leftPLUSleftMULDIVAND BIG BIGEQ DIV DO ELSE EQ FOR ID IF IGUAL INT Input LISTA LP MINUS MOD MUL NEWLINE NINT OR PLUS PRD PRE RP SMALL SMALLEQ TEXT THEN VIRG Writestart : operationsatrib : ID IGUAL exprIN : Input LP ID RPPRINT : Write LP TEXTO RPTEXTO : IDTEXTO : PRE ind PRD IDTEXTO : TEXTdecl : ID IGUAL INT NINTdec NINTdec : NINT\n                | decl : ID IGUAL LISTA list_nintlist_nint : NINTlist_nint : list_nint VIRG NINTexpr : expr PLUS expr\n                  | expr MINUS expr\n                  | expr MUL expr\n                  | expr DIV expr\n                  | expr MOD expr\n                  expr : NINTexpr : PRE indecl PRD ID atrib : PRE indecl PRD ID IGUAL exprindecl : NINTindecl : IDind : NINTind : IDexpr : IDexpr : LP expr RPexprl : expr BIG expr\n                  | expr SMALL expr\n                  | expr BIGEQ expr\n                  | expr SMALLEQ expr\n                  | expr EQ expr\n                  | exprl AND exprl\n                  | exprl OR exprl\n                  operations : operations NEWLINE operationoperations : operation\n    operation : IN\n                | PRINT \n                | atrib \n                | exprl \n                | expr \n                | if_ifnot \n                | decl \n                | if_then \n                | for\n    if_ifnot : IF exprl THEN operations ELSE operationsif_then : IF exprl THEN operationsfor : FOR exprl DO operations'
+_lr_signature = 'leftPLUSleftMULDIVAND BIG BIGEQ DIV DO ELSE EQ FOR ID IF IGUAL INT Input LISTA LP MINUS MOD MUL NEWLINE NINT OR PLUS PRD PRE RP SMALL SMALLEQ TEXT THEN VIRG Writestart : operationsdecl : ID IGUAL INT NINTdec NINTdec : NINT\n                | decl : ID IGUAL LISTA list_nintlist_nint : NINTlist_nint : list_nint VIRG NINTatrib : ID IGUAL exprIN : Input LP ID RPPRINT : Write LP TEXTO RPTEXTO : IDTEXTO : PRE ind PRD IDTEXTO : TEXTexpr : expr PLUS expr\n                  | expr MINUS expr\n                  | expr MUL expr\n                  | expr DIV expr\n                  | expr MOD expr\n                  expr : NINTexpr : LP expr RPexpr : IDexpr : PRE indecl PRD ID atrib : PRE indecl PRD ID IGUAL exprindecl : NINTindecl : IDind : NINTind : IDexprl : expr BIG expr\n                  | expr SMALL expr\n                  | expr BIGEQ expr\n                  | expr SMALLEQ expr\n                  | expr EQ expr\n                  | exprl AND exprl\n                  | exprl OR exprl\n                  operations : operations NEWLINE operationoperations : operation\n    operation : IN\n                | PRINT \n                | atrib \n                | exprl \n                | expr \n                | if_ifnot \n                | decl \n                | if_then \n                | for\n    if_ifnot : IF exprl THEN operations ELSE operationsif_then : IF exprl THEN operationsfor : FOR exprl DO operations'
     
-_lr_action_items = {'Input':([0,21,70,71,89,],[13,13,13,13,13,]),'Write':([0,21,70,71,89,],[16,16,16,16,16,]),'ID':([0,14,17,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,36,38,39,67,69,70,71,73,87,88,89,],[15,37,41,37,37,15,37,37,37,37,37,37,37,37,37,37,37,37,59,41,37,66,80,82,15,15,85,91,37,15,]),'PRE':([0,14,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,38,39,70,71,88,89,],[17,36,36,36,17,36,36,36,36,36,36,36,36,36,36,36,36,36,67,17,17,36,17,]),'NINT':([0,14,17,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,36,38,63,64,67,70,71,86,88,89,],[18,18,42,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,42,18,75,77,81,18,18,90,18,18,]),'LP':([0,13,14,16,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,38,70,71,88,89,],[14,34,14,39,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,]),'IF':([0,21,70,71,89,],[19,19,19,19,19,]),'FOR':([0,21,70,71,89,],[20,20,20,20,20,]),'$end':([1,2,3,4,5,6,7,8,9,10,11,12,15,18,37,46,47,48,49,50,51,52,53,54,55,56,57,58,60,62,63,72,74,75,76,77,78,82,83,84,85,90,92,93,],[0,-1,-36,-37,-38,-39,-40,-41,-42,-43,-44,-45,-26,-19,-26,-35,-33,-34,-28,-29,-30,-31,-32,-14,-15,-16,-17,-18,-27,-2,-10,-3,-8,-9,-11,-12,-4,-20,-47,-48,-20,-13,-21,-46,]),'NEWLINE':([2,3,4,5,6,7,8,9,10,11,12,15,18,37,46,47,48,49,50,51,52,53,54,55,56,57,58,60,62,63,72,74,75,76,77,78,82,83,84,85,90,92,93,],[21,-36,-37,-38,-39,-40,-41,-42,-43,-44,-45,-26,-19,-26,-35,-33,-34,-28,-29,-30,-31,-32,-14,-15,-16,-17,-18,-27,-2,-10,-3,-8,-9,-11,-12,-4,-20,21,21,-20,-13,-21,21,]),'ELSE':([3,4,5,6,7,8,9,10,11,12,15,18,37,46,47,48,49,50,51,52,53,54,55,56,57,58,60,62,63,72,74,75,76,77,78,82,83,84,85,90,92,93,],[-36,-37,-38,-39,-40,-41,-42,-43,-44,-45,-26,-19,-26,-35,-33,-34,-28,-29,-30,-31,-32,-14,-15,-16,-17,-18,-27,-2,-10,-3,-8,-9,-11,-12,-4,-20,89,-48,-20,-13,-21,-46,]),'AND':([7,18,37,43,45,47,48,49,50,51,52,53,54,55,56,57,58,60,85,],[22,-19,-26,22,22,22,22,-28,-29,-30,-31,-32,-14,-15,-16,-17,-18,-27,-20,]),'OR':([7,18,37,43,45,47,48,49,50,51,52,53,54,55,56,57,58,60,85,],[23,-19,-26,23,23,23,23,-28,-29,-30,-31,-32,-14,-15,-16,-17,-18,-27,-20,]),'BIG':([8,15,18,37,44,54,55,56,57,58,60,82,85,],[24,-26,-19,-26,24,-14,-15,-16,-17,-18,-27,-20,-20,]),'SMALL':([8,15,18,37,44,54,55,56,57,58,60,82,85,],[25,-26,-19,-26,25,-14,-15,-16,-17,-18,-27,-20,-20,]),'BIGEQ':([8,15,18,37,44,54,55,56,57,58,60,82,85,],[26,-26,-19,-26,26,-14,-15,-16,-17,-18,-27,-20,-20,]),'SMALLEQ':([8,15,18,37,44,54,55,56,57,58,60,82,85,],[27,-26,-19,-26,27,-14,-15,-16,-17,-18,-27,-20,-20,]),'EQ':([8,15,18,37,44,54,55,56,57,58,60,82,85,],[28,-26,-19,-26,28,-14,-15,-16,-17,-18,-27,-20,-20,]),'PLUS':([8,15,18,35,37,44,49,50,51,52,53,54,55,56,57,58,60,62,82,85,92,],[29,-26,-19,29,-26,29,29,29,29,29,29,-14,29,-16,-17,29,-27,29,-20,-20,29,]),'MINUS':([8,15,18,35,37,44,49,50,51,52,53,54,55,56,57,58,60,62,82,85,92,],[30,-26,-19,30,-26,30,30,30,30,30,30,-14,30,-16,-17,30,-27,30,-20,-20,30,]),'MUL':([8,15,18,35,37,44,49,50,51,52,53,54,55,56,57,58,60,62,82,85,92,],[31,-26,-19,31,-26,31,31,31,31,31,31,31,31,-16,-17,31,-27,31,-20,-20,31,]),'DIV':([8,15,18,35,37,44,49,50,51,52,53,54,55,56,57,58,60,62,82,85,92,],[32,-26,-19,32,-26,32,32,32,32,32,32,32,32,-16,-17,32,-27,32,-20,-20,32,]),'MOD':([8,15,18,35,37,44,49,50,51,52,53,54,55,56,57,58,60,62,82,85,92,],[33,-26,-19,33,-26,33,33,33,33,33,33,-14,33,-16,-17,33,-27,33,-20,-20,33,]),'IGUAL':([15,82,],[38,88,]),'RP':([18,35,37,54,55,56,57,58,59,60,65,66,68,85,91,],[-19,60,-26,-14,-15,-16,-17,-18,72,-27,78,-5,-7,-20,-6,]),'THEN':([18,37,43,47,48,49,50,51,52,53,54,55,56,57,58,60,85,],[-19,-26,70,-33,-34,-28,-29,-30,-31,-32,-14,-15,-16,-17,-18,-27,-20,]),'DO':([18,37,45,47,48,49,50,51,52,53,54,55,56,57,58,60,85,],[-19,-26,71,-33,-34,-28,-29,-30,-31,-32,-14,-15,-16,-17,-18,-27,-20,]),'INT':([38,],[63,]),'LISTA':([38,],[64,]),'TEXT':([39,],[68,]),'PRD':([40,41,42,61,79,80,81,],[69,-23,-22,73,87,-25,-24,]),'VIRG':([76,77,90,],[86,-12,-13,]),}
+_lr_action_items = {'Input':([0,21,70,71,89,],[13,13,13,13,13,]),'Write':([0,21,70,71,89,],[16,16,16,16,16,]),'ID':([0,14,17,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,37,38,39,67,69,70,71,73,87,88,89,],[15,36,41,36,36,15,36,36,36,36,36,36,36,36,36,36,36,36,59,41,36,66,80,82,15,15,85,91,36,15,]),'PRE':([0,14,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,38,39,70,71,88,89,],[17,37,37,37,17,37,37,37,37,37,37,37,37,37,37,37,37,37,67,17,17,37,17,]),'NINT':([0,14,17,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,37,38,63,64,67,70,71,86,88,89,],[18,18,42,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,42,18,75,77,81,18,18,90,18,18,]),'LP':([0,13,14,16,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,38,70,71,88,89,],[14,34,14,39,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,]),'IF':([0,21,70,71,89,],[19,19,19,19,19,]),'FOR':([0,21,70,71,89,],[20,20,20,20,20,]),'$end':([1,2,3,4,5,6,7,8,9,10,11,12,15,18,36,46,47,48,49,50,51,52,53,54,55,56,57,58,60,62,63,72,74,75,76,77,78,82,83,84,85,90,92,93,],[0,-1,-36,-37,-38,-39,-40,-41,-42,-43,-44,-45,-21,-19,-21,-35,-33,-34,-28,-29,-30,-31,-32,-14,-15,-16,-17,-18,-20,-8,-4,-9,-2,-3,-5,-6,-10,-22,-47,-48,-22,-7,-23,-46,]),'NEWLINE':([2,3,4,5,6,7,8,9,10,11,12,15,18,36,46,47,48,49,50,51,52,53,54,55,56,57,58,60,62,63,72,74,75,76,77,78,82,83,84,85,90,92,93,],[21,-36,-37,-38,-39,-40,-41,-42,-43,-44,-45,-21,-19,-21,-35,-33,-34,-28,-29,-30,-31,-32,-14,-15,-16,-17,-18,-20,-8,-4,-9,-2,-3,-5,-6,-10,-22,21,21,-22,-7,-23,21,]),'ELSE':([3,4,5,6,7,8,9,10,11,12,15,18,36,46,47,48,49,50,51,52,53,54,55,56,57,58,60,62,63,72,74,75,76,77,78,82,83,84,85,90,92,93,],[-36,-37,-38,-39,-40,-41,-42,-43,-44,-45,-21,-19,-21,-35,-33,-34,-28,-29,-30,-31,-32,-14,-15,-16,-17,-18,-20,-8,-4,-9,-2,-3,-5,-6,-10,-22,89,-48,-22,-7,-23,-46,]),'AND':([7,18,36,43,45,47,48,49,50,51,52,53,54,55,56,57,58,60,85,],[22,-19,-21,22,22,22,22,-28,-29,-30,-31,-32,-14,-15,-16,-17,-18,-20,-22,]),'OR':([7,18,36,43,45,47,48,49,50,51,52,53,54,55,56,57,58,60,85,],[23,-19,-21,23,23,23,23,-28,-29,-30,-31,-32,-14,-15,-16,-17,-18,-20,-22,]),'BIG':([8,15,18,36,44,54,55,56,57,58,60,82,85,],[24,-21,-19,-21,24,-14,-15,-16,-17,-18,-20,-22,-22,]),'SMALL':([8,15,18,36,44,54,55,56,57,58,60,82,85,],[25,-21,-19,-21,25,-14,-15,-16,-17,-18,-20,-22,-22,]),'BIGEQ':([8,15,18,36,44,54,55,56,57,58,60,82,85,],[26,-21,-19,-21,26,-14,-15,-16,-17,-18,-20,-22,-22,]),'SMALLEQ':([8,15,18,36,44,54,55,56,57,58,60,82,85,],[27,-21,-19,-21,27,-14,-15,-16,-17,-18,-20,-22,-22,]),'EQ':([8,15,18,36,44,54,55,56,57,58,60,82,85,],[28,-21,-19,-21,28,-14,-15,-16,-17,-18,-20,-22,-22,]),'PLUS':([8,15,18,35,36,44,49,50,51,52,53,54,55,56,57,58,60,62,82,85,92,],[29,-21,-19,29,-21,29,29,29,29,29,29,-14,29,-16,-17,29,-20,29,-22,-22,29,]),'MINUS':([8,15,18,35,36,44,49,50,51,52,53,54,55,56,57,58,60,62,82,85,92,],[30,-21,-19,30,-21,30,30,30,30,30,30,-14,30,-16,-17,30,-20,30,-22,-22,30,]),'MUL':([8,15,18,35,36,44,49,50,51,52,53,54,55,56,57,58,60,62,82,85,92,],[31,-21,-19,31,-21,31,31,31,31,31,31,31,31,-16,-17,31,-20,31,-22,-22,31,]),'DIV':([8,15,18,35,36,44,49,50,51,52,53,54,55,56,57,58,60,62,82,85,92,],[32,-21,-19,32,-21,32,32,32,32,32,32,32,32,-16,-17,32,-20,32,-22,-22,32,]),'MOD':([8,15,18,35,36,44,49,50,51,52,53,54,55,56,57,58,60,62,82,85,92,],[33,-21,-19,33,-21,33,33,33,33,33,33,-14,33,-16,-17,33,-20,33,-22,-22,33,]),'IGUAL':([15,82,],[38,88,]),'RP':([18,35,36,54,55,56,57,58,59,60,65,66,68,85,91,],[-19,60,-21,-14,-15,-16,-17,-18,72,-20,78,-11,-13,-22,-12,]),'THEN':([18,36,43,47,48,49,50,51,52,53,54,55,56,57,58,60,85,],[-19,-21,70,-33,-34,-28,-29,-30,-31,-32,-14,-15,-16,-17,-18,-20,-22,]),'DO':([18,36,45,47,48,49,50,51,52,53,54,55,56,57,58,60,85,],[-19,-21,71,-33,-34,-28,-29,-30,-31,-32,-14,-15,-16,-17,-18,-20,-22,]),'INT':([38,],[63,]),'LISTA':([38,],[64,]),'TEXT':([39,],[68,]),'PRD':([40,41,42,61,79,80,81,],[69,-25,-24,73,87,-27,-26,]),'VIRG':([76,77,90,],[86,-6,-7,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'start':([0,],[1,]),'operations':([0,70,71,89,],[2,83,84,93,]),'operation':([0,21,70,71,89,],[3,46,3,3,3,]),'IN':([0,21,70,71,89,],[4,4,4,4,4,]),'PRINT':([0,21,70,71,89,],[5,5,5,5,5,]),'atrib':([0,21,70,71,89,],[6,6,6,6,6,]),'exprl':([0,19,20,21,22,23,70,71,89,],[7,43,45,7,47,48,7,7,7,]),'expr':([0,14,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,38,70,71,88,89,],[8,35,44,44,8,44,44,49,50,51,52,53,54,55,56,57,58,62,8,8,92,8,]),'if_ifnot':([0,21,70,71,89,],[9,9,9,9,9,]),'decl':([0,21,70,71,89,],[10,10,10,10,10,]),'if_then':([0,21,70,71,89,],[11,11,11,11,11,]),'for':([0,21,70,71,89,],[12,12,12,12,12,]),'indecl':([17,36,],[40,61,]),'TEXTO':([39,],[65,]),'NINTdec':([63,],[74,]),'list_nint':([64,],[76,]),'ind':([67,],[79,]),}
+_lr_goto_items = {'start':([0,],[1,]),'operations':([0,70,71,89,],[2,83,84,93,]),'operation':([0,21,70,71,89,],[3,46,3,3,3,]),'IN':([0,21,70,71,89,],[4,4,4,4,4,]),'PRINT':([0,21,70,71,89,],[5,5,5,5,5,]),'atrib':([0,21,70,71,89,],[6,6,6,6,6,]),'exprl':([0,19,20,21,22,23,70,71,89,],[7,43,45,7,47,48,7,7,7,]),'expr':([0,14,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,38,70,71,88,89,],[8,35,44,44,8,44,44,49,50,51,52,53,54,55,56,57,58,62,8,8,92,8,]),'if_ifnot':([0,21,70,71,89,],[9,9,9,9,9,]),'decl':([0,21,70,71,89,],[10,10,10,10,10,]),'if_then':([0,21,70,71,89,],[11,11,11,11,11,]),'for':([0,21,70,71,89,],[12,12,12,12,12,]),'indecl':([17,37,],[40,61,]),'TEXTO':([39,],[65,]),'NINTdec':([63,],[74,]),'list_nint':([64,],[76,]),'ind':([67,],[79,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,52 +27,52 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> start","S'",1,None,None,None),
-  ('start -> operations','start',1,'p_start','yacc_teste.py',14),
-  ('atrib -> ID IGUAL expr','atrib',3,'p_atrib','yacc_teste.py',19),
-  ('IN -> Input LP ID RP','IN',4,'p_INPUT','yacc_teste.py',27),
-  ('PRINT -> Write LP TEXTO RP','PRINT',4,'p_PRINT','yacc_teste.py',37),
-  ('TEXTO -> ID','TEXTO',1,'p_PRINT_ID','yacc_teste.py',41),
-  ('TEXTO -> PRE ind PRD ID','TEXTO',4,'p_PRINT_list_elem','yacc_teste.py',49),
-  ('TEXTO -> TEXT','TEXTO',1,'p_PRINT_TXT','yacc_teste.py',57),
-  ('decl -> ID IGUAL INT NINTdec','decl',4,'p_decl_int_NINT','yacc_teste.py',61),
-  ('NINTdec -> NINT','NINTdec',1,'p_decl_int','yacc_teste.py',70),
-  ('NINTdec -> <empty>','NINTdec',0,'p_decl_int','yacc_teste.py',71),
-  ('decl -> ID IGUAL LISTA list_nint','decl',4,'p_decl_list','yacc_teste.py',78),
-  ('list_nint -> NINT','list_nint',1,'p_list_nint','yacc_teste.py',90),
-  ('list_nint -> list_nint VIRG NINT','list_nint',3,'p_list_tailList','yacc_teste.py',96),
-  ('expr -> expr PLUS expr','expr',3,'p_expression_op_mat','yacc_teste.py',101),
-  ('expr -> expr MINUS expr','expr',3,'p_expression_op_mat','yacc_teste.py',102),
-  ('expr -> expr MUL expr','expr',3,'p_expression_op_mat','yacc_teste.py',103),
-  ('expr -> expr DIV expr','expr',3,'p_expression_op_mat','yacc_teste.py',104),
-  ('expr -> expr MOD expr','expr',3,'p_expression_op_mat','yacc_teste.py',105),
-  ('expr -> NINT','expr',1,'p_expr2NUM_nint','yacc_teste.py',119),
-  ('expr -> PRE indecl PRD ID','expr',4,'p_expr_list','yacc_teste.py',123),
-  ('atrib -> PRE indecl PRD ID IGUAL expr','atrib',6,'p_decl_list_elem','yacc_teste.py',132),
-  ('indecl -> NINT','indecl',1,'p_indecl_NINT','yacc_teste.py',141),
-  ('indecl -> ID','indecl',1,'p_indecl_ID','yacc_teste.py',145),
-  ('ind -> NINT','ind',1,'p_ind_list_NINT','yacc_teste.py',150),
-  ('ind -> ID','ind',1,'p_ind_list_ID','yacc_teste.py',154),
-  ('expr -> ID','expr',1,'p_expr2NUM_var','yacc_teste.py',162),
-  ('expr -> LP expr RP','expr',3,'p_exp2goup','yacc_teste.py',167),
-  ('exprl -> expr BIG expr','exprl',3,'p_expression_logop','yacc_teste.py',171),
-  ('exprl -> expr SMALL expr','exprl',3,'p_expression_logop','yacc_teste.py',172),
-  ('exprl -> expr BIGEQ expr','exprl',3,'p_expression_logop','yacc_teste.py',173),
-  ('exprl -> expr SMALLEQ expr','exprl',3,'p_expression_logop','yacc_teste.py',174),
-  ('exprl -> expr EQ expr','exprl',3,'p_expression_logop','yacc_teste.py',175),
-  ('exprl -> exprl AND exprl','exprl',3,'p_expression_logop','yacc_teste.py',176),
-  ('exprl -> exprl OR exprl','exprl',3,'p_expression_logop','yacc_teste.py',177),
-  ('operations -> operations NEWLINE operation','operations',3,'p_operation_def','yacc_teste.py',188),
-  ('operations -> operation','operations',1,'p_operations_newline','yacc_teste.py',192),
-  ('operation -> IN','operation',1,'p_op','yacc_teste.py',197),
-  ('operation -> PRINT','operation',1,'p_op','yacc_teste.py',198),
-  ('operation -> atrib','operation',1,'p_op','yacc_teste.py',199),
-  ('operation -> exprl','operation',1,'p_op','yacc_teste.py',200),
-  ('operation -> expr','operation',1,'p_op','yacc_teste.py',201),
-  ('operation -> if_ifnot','operation',1,'p_op','yacc_teste.py',202),
-  ('operation -> decl','operation',1,'p_op','yacc_teste.py',203),
-  ('operation -> if_then','operation',1,'p_op','yacc_teste.py',204),
-  ('operation -> for','operation',1,'p_op','yacc_teste.py',205),
-  ('if_ifnot -> IF exprl THEN operations ELSE operations','if_ifnot',6,'p_IF_IFNOT','yacc_teste.py',210),
-  ('if_then -> IF exprl THEN operations','if_then',4,'p_IF','yacc_teste.py',217),
-  ('for -> FOR exprl DO operations','for',4,'p_for','yacc_teste.py',223),
+  ('start -> operations','start',1,'p_start','yacc_teste.py',18),
+  ('decl -> ID IGUAL INT NINTdec','decl',4,'p_decl_int_NINT','yacc_teste.py',24),
+  ('NINTdec -> NINT','NINTdec',1,'p_decl_int','yacc_teste.py',34),
+  ('NINTdec -> <empty>','NINTdec',0,'p_decl_int','yacc_teste.py',35),
+  ('decl -> ID IGUAL LISTA list_nint','decl',4,'p_decl_list','yacc_teste.py',43),
+  ('list_nint -> NINT','list_nint',1,'p_list_nint','yacc_teste.py',56),
+  ('list_nint -> list_nint VIRG NINT','list_nint',3,'p_list_tailList','yacc_teste.py',63),
+  ('atrib -> ID IGUAL expr','atrib',3,'p_atrib','yacc_teste.py',69),
+  ('IN -> Input LP ID RP','IN',4,'p_INPUT','yacc_teste.py',78),
+  ('PRINT -> Write LP TEXTO RP','PRINT',4,'p_PRINT','yacc_teste.py',89),
+  ('TEXTO -> ID','TEXTO',1,'p_PRINT_ID','yacc_teste.py',94),
+  ('TEXTO -> PRE ind PRD ID','TEXTO',4,'p_PRINT_list_elem','yacc_teste.py',103),
+  ('TEXTO -> TEXT','TEXTO',1,'p_PRINT_TXT','yacc_teste.py',112),
+  ('expr -> expr PLUS expr','expr',3,'p_expression_op_mat','yacc_teste.py',118),
+  ('expr -> expr MINUS expr','expr',3,'p_expression_op_mat','yacc_teste.py',119),
+  ('expr -> expr MUL expr','expr',3,'p_expression_op_mat','yacc_teste.py',120),
+  ('expr -> expr DIV expr','expr',3,'p_expression_op_mat','yacc_teste.py',121),
+  ('expr -> expr MOD expr','expr',3,'p_expression_op_mat','yacc_teste.py',122),
+  ('expr -> NINT','expr',1,'p_expr2NUM_nint','yacc_teste.py',137),
+  ('expr -> LP expr RP','expr',3,'p_exp2goup','yacc_teste.py',142),
+  ('expr -> ID','expr',1,'p_expr2NUM_var','yacc_teste.py',147),
+  ('expr -> PRE indecl PRD ID','expr',4,'p_expr_list','yacc_teste.py',153),
+  ('atrib -> PRE indecl PRD ID IGUAL expr','atrib',6,'p_decl_list_elem','yacc_teste.py',163),
+  ('indecl -> NINT','indecl',1,'p_indecl_NINT','yacc_teste.py',173),
+  ('indecl -> ID','indecl',1,'p_indecl_ID','yacc_teste.py',178),
+  ('ind -> NINT','ind',1,'p_ind_list_NINT','yacc_teste.py',184),
+  ('ind -> ID','ind',1,'p_ind_list_ID','yacc_teste.py',189),
+  ('exprl -> expr BIG expr','exprl',3,'p_expression_logop','yacc_teste.py',201),
+  ('exprl -> expr SMALL expr','exprl',3,'p_expression_logop','yacc_teste.py',202),
+  ('exprl -> expr BIGEQ expr','exprl',3,'p_expression_logop','yacc_teste.py',203),
+  ('exprl -> expr SMALLEQ expr','exprl',3,'p_expression_logop','yacc_teste.py',204),
+  ('exprl -> expr EQ expr','exprl',3,'p_expression_logop','yacc_teste.py',205),
+  ('exprl -> exprl AND exprl','exprl',3,'p_expression_logop','yacc_teste.py',206),
+  ('exprl -> exprl OR exprl','exprl',3,'p_expression_logop','yacc_teste.py',207),
+  ('operations -> operations NEWLINE operation','operations',3,'p_operation_def','yacc_teste.py',220),
+  ('operations -> operation','operations',1,'p_operations_newline','yacc_teste.py',224),
+  ('operation -> IN','operation',1,'p_op','yacc_teste.py',231),
+  ('operation -> PRINT','operation',1,'p_op','yacc_teste.py',232),
+  ('operation -> atrib','operation',1,'p_op','yacc_teste.py',233),
+  ('operation -> exprl','operation',1,'p_op','yacc_teste.py',234),
+  ('operation -> expr','operation',1,'p_op','yacc_teste.py',235),
+  ('operation -> if_ifnot','operation',1,'p_op','yacc_teste.py',236),
+  ('operation -> decl','operation',1,'p_op','yacc_teste.py',237),
+  ('operation -> if_then','operation',1,'p_op','yacc_teste.py',238),
+  ('operation -> for','operation',1,'p_op','yacc_teste.py',239),
+  ('if_ifnot -> IF exprl THEN operations ELSE operations','if_ifnot',6,'p_IF_IFNOT','yacc_teste.py',245),
+  ('if_then -> IF exprl THEN operations','if_then',4,'p_IF','yacc_teste.py',253),
+  ('for -> FOR exprl DO operations','for',4,'p_for','yacc_teste.py',260),
 ]

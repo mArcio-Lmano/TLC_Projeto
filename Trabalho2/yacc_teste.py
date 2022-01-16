@@ -13,11 +13,56 @@ out_file = open("out.vm", "w+")
 #programa assembly começa com START
 out_file.write("START\n")
 
-#esta função permite chegar à função operations
+#esta função permite ao código saber por onde começar
 def p_start(p):
     "start : operations"
     p[0] = p[1]
     out_file.write(str(p[0]))
+
+#função para declarar uma variável com um número inteiro da forma "variável is INT número"
+def p_decl_int_NINT(p):
+    "decl : ID IGUAL INT NINTdec "
+    if p[1] in p.parser.registers:
+        p[0] = "PUSHI " + p[4] + "\n" + "STOREG " + str(p.parser.registers[p[1]][0]) + "\n"
+    else:
+        p.parser.registers[p[1]] = (p.parser.gp, 'int', 1)
+        p[0] = f'PUSHI {p[4]}\n'
+        p.parser.gp += 1
+
+#permite que variável do tipo INT possa ser definida logo como um número ou só como o seu tipo
+def p_decl_int(p):
+    """NINTdec : NINT
+                | """
+    try:
+        p[0] = str(p[1])
+    except:
+        p[0] = "0"
+
+#função para declarar uma variável com uma lista da forma "variável is LIST lista"
+def p_decl_list(p):
+    "decl : ID IGUAL LISTA list_nint"
+    if p[1] not in p.parser.registers:
+        p.parser.registers[p[1]] = (p.parser.gp, 'list', p.parser.arrp - p.parser.gp)
+        p[0] = "PUSHN " + str(p.parser.arrp - p.parser.gp) + "\n" + p[4] + "\n"
+        p.parser.gp += p.parser.arrp
+    elif p.parser.registers[p[1]][1] == "list" and p.parser.arrp - p.parser.gp == p.parser.registers[p[1]][2]:
+        p[0] = p[4] + "\n"
+    else:
+        print("ERRO: A variável não é do tipo LIST ou a nova lista não tem o tamanho da lista anterior da variável")
+        p_error(p)
+
+#elementos da lista (list_nint) são números inteiros (NINT)
+def p_list_nint(p):
+    "list_nint : NINT"
+    p.parser.arrp = p.parser.gp
+    p[0] = "PUSHI " + str(p[1]) + "\n" + "STOREG " + str(p.parser.arrp)
+    p.parser.arrp += 1
+
+#definição de uma lista: números inteiros separados por vírgulas
+def p_list_tailList(p):
+    "list_nint : list_nint VIRG NINT"
+    p[0] =  p[1] + "\n" + "PUSHI " + str(p[3]) + "\n" + "STOREG " + str(p.parser.arrp)
+    p.parser.arrp += 1
 
 #associa uma variável previamente declarada a uma expressão
 def p_atrib(p):
@@ -67,50 +112,6 @@ def p_PRINT_TXT(p):
     "TEXTO : TEXT"
     p[0] = "PUSHS "+ str(p[1]) + "\nWRITES\n"
 
-#função para declarar uma variável com um número inteiro da forma "variável is INT número"
-def p_decl_int_NINT(p):
-    "decl : ID IGUAL INT NINTdec "
-    if p[1] in p.parser.registers:
-        p[0] = "PUSHI " + p[4] + "\n" + "STOREG " + str(p.parser.registers[p[1]][0]) + "\n"
-    else:
-        p.parser.registers[p[1]] = (p.parser.gp, 'int', 1)
-        p[0] = f'PUSHI {p[4]}\n'
-        p.parser.gp += 1
-
-#permite que variável do tipo INT possa ser definida logo como um número ou só como o seu tipo
-def p_decl_int(p):
-    """NINTdec : NINT
-                | """
-    try:
-        p[0] = str(p[1])
-    except:
-        p[0] = "0"
-
-#função para declarar uma variável com uma lista da forma "variável is LIST lista"
-def p_decl_list(p):
-    "decl : ID IGUAL LISTA list_nint"
-    if p[1] not in p.parser.registers:
-        p.parser.registers[p[1]] = (p.parser.gp, 'list', p.parser.arrp - p.parser.gp)
-        p[0] = "PUSHN " + str(p.parser.arrp - p.parser.gp) + "\n" + p[4] + "\n"
-        p.parser.gp += p.parser.arrp
-    elif p.parser.registers[p[1]][1] == "list" and p.parser.arrp - p.parser.gp == p.parser.registers[p[1]][2]:
-        p[0] = p[4] + "\n"
-    else:
-        print("ERRO: A variável não é do tipo LIST ou a nova lista não tem o tamanho da lista anterior da variável")
-        p_error(p)
-
-#elementos da lista (list_nint) são números inteiros (NINT)
-def p_list_nint(p):
-    "list_nint : NINT"
-    p.parser.arrp = p.parser.gp
-    p[0] = "PUSHI " + str(p[1]) + "\n" + "STOREG " + str(p.parser.arrp) 
-    p.parser.arrp += 1    
-
-#definição de uma lista: números inteiros separados por vírgulas
-def p_list_tailList(p):
-    "list_nint : list_nint VIRG NINT"
-    p[0] =  p[1] + "\n" + "PUSHI " + str(p[3]) + "\n" + "STOREG " + str(p.parser.arrp)
-    p.parser.arrp += 1 
 
 #função que exprime as operações matemáticas soma, subtração, multiplicação, divisão e mod em números inteiros ou grupos
 def p_expression_op_mat(p):
@@ -135,6 +136,17 @@ def p_expression_op_mat(p):
 def p_expr2NUM_nint(p) :
     'expr : NINT'
     p[0] = "PUSHI " + str(p[1]) + "\n"
+
+#uma expressão pode ser um grupo: esta função serve para fazer contas com parêntesis da  forma (expressão)
+def p_exp2goup(p):
+    'expr : LP expr RP'
+    p[0] = p[2]
+
+#uma expressão pode ser uma variável
+def p_expr2NUM_var(p) :
+    "expr : ID"
+    if p[1] in p.parser.registers:
+        p[0] = "PUSHG " + str(p.parser.registers[p[1]][0]) + "\n"
 
 #uma expressão pode ser um elemento de uma lista, da forma "{índice do elemento}lista"
 def p_expr_list(p):
@@ -181,16 +193,6 @@ def p_ind_list_ID(p):
         print("ERRO: A variável não se encontra na lista de variáveis")
         p_error(p)
 
-#uma expressão pode ser uma variável
-def p_expr2NUM_var(p) :
-    "expr : ID"
-    if p[1] in p.parser.registers:
-        p[0] = "PUSHG " + str(p.parser.registers[p[1]][0]) + "\n"
-
-#uma expressão pode ser um grupo: esta função serve para fazer contas com parêntesis da  forma (expressão)
-def p_exp2goup(p):
-    'expr : LP expr RP'
-    p[0] = p[2]
 
 #função que define as operações lógicas:
 #Para operações matemáticas: BIG (maior que), SMALL (menor que), BIGEQ (maior ou igual), SMALLEQ (menor ou igual), EQ (igual)
