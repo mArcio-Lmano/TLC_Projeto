@@ -130,7 +130,7 @@ def p_expr_list(p):
 
 def p_decl_list_elem(p):
     "atrib : PRE indecl PRD ID IGUAL expr"
-    if p[4] in p.parser.registers:
+    if p[4] in p.parser.registers and p.parser.registers[p[4]][1] == "list":
         p[0] = "PUSHGP\n" + "PUSHI " + str(p.parser.registers[p[4]][0]) + "\n" + "PADD\n" \
         + p[2] + p[6] + "STOREN\n"
     else:
