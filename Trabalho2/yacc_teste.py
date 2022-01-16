@@ -35,6 +35,7 @@ def p_atrib(p):
 def p_INPUT(p):
     "IN : Input LP ID RP"
     #if p[3] in p.parser.registers:
+    print(p.parser.registers)
     if p[3] in p.parser.registers:
         p[0] = "READ\n" + "STOREG " + str(p.parser.registers[p[3]][0]) + "\nPUSHG " \
             +str(p.parser.registers[p[3]][0])+ "\nATOI" + "\nSTOREG " \
@@ -69,7 +70,7 @@ def p_decl_int_NINT(p):
     if p[1] in p.parser.registers:
         p[0] = "PUSHI " + p[4] + "\n" + "STOREG " + str(p.parser.registers[p[1]][0]) + "\n"
     else:
-        p.parser.registers[p[1]] = [p.parser.gp, 'int', 1, p[4]]
+        p.parser.registers[p[1]] = (p.parser.gp, 'int', 1)
         p[0] = f'PUSHI {p[4]}\n'
         p.parser.gp += 1
 
@@ -86,6 +87,7 @@ def p_decl_list(p):
     if p[1] not in p.parser.registers:
         p.parser.registers[p[1]] = (p.parser.gp, 'list', p.parser.arrp - p.parser.gp)
         p[0] = "PUSHN " + str(p.parser.arrp - p.parser.gp) + "\n" + p[4] + "\n"
+        p.parser.gp += p.parser.arrp
     elif p.parser.registers[p[1]][1] == "list" and p.parser.arrp - p.parser.gp == p.parser.registers[p[1]][2]:
         p[0] = p[4] + "\n"
     else:
@@ -134,11 +136,30 @@ def p_expr2NUM_nint( p ) :
     p[0] = "PUSHI " + str(p[1]) + "\n" # p[0] = p[1]
 
 def p_expr_list(p):
-    "expr : PRE ind PRD ID "
+    "expr : PRE indecl PRD ID "
     if p[4] in p.parser.registers and p.parser.registers[p[4]][1] == "list":
-        p[0] = "PUSHG " + str(p.parser.registers[p[4]][0] + p[2]) + "\n"
+        p[0] = "PUSHGP\n" + "PUSHI " + str(p.parser.registers[p[4]][0]) + "\n" + "PADD\n" \
+        + p[2] + "LOADN\n"
     else:
         print("ERRO")
+
+def p_decl_list_elem(p):
+    "atrib : PRE indecl PRD ID IGUAL expr"
+    if p[4] in p.parser.registers:
+        p[0] = "PUSHGP\n" + "PUSHI " + str(p.parser.registers[p[4]][0]) + "\n" + "PADD\n" \
+        + p[2] + p[6] + "STOREN\n"
+    else: 
+        print("ERRO")
+
+def p_indecl_NINT(p):
+    "indecl : NINT"
+    p[0] = "PUSHI " + str(p[1]) + "\n"
+
+def p_indecl_NINT(p):
+    "indecl : ID"
+    if p[1] in p.parser.registers:
+        p[0] = "PUSHG " + str(p.parser.registers[p[1]][0]) + "\n"
+
 
 def p_ind_list_NINT(p):
     "ind : NINT"
@@ -214,18 +235,24 @@ def p_op(p):
 
 def p_IF_IFNOT(p):
     "if_ifnot : IF exprl THEN operations ELSE operations"
-    p[0] = p[2] + "JZ IFNOT\n" + p[4] + "JUMP ENDIF\nIFNOT:\n" + p[6] + "ENDIF:\n"
+    p[0] = p[2] + f"JZ IFNOT{p.parser.count_if}\n" + p[4] \
+    + f"JUMP ENDIF{p.parser.count_if}\nIFNOT{p.parser.count_if}:\n" + p[6] \
+    + f"ENDIF{p.parser.count_if}:\n"
+    p.parser.count_if += 1
 
 def p_IF(p):
     "if_then : IF exprl THEN operations"
     #if t[2]==True: t[0] = t[4]
-    p[0] = p[2] + "JZ ENDIF\n" + p[4] + "ENDIF:\n"
+    p[0] = p[2] + f"JZ ENDIF{p.parser.count_if}\n" + p[4] \
+    + f"ENDIF{p.parser.count_if}:\n"
+    p.parser.count_if += 1
 
 
 def p_for(p):
     "for : FOR exprl DO operations"
-    p[0] = "FOR:\n" + p[2] + "JZ ENDFOR\n" + p[4] + "JUMP FOR\n" + "ENDFOR:\n" 
-
+    p[0] = f"FOR{p.parser.count_for}:\n" + p[2] + f"JZ ENDFOR{p.parser.count_for}\n" \
+    + p[4] + f"JUMP FOR{p.parser.count_for}\n" + f"ENDFOR{p.parser.count_for}:\n" 
+    p.parser.count_for += 1
 ###########################################################################
 
 def p_error(p):
@@ -242,6 +269,8 @@ parser.registers = {}
 parser.gp = 0
 parser.arrp = 0
 parser.num_linhas = 0
+parser.count_for = 0
+parser.count_if = 0
 user_input = input("Que Ficheiro quer ler? ")
 
 parser.success = True

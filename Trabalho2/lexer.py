@@ -19,6 +19,7 @@ reserved = {
     "SUB" : "MINUS",
     "MULT" : "MUL",
     "DIV" : "DIV",
+    "MOD" : "MOD",
     #Operações logicas
     "EQ" : "EQ",
     "BIG" : "BIG",
@@ -30,13 +31,15 @@ reserved = {
     }
 
 
-tokens = ["NINT", "ID", "NEWLINE", "VIRG","LP","RP", "TEXT"] + list(reserved.values())
+tokens = ["NINT", "ID", "NEWLINE", "VIRG","LP","RP", "TEXT", "PRD", "PRE"] + list(reserved.values())
 
 t_NEWLINE = ";"
 t_LP = r'\('
 t_RP = r'\)'
 t_VIRG = ","
 t_TEXT = r"\"([^\"]+)\""
+t_PRD = r"}"
+t_PRE = r"{"
 
 # spaces and tabs seráo ignorados
 t_ignore = " \t\n"

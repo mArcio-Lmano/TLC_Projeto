@@ -1,0 +1,10 @@
+a is LIST 0,0,0,0,0
+b is INT 0
+c is INT
+
+FOR b SMALL 5 DO Input(c); {b}a is c; b is b SUM 1
+
+b is b SUB 1
+
+FOR b BIGEQ 0 DO c is {b}a; Write(c); b is b SUB 1
+
