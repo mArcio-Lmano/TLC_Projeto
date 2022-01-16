@@ -1,4 +1,4 @@
-'Calcula o menor numero (b) de um conjunto de N numero (a)'
+'Calcula o menor numero (b) de um conjunto de N numeros (a)'
 
 
 a is INT

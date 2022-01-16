@@ -1,0 +1,3 @@
+y is INT 2
+a is INT 3
+Write(x)
