@@ -85,3 +85,46 @@ def creat_jSon (info):
 
     return print("Ficheiro Criado")
 
+def filtra_ano (registo): #funcao que recebe o registo e filtra o ano da expressão da data
+    line= registo["data"]
+    match =re.search(r"[0-9]{4}",line)
+    return match.group()
+
+
+def freq_proc(reg,dic_proc): #funçao que recebe uma linha e preenche o dicionario com o nº de proc e pessoas no ano respetivo
+    index=1
+    rex=r"[0-9]+"
+    ano=str(filtra_ano(reg))
+    dic_proc[ano]={}
+    dic_proc[ano]["total"]=0
+    dic_proc[ano]["processos"]=0
+
+    if str(ano) in dic_proc:
+        while "pessoa" + str(index) in reg["pessoas"]:
+            match_proc = re.fullmatch(rex, str(reg["pessoas"]\
+                                                    ["pessoa" + str(index)]["processo"]) )
+            dic_proc[ano]["total"]+=1
+            if match_proc:
+                dic_proc[ano]["processos"]+=1
+            index+=1
+            
+    else:
+        while "pessoa" + str(index) in reg["pessoas"]:
+            
+            match_proc = re.fullmatch(rex, str(reg["pessoas"]\
+                                                    ["pessoa" + str(index)]["processo"]) )
+            dic_proc[ano]["total"]= 1    #dic[str(newReg["ano"])][0]
+            if match_proc:
+                dic_proc[ano]["processos"]+=1
+            index+=1
+    #print(dic)
+    return (dic_proc)
+
+def calcula_freq (dic_proc): #funçao que dado um dicionario com o nº de proc e de pessoas associado calcula a media
+    for key in dic_proc:
+        freq={}
+        freq[key]=dic_proc[key]["processos"]/dic_proc[key]["total"]
+        print(freq)
+    return (freq)
+
+
